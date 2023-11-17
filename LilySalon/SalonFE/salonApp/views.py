@@ -60,17 +60,19 @@ def order(request):
 def adminEdit(request):
     return render(request, 'admin/adminEdit.html')
 
-def a_admin(request):
-    return render(request, 'admin/a_admin.html')
 
-def a_operator(request):
-    return render(request, 'admin/a_operator.html')
+
+def edit_operator(request):
+    return render(request, 'editPages/edit_operator.html')
+
+def edit_services(request):
+    return render(request, 'editPages/edit_services.html')
 
 def a_location(request):
     return render(request, 'admin/a_location.html')
 
-def operatorEdit(request):
-    return render(request, 'operator/operatorEdit.html')
+def operator(request):
+    return render(request, 'operator/operator.html')
 
 def salesEdit(request):
     return render(request, 'operator/salesEdit.html')

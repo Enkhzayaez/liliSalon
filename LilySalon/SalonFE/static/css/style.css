@@ -1,0 +1,5 @@
+.a_dropdown:focus-within .a_dropdown-menu {
+    opacity:1;
+    transform: translate(0) scale(1);
+    visibility: visible;
+    }

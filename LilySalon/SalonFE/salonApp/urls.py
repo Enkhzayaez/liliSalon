@@ -11,12 +11,12 @@ urlpatterns = [
 
     # operator page url
     path('adminEdit/', views.adminEdit, name = 'adminEdit'),
-    path('a_admin/', views.a_admin, name = 'a_admin'),
-    path('a_operator/', views.a_operator, name = 'a_operator'),
+    path('edit_services/', views.edit_services, name = 'edit_services'),
+    path('edit_operator/', views.edit_operator, name = 'edit_operator'),
     path('a_location/', views.a_location, name = 'a_location'),
 
     # operator page url
-    path('operatorEdit/', views.operatorEdit, name = 'operatorEdit'),
+    path('operator/', views.operator, name = 'operator'),
     path('salesEdit/', views.salesEdit, name = 'salesEdit'),
 
     # sign up
