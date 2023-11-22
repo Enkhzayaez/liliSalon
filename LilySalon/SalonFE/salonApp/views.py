@@ -60,13 +60,64 @@ def order(request):
 def adminEdit(request):
     return render(request, 'admin/adminEdit.html')
 
+# Operator Edit lists
+def list_operator(request):
+    return render(request, 'operator/lists/list_operator.html')
 
+def list_services(request):
+    return render(request, 'operator/lists/list_services.html')
 
+def list_sales(request):
+    return render(request, 'operator/lists/list_sales.html')
+
+def list_location(request):
+    return render(request, 'operator/lists/list_location.html')
+
+def list_orderlist(request):
+    return render(request, 'operator/lists/list_orderlist.html')
+
+def list_workers(request):
+    return render(request, 'operator/lists/list_workers.html')
+
+# Edit Pages
 def edit_operator(request):
     return render(request, 'editPages/edit_operator.html')
 
 def edit_services(request):
     return render(request, 'editPages/edit_services.html')
+
+def edit_sales(request):
+    return render(request, 'editPages/edit_sales.html')
+
+def edit_location(request):
+    return render(request, 'editPages/edit_location.html')
+
+def edit_orderlist(request):
+    return render(request, 'editPages/edit_orderlist.html')
+
+def edit_worker(request):
+    return render(request, 'editPages/edit_worker.html')
+
+# Add Pages
+def add_operator(request):
+    return render(request, 'addPages/add_operator.html')
+
+def add_services(request):
+    return render(request, 'addPages/add_services.html')
+
+def add_sales(request):
+    return render(request, 'addPages/add_sales.html')
+
+def add_location(request):
+    return render(request, 'addPages/add_location.html')
+
+def add_orderlist(request):
+    return render(request, 'addPages/add_orderlist.html')
+
+def add_workers(request):
+    return render(request, 'addPages/add_workers.html')
+
+
 
 def a_location(request):
     return render(request, 'admin/a_location.html')
@@ -74,8 +125,7 @@ def a_location(request):
 def operator(request):
     return render(request, 'operator/operator.html')
 
-def salesEdit(request):
-    return render(request, 'operator/salesEdit.html')
+
 
 def login(request):
     if request.method == "POST":
