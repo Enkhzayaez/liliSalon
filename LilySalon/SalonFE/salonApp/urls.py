@@ -19,6 +19,7 @@ urlpatterns = [
     path('list_location/', views.list_location, name = 'list_location'),
     path('list_orderlist/', views.list_orderlist, name = 'list_orderlist'),
     path('list_workers/', views.list_workers, name = 'list_workers'),
+    path('order_detail/<int:phone>', views.order_detail, name = 'order_detail'),
 
     # editPages url
     path('edit_services/', views.edit_services, name = 'edit_services'),

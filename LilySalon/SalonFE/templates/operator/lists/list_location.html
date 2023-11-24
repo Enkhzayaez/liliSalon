@@ -77,6 +77,42 @@
                   <table class="min-w-full leading-normal">
                     <thead>
                       <tr>
+                        <form>
+                          <td class="px-5 py-5 border-b border-gray-200 " >
+                            <div class="flex-shrink-0  ">
+                              <input class=" block w-full text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none" id="img" type="file">   
+                            </div>
+                          </td>
+
+                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <select class="p-2 block text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none" name="branch" id="branch">
+                              <option >Салбар-1</option>
+                              <option >Салбар-2</option>
+                              <option >Салбар-3</option>
+                              <option >Салбар-4</option>
+                            </select>   
+                          </td>
+
+                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <div class="flex items-center">
+                                  <input class="p-2 block w-full text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none" placeholder="Хаяг" id="text" type="number">   
+                            </div>
+                          </td>
+
+                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <input class="p-2 block w-full text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none " placeholder="Утас" id="price" type="text">   
+                          </td>
+
+                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <input class="bg-[#F4C2C2] hover:bg-[#E17F93] px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer" value="Нэмэх" type="submit" name="hair"></input>
+                          </td>
+                        </form>
+                      </tr>
+
+                      <tr>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                          Зураг
+                        </th>
                         <th
                           class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                           Салбар
@@ -99,16 +135,16 @@
                     </thead>
                     <tbody>
                       <tr>
+                        <td class="px-5 py-5 border-b border-gray-200 w-48  " >
+                          <div class="flex-shrink-0 w-10 h-10 ">
+                            <img class="w-full h-full border border-black rounded-full" src="{% static 'images/icons/branch.png'  %}" alt="" />
+                          </div>
+                        </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                           <div class="flex items-center">
-                            <div class="flex-shrink-0 w-10 h-10">
-                              <img class="w-full h-full rounded-full border border-black p-1" src="{% static 'images/icons/branch.png' %}" alt="" />
-                            </div>
-                              <div class="ml-3">
                                 <p class="text-gray-900 whitespace-no-wrap">
-                                  Vera Carpenter
+                                  Салбар-1
                                 </p>
-                              </div>
                             </div>
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -129,18 +165,81 @@
                         </td>
                       </tr>
                       <tr>
+                        <td class="px-5 py-5 border-b border-gray-200 " >
+                          <div class="flex-shrink-0 w-10 h-10 ">
+                            <img class=" border border-black rounded-full" src="{% static 'images/icons/branch.png'  %}" alt="" />
+                          </div>
+                        
+                        </td>
                           <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             <div class="flex items-center">
-                              <div class="flex-shrink-0 w-10 h-10">
-                                <img class="w-full h-full rounded-full border border-black p-1"
-                                src="{% static 'images/icons/branch.png' %}"  
-                                alt="" />
-                              </div>
-                              <div class="ml-3">
                                 <p class="text-gray-900 whitespace-no-wrap">
-                                  Blake Bowman
+                                  Салбар-2
                                 </p>
-                              </div>
+                            </div>
+                          </td>
+                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p class="text-gray-900 whitespace-no-wrap">
+                              Orgil khudaldanii tuwiin 2 dakhart 205toot
+                            </p>
+                          </td>
+                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p class="text-gray-900 whitespace-no-wrap">
+                              88776699
+                            </p>
+                          </td>
+                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <a href="#">Засах</a>
+                          </td>
+                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <a href="#">Устгах</a>
+                          </td>
+                      </tr>
+
+                      <tr>
+                        <td class="px-5 py-5 border-b border-gray-200 " >
+                          <div class="flex-shrink-0 w-10 h-10 ">
+                            <img class=" border border-black rounded-full" src="{% static 'images/icons/branch.png'  %}" alt="" />
+                          </div>
+                        
+                        </td>
+                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <div class="flex items-center">
+                                <p class="text-gray-900 whitespace-no-wrap">
+                                  Салбар-3
+                                </p>
+                            </div>
+                          </td>
+                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p class="text-gray-900 whitespace-no-wrap">
+                              Orgil khudaldanii tuwiin 2 dakhart 205toot
+                            </p>
+                          </td>
+                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p class="text-gray-900 whitespace-no-wrap">
+                              88776699
+                            </p>
+                          </td>
+                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <a href="#">Засах</a>
+                          </td>
+                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <a href="#">Устгах</a>
+                          </td>
+                      </tr>
+
+                      <tr>
+                        <td class="px-5 py-5 border-b border-gray-200 " >
+                          <div class="flex-shrink-0 w-10 h-10 ">
+                            <img class=" border border-black rounded-full" src="{% static 'images/icons/branch.png'  %}" alt="" />
+                          </div>
+                        
+                        </td>
+                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <div class="flex items-center">
+                                <p class="text-gray-900 whitespace-no-wrap">
+                                  Салбар-4
+                                </p>
                             </div>
                           </td>
                           <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">

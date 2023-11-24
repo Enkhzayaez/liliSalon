@@ -79,7 +79,83 @@ def list_location(request):
     return render(request, 'operator/lists/list_location.html')
 
 def list_orderlist(request):
-    return render(request, 'operator/lists/list_orderlist.html')
+    orders = [
+        {
+            "order" : "Туяа",
+            "phone" : 99554488,
+            "date" : "2024/12/19 12:00:00",
+        },
+        {
+            "order" : "Батаа",
+            "phone" : 80528787,
+            "date" : "2024/02/07 16:00:00",
+        },
+        {
+            "order" : "Гэрлээ",
+            "phone" : 99887799,
+            "date" : "2024/06/01 14:00:00",
+        },
+    ]
+    context = {
+        "orders" : orders
+    }
+    return render(request, 'operator/lists/list_orderlist.html',context)
+
+def order_detail(request,phone = None):
+    orders = [
+        {   
+            "order" : "Туяа",
+            "phone" : 99554488,
+            "date" : "2024/12/19 12:00:00",
+            "services" : [
+                {
+                    "name" : "Nail art",
+                    "price" : 150000,
+                },
+            ],
+        },
+        {
+            "order" : "Батаа",
+            "phone" : 80528787,
+            "date" : "2024/02/07 16:00:00",
+            "services" : [
+                {
+                    "name" : "Hair Styling",
+                    "price" : 80000,
+                },
+                {
+                    "name" : "Nail art",
+                    "price" : 150000,
+                },
+            ],
+        },
+        {
+            "order" : "Гэрлээ",
+            "phone" : 99887799,
+            "date" : "2024/06/01 14:00:00",
+            "services" : [
+                {
+                    "name" : "Hair Shortening",
+                    "price" : 25000,
+                },
+                {
+                    "name" : "Hair Styling",
+                    "price" : 80000,
+                },
+                {
+                    "name" : "Nail art",
+                    "price" : 150000,
+                },
+            ],
+        },
+    ]
+    context = {'orders' : orders}
+    for i in range(len(orders)):
+        if orders[i]['phone'] == phone:
+            context.update({"order" : orders[i]})
+        
+    print(context)
+    return render(request, 'operator/lists/order_details.html',context)
 
 def list_workers(request):
     return render(request, 'operator/lists/list_workers.html')

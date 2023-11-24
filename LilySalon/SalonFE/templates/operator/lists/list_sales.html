@@ -73,9 +73,37 @@
                     <table class="min-w-full leading-normal">
                       <thead>
                         <tr>
+                          <form>
+                            <td class="px-5 py-5 border-b border-gray-200 " >
+                              <div class="flex-shrink-0  ">
+                                <input class=" block w-full text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none" id="img" type="file">  
+                              </div>
+                            </td>
+
+                            <td class="px-5 py-5 border-b border-gray-200 " >
+                              <div class="flex-shrink-0  ">
+                                <input class="p-2 block w-full text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none" placeholder="Тайлбар" id="text" type="text">   
+                              </div>
+                            </td>
+
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                              <div class="flex items-center">
+                                    <input class="p-2 block w-full text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none"  id="date" type="date">   
+                                  </div>
+                            </td>
+  
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                              <input class="bg-[#F4C2C2] hover:bg-[#E17F93] px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer" value="Нэмэх" type="submit" name="hair"></input>
+                            </td>
+                          </form>
+                        </tr>
+                        <tr>
+                          <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                            Зураг
+                         </th>
                           <th
                             class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                            Нэр
+                            Тайлбар
                           </th>
                           <th
                             class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -92,17 +120,16 @@
                       </thead>
                       <tbody>
                         <tr>
+                          <td class="px-5 py-5 border-b border-gray-200 w-48  " >
+                            <div class="flex-shrink-0 w-10 h-10 ">
+                              <img class="w-full h-full border border-black rounded-full" src="{% static 'images/icons/sales.png'  %}" alt="" />
+                            </div>
+                          </td>
                           <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             <div class="flex items-center">
-                              <div class="flex-shrink-0 w-10 h-10">
-                                <img class="w-full h-full rounded-full border border-black " 
-                                src="{% static 'images/icons/sales.png' %}"       />
-                              </div>
-                                <div class="ml-3">
                                   <p class="text-gray-900 whitespace-no-wrap">
-                                    Nail art
+                                    Үс будалтын 50%-ийн хөнгөлөлт
                                   </p>
-                                </div>
                               </div>
                           </td>
                           <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -116,23 +143,23 @@
                             <a href="#">Устгах</a>
                           </td>
                         </tr>
+                        
                         <tr>
+                          <td class="px-5 py-5 border-b border-gray-200 " >
+                            <div class="flex-shrink-0 w-10 h-10 ">
+                              <img class="w-full h-full border border-black rounded-full" src="{% static 'images/icons/sales.png'  %}"  />
+                            </div>
+                          </td>
+                         
                           <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             <div class="flex items-center">
-                              <div class="flex-shrink-0 w-10 h-10">
-                                <img class="w-full h-full rounded-full border border-black "
-                                src="{% static 'images/icons/sales.png' %}"                         
-                                alt="" />
-                                                  </div>
-                                <div class="ml-3">
                                   <p class="text-gray-900 whitespace-no-wrap">
-                                    Hair Cut
+                                    Хумсны гелэн будалт 10-сарыг дуустал үнэгүй боллоо.
                                   </p>
-                                </div>
                               </div>
                           </td>
                           <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <p class="text-gray-900 whitespace-no-wrap">2023/11/30</p>
+                            <p class="text-gray-900 whitespace-no-wrap">2023/12/30</p>
                           </td>
                           
                           <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
