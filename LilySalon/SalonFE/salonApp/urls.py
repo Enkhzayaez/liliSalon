@@ -26,7 +26,7 @@ urlpatterns = [
     path('edit_sales/', views.edit_sales, name = 'edit_sales'),
     path('edit_location/', views.edit_location, name = 'edit_location'),
     path('edit_orderlist/', views.edit_orderlist, name = 'edit_orderlist'),
-    path('edit_worker/', views.edit_worker, name = 'edit_worker'),
+    path('edit_workers/', views.edit_workers, name = 'edit_workers'),
 
     # addPages url
     path('add_services/', views.add_services, name = 'add_services'),

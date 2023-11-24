@@ -65,7 +65,12 @@ def list_operator(request):
     return render(request, 'operator/lists/list_operator.html')
 
 def list_services(request):
-    return render(request, 'operator/lists/list_services.html')
+    if request.method == "POST":
+        if request.POST.get("hair"):
+            # hair bvrtgeh service duudna
+            return redirect("list_services")
+    else:
+        return render(request, 'operator/lists/list_services.html')
 
 def list_sales(request):
     return render(request, 'operator/lists/list_sales.html')
@@ -95,8 +100,8 @@ def edit_location(request):
 def edit_orderlist(request):
     return render(request, 'editPages/edit_orderlist.html')
 
-def edit_worker(request):
-    return render(request, 'editPages/edit_worker.html')
+def edit_workers(request):
+    return render(request, 'editPages/edit_workers.html')
 
 # Add Pages
 def add_operator(request):
