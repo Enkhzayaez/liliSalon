@@ -54,6 +54,7 @@
             <div>
               <h2 class="text-gray-600 font-semibold">Захиалга өгсөн: {{order.order}} / {{order.phone}} /</h2>
             </div>
+
             <div>
               <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                 <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
@@ -75,7 +76,7 @@
                           <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             <input class="p-2 block w-full text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none " placeholder="Үнэ" id="price" type="text">   
                           </td>
-
+                          
                           <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             <input class="bg-[#F4C2C2] hover:bg-[#E17F93] px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer" value="Нэмэх" type="submit" name="branch1"></input>
                           </td>
@@ -131,9 +132,16 @@
                       <button class="text-sm text-white transition duration-150 bg-[#F4C2C2] hover:bg-[#E17F93] font-semibold py-2 px-4 rounded-r"> Next</button>
                     </div>
                   </div>
+                  
                 </div>
               </div>
             </div>
+
+            <div class="space-x-8">
+              <a href="{% url 'list_orderlist' %}" class="bg-[#F4C2C2] hover:bg-[#E17F93] px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">Буцах</a>
+            </div>
+
+          </div>
           </div>
         <!-- ========================= LIST END // ========================= -->
       </div>
