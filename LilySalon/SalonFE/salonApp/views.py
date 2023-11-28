@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from django.contrib import auth
+from django.contrib.auth.decorators import login_required
 import requests
 import json
 BE_URL = "http://127.0.0.1:8080"
@@ -62,7 +64,7 @@ def adminEdit(request):
 
 # Operator Edit lists
 def list_operator(request):
-    return render(request, 'operator/lists/list_operator.html')
+    return render(request, 'lists/list_operator.html')
 
 def list_services(request):
     if request.method == "POST":
@@ -70,13 +72,13 @@ def list_services(request):
             # hair bvrtgeh service duudna
             return redirect("list_services")
     else:
-        return render(request, 'operator/lists/list_services.html')
+        return render(request, 'lists/list_services.html')
 
 def list_sales(request):
-    return render(request, 'operator/lists/list_sales.html')
+    return render(request, 'lists/list_sales.html')
 
 def list_location(request):
-    return render(request, 'operator/lists/list_location.html')
+    return render(request, 'lists/list_location.html')
 
 def list_orderlist(request):
     orders = [
@@ -99,7 +101,7 @@ def list_orderlist(request):
     context = {
         "orders" : orders
     }
-    return render(request, 'operator/lists/list_orderlist.html',context)
+    return render(request, 'lists/list_orderlist.html',context)
 
 def order_detail(request,phone = None):
     orders = [
@@ -155,10 +157,10 @@ def order_detail(request,phone = None):
             context.update({"order" : orders[i]})
         
     print(context)
-    return render(request, 'operator/lists/order_details.html',context)
+    return render(request, 'lists/order_details.html',context)
 
 def list_workers(request):
-    return render(request, 'operator/lists/list_workers.html')
+    return render(request, 'lists/list_workers.html')
 
 # Edit Pages
 def edit_operator(request):
@@ -206,7 +208,11 @@ def a_location(request):
 def operator(request):
     return render(request, 'operator/operator.html')
 
-
+@login_required(login_url="login")
+def logout(request):
+    if request.method =="GET":
+        auth.logout(request=request)
+    return redirect('login')
 
 def login(request):
     if request.method == "POST":

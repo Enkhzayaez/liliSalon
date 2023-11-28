@@ -22,12 +22,12 @@
                       </div>
                    </div>
                    
-                   <div class="p-4 flex-auto ">
+                   <div class="p-4 flex-auto  ">
                       <div class="relative h-350-px ">
-                         <div class="grid grid-cols-12 ">
-                            <p class="font-bold text-black">Салбар</p>
+                         <div class="grid grid-cols-8  ">
+                            <p class="font-bold text-black min-vw-100">Салбар</p>
                             <p class="font-bold text-black">>></p>
-                            <p>Үйлчилгээ</p>
+                            <p >Үйлчилгээ</p>
                             <p>>></p>
                             <p>Ажилтан</p>
                             <p>>></p>
@@ -36,13 +36,13 @@
 
                         
                         <form>   
-                            <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-[#F4C2C2]">Search</label>
+                            <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-[#F4C2C2]">Хайх</label>
                             <div class="relative">
                                 <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                     <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                                 </div>
-                                <input type="search" id="default-search" class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50  border border-[#F4C2C2]  dark:bg-white dark:text-dark  focus:border-white  focus:ring-white  " placeholder="Search name..." required>
-                                <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-[#F4C2C2] hover:bg-[#E17F93]  focus:outline-none focus:ring-blue-300 font-medium  text-sm px-4 py-2   ">Search</button>
+                                <input type="search" id="default-search" class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50  border border-[#F4C2C2]  dark:bg-white dark:text-dark  focus:border-white  focus:ring-white  " placeholder="Хайх..." required>
+                                <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-[#F4C2C2] hover:bg-[#E17F93]  focus:outline-none focus:ring-blue-300 font-medium  text-sm px-4 py-2   ">Хайх</button>
                             </div>
                         </form>
                          
@@ -59,15 +59,18 @@
                                 <form method="POST"> 
                                     {% csrf_token %}
                                     <input type="hidden" id="selectedBranch" name="selectedBranch" value="{{data}}">
-                                    <button type="submit" class="text-white text-md font-semibold bg-black py-2 px-4 rounded-lg shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 float-right">Select</button>
+                                    <button type="submit" class="text-white text-md font-semibold bg-black py-2 px-4 rounded-lg shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 float-right">Сонгох</button>
                                 </form>
                                </div>
                         </div>
                         {% endfor %}
               
                          <div class="flex justify-center ">
-                            <button class=" text-white text-md font-semibold bg-[#E17F93] py-2 px-4 rounded-lg shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 " onclick="branch()">Next</button>
+                            <button class=" bg-[#E17F93] py-2 px-4 rounded-full shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 " onclick="branch()">
+                               <p class=" text-white text-md font-semibold text-xl">>></p>
+                            </button>
                         </div>
+
                       </div>
                    </div>
                 </div>
@@ -76,32 +79,31 @@
                     <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
                        <div class="flex flex-wrap items-center">
                           <div class="relative w-full max-w-full flex-grow flex-1">
-                             <h2 class="text-xl font-semibold text-[#E17F93]">Services:</h2>
+                             <h2 class="text-xl font-semibold text-[#E17F93]">Үйлчилгээ сонгох:</h2>
                           </div>
                        </div>
                     </div>
                     
                     <div class="p-4 flex-auto ">
                        <div class="relative h-350-px ">
-                          <div class="grid grid-cols-12 ">
-                             <p class="font-bold text-black">Branch</p>
+                          <div class="grid grid-cols-8 ">
+                             <p class="font-bold text-black">Салбар</p>
                              <p class="font-bold text-black">>></p>
-                             <p class="font-bold text-black">Services</p>
+                             <p class="font-bold text-black">Үйлчилгээ</p>
                              <p  class="font-bold text-black">>></p>
-                             <p >Worker</p>
+                             <p >Ажилтан</p>
                              <p p>
-                             <p>Date</p>
+                             <p>Өдөр</p>
                           </div>
  
-                         
                          <form>   
-                             <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-[#F4C2C2]">Search</label>
+                             <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-[#F4C2C2]">Хайх</label>
                              <div class="relative">
                                  <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                      <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                                  </div>
-                                 <input type="search" id="default-search" class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50  border border-[#F4C2C2]  dark:bg-white dark:text-dark  focus:border-white  focus:ring-white  " placeholder="Search name..." required>
-                                 <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-[#F4C2C2] hover:bg-[#E17F93]  focus:outline-none focus:ring-blue-300 font-medium  text-sm px-4 py-2   ">Search</button>
+                                 <input type="search" id="default-search" class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50  border border-[#F4C2C2]  dark:bg-white dark:text-dark  focus:border-white  focus:ring-white  " placeholder="Хайх..." required>
+                                 <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-[#F4C2C2] hover:bg-[#E17F93]  focus:outline-none focus:ring-blue-300 font-medium  text-sm px-4 py-2   ">Хайх</button>
                              </div>
                          </form>
                           {% for data in services %}
@@ -118,17 +120,20 @@
                                 <form method="POST"> 
                                     {% csrf_token %}
                                     <input type="hidden" id="selectedService" name="selectedService" value="{{data.0}}">
-                                    <button type="submit" class="text-white text-md font-semibold bg-black py-2 px-4 rounded-lg shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 float-right">Select</button>
+                                    <button type="submit" class="text-white text-md font-semibold bg-black py-2 px-4 rounded-lg shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 float-right">Сонгох</button>
                                 </form>
                             </div>
                           
                          </div>
                          {% endfor %}
                
-                          <div class="flex justify-center">
-                            <button class=" text-white text-md font-semibold bg-[#E17F93] py-2 px-4 rounded-lg shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 mr-5" onclick="date()">previos</button>
-                             <button class=" text-white text-md font-semibold bg-[#E17F93] py-2 px-4 rounded-lg shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 " onclick="services()">Next</button>
-                         
+                            <div class="flex justify-center gap-5">
+                                <button class=" bg-[#E17F93] py-2 px-4 rounded-full shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 " onclick="date()">
+                                    <p class=" text-white text-md font-semibold text-xl"><<</p>
+                                </button>
+                                <button class=" bg-[#E17F93] py-2 px-4 rounded-full shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 " onclick="services()">
+                                    <p class=" text-white text-md font-semibold text-xl">>></p>
+                                </button>
                             </div>
                        </div>
                     </div>
@@ -138,32 +143,32 @@
                     <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
                        <div class="flex flex-wrap items-center">
                           <div class="relative w-full max-w-full flex-grow flex-1">
-                             <h2 class="text-xl font-semibold text-[#E17F93]">Services:</h2>
+                             <h2 class="text-xl font-semibold text-[#E17F93]">Үйлчилгээ сонгох:</h2>
                           </div>
                        </div>
                     </div>
                     
                     <div class="p-4 flex-auto ">
                        <div class="relative h-350-px ">
-                          <div class="grid grid-cols-12 ">
-                             <p class="font-bold text-black">Branch</p>
+                          <div class="grid grid-cols-8 ">
+                             <p class="font-bold text-black">Салбар</p>
                              <p class="font-bold text-black">>></p>
-                             <p class="font-bold text-black">Services</p>
+                             <p class="font-bold text-black">Үйлчилгээ</p>
                              <p  class="font-bold text-black">>></p>
-                             <p class="font-bold text-black">Worker</p>
+                             <p class="font-bold text-black">Ажилтан</p>
                              <p class="font-bold text-black">>></p>
-                             <p >Date</p>
+                             <p >Өдөр</p>
                           </div>
  
                          
                          <form>   
-                             <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-[#F4C2C2]">Search</label>
+                             <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-[#F4C2C2]">Хайх</label>
                              <div class="relative">
                                  <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                      <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                                  </div>
-                                 <input type="search" id="default-search" class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50  border border-[#F4C2C2]  dark:bg-white dark:text-dark  focus:border-white  focus:ring-white  " placeholder="Search name..." required>
-                                 <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-[#F4C2C2] hover:bg-[#E17F93]  focus:outline-none focus:ring-blue-300 font-medium  text-sm px-4 py-2   ">Search</button>
+                                 <input type="search" id="default-search" class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50  border border-[#F4C2C2]  dark:bg-white dark:text-dark  focus:border-white  focus:ring-white  " placeholder="Хайх..." required>
+                                 <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-[#F4C2C2] hover:bg-[#E17F93]  focus:outline-none focus:ring-blue-300 font-medium  text-sm px-4 py-2   ">Хайх</button>
                              </div>
                          </form>
                           
@@ -176,7 +181,7 @@
                              <div></div>
                              <div></div>
                              <div>
-                                 <button class="text-white text-md font-semibold bg-black py-2 px-4 rounded-lg shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 float-right">Select</button>
+                                 <button class="text-white text-md font-semibold bg-black py-2 px-4 rounded-lg shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 float-right">Сонгох</button>
                              </div>
                           
                          </div>
@@ -189,7 +194,7 @@
                              <div></div>
                              <div></div>
                              <div>
-                                 <button class="text-white text-md font-semibold bg-black py-2 px-4 rounded-lg shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 float-right">Select</button>
+                                 <button class="text-white text-md font-semibold bg-black py-2 px-4 rounded-lg shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 float-right">Сонгох</button>
                              </div>
                           
                          </div>
@@ -202,16 +207,20 @@
                              <div></div>
                              <div></div>
                              <div>
-                                 <button class="text-white text-md font-semibold bg-black py-2 px-4 rounded-lg shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 float-right">Select</button>
+                                 <button class="text-white text-md font-semibold bg-black py-2 px-4 rounded-lg shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 float-right">Сонгох </button>
                              </div>
                           
                          </div>
                
-                          <div class="flex justify-center">
-                            <button class=" text-white text-md font-semibold bg-[#E17F93] py-2 px-4 rounded-lg shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 mr-5" onclick="branch()">previos</button>
-                             <button class=" text-white text-md font-semibold bg-[#E17F93] py-2 px-4 rounded-lg shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 " onclick="worker()">Next</button>
-                         
+                             <div class="flex justify-center gap-5">
+                                <button class=" bg-[#E17F93] py-2 px-4 rounded-full shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 " onclick="branch()">
+                                    <p class=" text-white text-md font-semibold text-xl"><<</p>
+                                </button>
+                                <button class=" bg-[#E17F93] py-2 px-4 rounded-full shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 " onclick="worker()">
+                                    <p class=" text-white text-md font-semibold text-xl">>></p>
+                                </button>
                             </div>
+                           
                        </div>
                     </div>
                  </div>
@@ -220,21 +229,21 @@
                     <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
                        <div class="flex flex-wrap items-center">
                           <div class="relative w-full max-w-full flex-grow flex-1">
-                             <h2 class="text-xl font-semibold text-[#E17F93]">Services:</h2>
+                             <h2 class="text-xl font-semibold text-[#E17F93]">Үйлчилгээ сонгох:</h2>
                           </div>
                        </div>
                     </div>
                     
                     <div class="p-4 flex-auto ">
                        <div class="relative h-350-px ">
-                          <div class="grid grid-cols-12 ">
-                             <p class="font-bold text-black">Branch</p>
+                          <div class="grid grid-cols-8 ">
+                             <p class="font-bold text-black">Салбар</p>
                              <p class="font-bold text-black">>></p>
-                             <p class="font-bold text-black">Services</p>
+                             <p class="font-bold text-black">Үйлчилгээ</p>
                              <p  class="font-bold text-black">>></p>
-                             <p class="font-bold text-black">Worker</p>
+                             <p class="font-bold text-black">Ажилтан</p>
                              <p class="font-bold text-black">>></p>
-                             <p class="font-bold text-black">Date</p>
+                             <p class="font-bold text-black">Өдөр</p>
                           </div>
 
                           <div> <!-- CALENDAR -->
@@ -244,9 +253,9 @@
                                 <div class="col-span-3 lg:w-10/12 md:w-9/12 sm:w-10/12 mx-auto p-4">
                                     <div class="bg-white shadow-lg rounded-lg overflow-hidden">
                                         <div class="flex items-center justify-between px-6 py-3 bg-[#E17F93]">
-                                            <button id="prevMonth" class="text-white">Previous</button>
+                                            <button id="prevMonth" class="text-white"><<</button>
                                             <h2 id="currentMonth" class="text-white"></h2>
-                                            <button id="nextMonth" class="text-white">Next</button>
+                                            <button id="nextMonth" class="text-white">>></button>
                                         </div>
                                         <div class="grid grid-cols-7 gap-2 p-4" id="calendar">
                                         <!-- Calendar Days -->
@@ -268,7 +277,7 @@
                                 </div>
                                 <!-- TIME -->
                                 <div class="">
-                                    <h1 class="font-bold text-black">Time Choose:</h1>
+                                    <h1 class="font-bold text-black">Цаг сонгох:</h1>
                                     <div class="grid grid-cols-1 flex flex-cols items-center">
                                         <button class="rounded-lg bg-[#E17F93] m-2 py-2 px-4 text-xs font-bold  text-white shadow-lg shadow-[#E17F93]/20 hover:shadow-[#E17F93]/40 focus:opacity-[0.85]  " >08:00~9:30</button>
                                         <button class="rounded-lg bg-[#E17F93] m-2 py-2 px-4 text-xs font-bold  text-white shadow-lg shadow-[#E17F93]/20 hover:shadow-[#E17F93]/40 focus:opacity-[0.85]  " >9:30~11:00</button>
@@ -284,10 +293,13 @@
                           </div>
  
                         
-                          <div class="flex justify-center">
-                            <button class=" text-white text-md font-semibold bg-[#E17F93] py-2 px-4 rounded-lg shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 mr-5" onclick="services()">previos</button>
-                             <button class=" text-white text-md font-semibold bg-[#E17F93] py-2 px-4 rounded-lg shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 " onclick="date()">Order Add</button>
-                          </div>
+                          <div class="grid grid-cols-2 "> 
+                            <button class=" bg-[#E17F93] py-2 px-4 rounded-full shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 " onclick="services()">
+                                <p class=" text-white text-md font-semibold text-xl"><<</p>
+                            </button>
+                            <button class=" text-white text-md font-semibold bg-[#E17F93] py-2 px-4 rounded-full shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 " onclick="date()">Захиалга нэмэх</button>
+                          
+                            </div>
                        </div>
                     </div>
                  </div>
@@ -298,7 +310,7 @@
                    <div class="p-4 flex-auto">
                       <div class="relative h-350-px">
                         <div class="bg-white p-4 rounded-md ">
-                            <h2 class="text-gray-500 text-lg font-semibold pb-4">Orders:</h2>
+                            <h2 class="text-gray-500 text-lg font-semibold pb-4">Таны захиалсан цагууд:</h2>
                             <div class="my-1"></div>
                             Where: {{orders.location}}
 
@@ -306,10 +318,10 @@
                             <table class="w-full table-auto text-sm">
                                 <thead>
                                     <tr class="text-sm leading-normal">
-                                        <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Services</th>
+                                        <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Үйлчилгээ</th>
                                         
-                                        <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Date</th>
-                                        <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light text-right">Price</th>
+                                        <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Өдөр</th>
+                                        <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light text-right">Үнэ</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -337,14 +349,14 @@
                             <div class="bg-gray-400 h-px mb-6"></div>
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
-                                    <h2 class="text-gray-500 text-lg font-semibold pb-4">Payment:</h2>
+                                    <h2 class="text-gray-500 text-lg font-semibold pb-4">Төлбөр:</h2>
                                 </div>
                                 <div>
                                     <h2 class="text-gray-500 text-lg font-semibold pb-4 text-right">250'000₮</h2>
                                 </div> 
                             </div>
                                 <div>
-                                    <button class="text-white text-md font-semibold bg-[#E17F93] float-right py-2 px-4 rounded-lg shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 ">Order</button>
+                                    <button class="text-white text-md font-semibold bg-[#E17F93] float-right py-2 px-4 rounded-lg shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 ">Захиалах</button>
                                 </div>
                         </div>
                    </div>
