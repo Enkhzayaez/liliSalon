@@ -23,9 +23,11 @@ urlpatterns = [
 
     # editPages url
     path('edit_services/', views.edit_services, name = 'edit_services'),
-    path('edit_operator/', views.edit_operator, name = 'edit_operator'),
+    path('edit_operator/<int:operator_id>', views.edit_operator, name = 'edit_operator'),
+    path('delete_operator/<int:operator_id>', views.delete_operator, name = 'delete_operator'),
     path('edit_sales/', views.edit_sales, name = 'edit_sales'),
-    path('edit_location/', views.edit_location, name = 'edit_location'),
+    path('edit_location/<int:branch_id>', views.edit_location, name = 'edit_location'),
+    path('delete_location/<int:branch_id>', views.delete_location, name = 'delete_location'),
     path('edit_orderlist/', views.edit_orderlist, name = 'edit_orderlist'),
     path('edit_workers/', views.edit_workers, name = 'edit_workers'),
 

@@ -64,21 +64,127 @@ def adminEdit(request):
 
 # Operator Edit lists
 def list_operator(request):
-    return render(request, 'lists/list_operator.html')
+    context = {}
+    if request.method == "POST":
+        jsons = {
+            "action" : "register",
+            "lastname" : "",
+            "firstname" : "",
+            "phone" : "",
+            "password" : "",
+            "email" : "",
+            "branch_id" : "",
+        }
+        jsons['lastname'] = request.POST.get('lastname')
+        jsons['firstname'] = request.POST.get('firstname')
+        jsons['phone'] = request.POST.get('phone')
+        jsons['password'] = request.POST.get('password') 
+        jsons['email'] = request.POST.get('email')
+        jsons['branch_id'] = request.POST.get('branch_id')
+        con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+        result = json.loads(con.text)
+        context['errorMessage'] = result['data']
+        return redirect('list_operator')
+    else:
+        jsons = {
+            "action" : "list_operator",
+        }
+        con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+        result = json.loads(con.text)
+        
+        context['operators'] = result['data']
+    return render(request, 'lists/list_operator.html',context)
+
+def delete_operator(request,operator_id = None):
+    context = {}
+    jsons = {
+        "action" : "delete_operator",
+        "id" : operator_id,
+    }
+    con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+    result = json.loads(con.text)
+    context['errorMessage'] = result['data']
+
+    return redirect('list_operator')
 
 def list_services(request):
+    context = {}
     if request.method == "POST":
-        if request.POST.get("hair"):
-            # hair bvrtgeh service duudna
-            return redirect("list_services")
+        jsons = {
+            "action" : "add_services",
+            "name" : "",
+            "sub_category_id" : "",
+            "category_id" : "",
+            "description" : "",
+            "options" : {
+                        "Key1" : "Value1", 
+                        "Key2" : "Value2"
+                        },
+            "additional" : ["Data1","Data2"]
+        }
+        jsons['name'] = request.POST.get('name')
+        jsons['sub_category_id'] = request.POST.get('sub_category_id')
+        jsons['category_id'] = request.POST.get('category_id')
+        jsons['description'] = request.POST.get('description')
+        jsons['options'] = request.POST.get('options')
+        jsons['additional'] = request.POST.get('additional')
+        con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+        result = json.loads(con.text)
+        context['errorMessage'] = result['data']
+        return redirect('list_services')
     else:
-        return render(request, 'lists/list_services.html')
+        jsons = {
+            "action" : "list_services",
+        }
+        con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+        result = json.loads(con.text)
+        
+        context['services'] = result['data']
+    print(context)
+    return render(request, 'lists/list_services.html')
 
 def list_sales(request):
     return render(request, 'lists/list_sales.html')
 
 def list_location(request):
-    return render(request, 'lists/list_location.html')
+    context = {}
+    if request.method == "POST":
+        jsons = {
+            "action" : "add_branch",
+            "address" : "",
+            "phone" : "",
+            "operator_id" : "",
+        }
+        jsons['address'] = request.POST.get('address')
+        jsons['operator_id'] = request.POST.get('operator_id')
+        jsons['phone'] = request.POST.get('phone')
+        con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+        result = json.loads(con.text)
+        context['errorMessage'] = result['data']
+        return redirect('list_location')
+    else:
+        jsons = {
+            "action" : "list_branch",
+        }
+        con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+        result = json.loads(con.text)
+        
+        context['branches'] = result['data']
+    print(context)
+    return render(request, 'lists/list_location.html',context)
+
+def delete_location(request,branch_id = None):
+    context = {}
+    jsons = {
+        "action" : "delete_branch",
+        "id" : branch_id,
+    }
+    con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+    result = json.loads(con.text)
+    context['errorMessage'] = result['data']
+
+    return redirect('list_location')
+
 
 def list_orderlist(request):
     orders = [
@@ -163,8 +269,38 @@ def list_workers(request):
     return render(request, 'lists/list_workers.html')
 
 # Edit Pages
-def edit_operator(request):
-    return render(request, 'editPages/edit_operator.html')
+def edit_operator(request,operator_id = None):
+    context = {}
+    if request.method == "POST":
+        jsons = {
+            "action" : "edit_operator",
+            "lastname" : "",
+            "firstname" : "",
+            "phone" : "",
+            "password" : "",
+            "email" : "",
+            "branch_id" : "",
+            "id" : operator_id,
+        }
+        jsons['lastname'] = request.POST.get('lastname')
+        jsons['firstname'] = request.POST.get('firstname')
+        jsons['phone'] = request.POST.get('phone')
+        jsons['password'] = request.POST.get('password') 
+        jsons['email'] = request.POST.get('email')
+        jsons['branch_id'] = request.POST.get('branch_id')
+        con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+        result = json.loads(con.text)
+        context['errorMessage'] = result['data']
+        return redirect('list_operator')
+    else:
+        jsons = {
+            "action" : "get_operator",
+            "id" : operator_id,
+        }
+        con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+        result = json.loads(con.text)
+        context['operator'] = result['data'][0]
+    return render(request, 'editPages/edit_operator.html',context)
 
 def edit_services(request):
     return render(request, 'editPages/edit_services.html')
@@ -172,7 +308,30 @@ def edit_services(request):
 def edit_sales(request):
     return render(request, 'editPages/edit_sales.html')
 
-def edit_location(request):
+def edit_location(request,branch_id = None):
+    context = {}
+    if request.method == "POST":
+        jsons = {
+            "action" : "edit_branch",
+            "address" : "",
+            "phone" : "",
+            "id" : branch_id,
+        }
+        jsons['address'] = request.POST.get('address')
+        jsons['phone'] = request.POST.get('phone')
+        con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+        result = json.loads(con.text)
+        context['errorMessage'] = result['data']
+        return redirect('list_location')
+    else:
+        jsons = {
+            "action" : "get_branch",
+            "id" : branch_id,
+        }
+        con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+        result = json.loads(con.text)
+        context['operator'] = result['data'][0]
+    print(context)
     return render(request, 'editPages/edit_location.html')
 
 def edit_orderlist(request):
@@ -235,17 +394,21 @@ def login(request):
 def register(request):
     if request.method == "POST":
         jsons = {
-            "action" : "login",
+            "action" : "register",
+            "lastname" : "",
+            "firstname" : "",
             "phone" : "",
-            "password": "",
-            "username" : "",
-            "email": "",
+            "password" : "",
+            "email" : "",
+            "branch_id" : "",
         }
-        jsons['password'] = request.POST.get('password') 
+        jsons['lastname'] = request.POST.get('lastname')
+        jsons['firstname'] = request.POST.get('firstname')
         jsons['phone'] = request.POST.get('phone')
-        jsons['username'] = request.POST.get('username') 
+        jsons['password'] = request.POST.get('password') 
         jsons['email'] = request.POST.get('email')
-        con = requests.post(f"{BE_URL}/register/", data= json.dumps(jsons))
+        jsons['branch_id'] = request.POST.get('branch_id')
+        con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
         print(f"result: {result['resultCode']}")
         if result['resultCode'] == 200:
