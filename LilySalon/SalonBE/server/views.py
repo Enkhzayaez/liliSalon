@@ -8,21 +8,22 @@ from server.utils import *
 # Utils
 def login(request):
     jsond = json.loads(request.body)
-    action = jsond.get('action', 'nokey')
-    phone = jsond.get('phone', 'nokey')
-    password = jsond.get('password', 'nokey')
+    action = jsond.get('action')
+    phone = jsond.get('phone')
+    password = jsond.get('password')
+    password = mandakhHash(password)
     con = connect()
     cursor = con.cursor()
-    cursor.execute(f"""SELECT id, username, phone, email FROM t_user WHERE phone = '{phone}' AND password = '{password}' """)
+    cursor.execute(f"""SELECT * FROM t_operator WHERE phone = '{phone}' AND password = '{password}' """)
     columns = cursor.description
     respRow = [{columns[index][0]:column for index,
                 column in enumerate(value)} for value in cursor.fetchall()]
     if len(respRow) == 1:
         resp = sendResponse(200, 'success', respRow ,  action)
-        return HttpResponse(resp)
+        return resp
     else:
         resp = sendResponse(400, 'error', "" ,action)
-        return HttpResponse(resp)
+        return resp
     
 def register(request):
     try:
@@ -143,7 +144,6 @@ def add_services(request):
         resp = sendResponse(404, e, "" ,action)
         return resp
 
-
 # List
 def list_category(request):
     jsons = json.loads(request.body)
@@ -219,7 +219,6 @@ def list_services(request):
     except Exception as e:
         resp = sendResponse(401, 'error', str(e) ,action)
     return resp
-
 
 # Edit
 def edit_category(request):
@@ -321,7 +320,6 @@ def edit_operator(request):
         resp = sendResponse(404, e, "" ,action)
     return resp
 
-
 # Delete
 def delete_sub_category(request):
     jsond = json.loads(request.body)
@@ -403,7 +401,6 @@ def delete_operator(request):
         resp = sendResponse(401, 'error', e ,action)
     return resp
 
-
 # Get
 def get_operator(request):
     jsons = json.loads(request.body)
@@ -436,7 +433,6 @@ def get_branch(request):
     except Exception as e:
         resp = sendResponse(401, 'error', str(e) ,action)
     return resp
-
 
 
 @csrf_exempt
@@ -499,6 +495,7 @@ def main(request):
         resp = get_branch(request)
 
     return HttpResponse(resp)
+
 
 
 

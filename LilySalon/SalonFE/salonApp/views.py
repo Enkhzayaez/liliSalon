@@ -32,7 +32,6 @@ def order(request):
         ['Manecure',64000],
         ['Hair something',999999],
     ]
-
     workers = [
         'Bob',
         'John',
@@ -40,8 +39,6 @@ def order(request):
         'Sarah',
         'Michele',
     ]
-
-    
     if request.method == 'POST':
         if request.POST.get('selectedBranch'):
             orders['location'] = request.POST.get('selectedBranch')
@@ -50,13 +47,11 @@ def order(request):
             for i in range(len(serviceDatas)):
                 if(serviceDatas[i][0] == request.POST.get('selectedService')):
                     orders['services'].append(serviceDatas[i])
-        
     context = {
         'services' : serviceDatas,
         'orders' : orders,
         'branches' : branches,
     }
-    
     return render(request, 'order.html',context)
 
 def adminEdit(request):
@@ -382,7 +377,7 @@ def login(request):
         }
         jsons['password'] = request.POST.get('password') 
         jsons['phone'] = request.POST.get('phone')
-        con = requests.post(f"{BE_URL}/login/", data= json.dumps(jsons))
+        con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
         if result['resultCode'] == 200:
             return redirect("index")
