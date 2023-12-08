@@ -1,0 +1,87 @@
+{% extends "./base/base.html" %}
+
+{% block content %}
+{% load static %}
+
+<div class="m-16 pt-10">
+    <div class="flex flex-wrap min-h-screen w-full content-center justify-center ">
+    <div class="flex shadow-md ">
+         <!-- Login banner -->
+      <div class="flex flex-wrap content-center justify-center rounded-l-md" style="width: 24rem; height: 32rem;">
+        <img class="w-full h-full bg-center bg-no-repeat bg-cover rounded-l-md" src="https://i.imgur.com/9l1A4OS.jpeg">
+      </div>
+  
+      <!-- Login form -->
+      <div class="flex flex-wrap content-center justify-center rounded-r-md bg-white" style="width: 44rem; height: 32rem;">
+        <div class="w-72">
+          <!-- Heading -->
+          <h1 class="text-xl font-semibold">Welcome back</h1>
+          <small class="text-gray-400">Welcome back! Please enter your details</small>
+  
+          <!-- Form -->
+          <form class="mt-4">
+            <div class="mb-3">
+              <label class="mb-2 block text-xs font-semibold">Email</label>
+              <input type="email" placeholder="Enter your email" class="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500" />
+            </div>
+  
+            <div class="mb-3">
+              <label class="mb-2 block text-xs font-semibold">Password</label>
+              <input type="password" placeholder="*****" class="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500" />
+            </div>
+  
+            <div class="mb-3 flex flex-wrap content-center">
+              <input id="remember" type="checkbox" class="mr-1 checked:bg-purple-700" /> <label for="remember" class="mr-auto text-xs font-semibold">Remember for 30 days</label>
+              <a href="#" class="text-xs font-semibold text-purple-700">Forgot password?</a>
+            </div>
+  
+            <div class="mb-3">
+              <button class="mb-1.5 block w-full text-center text-white bg-purple-700 hover:bg-purple-900 px-2 py-1.5 rounded-md">Sign in</button>
+              <button class="flex flex-wrap justify-center w-full border border-gray-300 hover:border-gray-500 px-2 py-1.5 rounded-md">
+                <img class="w-5 mr-2" src="https://lh3.googleusercontent.com/COxitqgJr1sJnIDe8-jiKhxDx1FrYbtRHKJ9z_hELisAlapwE9LUPh6fcXIfb5vwpbMl4xl9H9TRFPc5NOO8Sb3VSgIBrfRYvW6cUA">
+                Sign in with Google
+              </button>
+            </div>
+          </form>
+  
+          <!-- Footer -->
+          <div class="text-center">
+            <span class="text-xs text-gray-400 font-semibold">Don't have account?</span>
+            <a href="#" class="text-xs font-semibold text-purple-700">Sign up</a>
+          </div>
+        </div>
+      </div>
+  
+     
+    </div>
+  
+
+
+        <!-- <div class="relative flex flex-col min-w-0 break-words w-full h-screen mb-8 shadow-lg rounded-lg bg-white" id="date" >
+            <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
+            <div class="flex flex-wrap items-center">
+                <div class="grid grid-cols-1 md:grid-cols-6 gap-10">
+                    <div class="col-span-2 ">
+
+                    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        <a href="#">
+                            <img class="rounded-lg" src="{% static 'images/ggg.jpg' %}" alt="" />
+                        </a>
+                    
+                    </div>
+
+                    </div>
+
+                    <div class="col-span-4 ">
+                        <div class="relative w-full max-w-full flex-grow flex-1">
+                            <h2 class="text-xl font-semibold text-[#E17F93]">Үйлчилгээний үнийн тариф:</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+   
+     
+</div>
+{% endblock %}

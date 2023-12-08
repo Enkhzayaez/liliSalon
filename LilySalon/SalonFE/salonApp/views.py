@@ -108,21 +108,16 @@ def list_services(request):
         jsons = {
             "action" : "add_services",
             "name" : "",
-            "sub_category_id" : "",
-            "category_id" : "",
             "description" : "",
-            "options" : {
-                        "Key1" : "Value1", 
-                        "Key2" : "Value2"
-                        },
-            "additional" : ["Data1","Data2"]
+            "price" : "",
+            "category_id" : "",
+            "duration" : ""
         }
         jsons['name'] = request.POST.get('name')
-        jsons['sub_category_id'] = request.POST.get('sub_category_id')
-        jsons['category_id'] = request.POST.get('category_id')
         jsons['description'] = request.POST.get('description')
-        jsons['options'] = request.POST.get('options')
-        jsons['additional'] = request.POST.get('additional')
+        jsons['price'] = request.POST.get('price')
+        jsons['category_id'] = request.POST.get('category_id')
+        jsons['duration'] = request.POST.get('duration')
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
         context['errorMessage'] = result['data']
@@ -155,6 +150,7 @@ def list_location(request):
         jsons['phone'] = request.POST.get('phone')
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
+        print(result)
         context['errorMessage'] = result['data']
         return redirect('list_location')
     else:
@@ -380,7 +376,10 @@ def login(request):
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
         if result['resultCode'] == 200:
-            return redirect("index")
+            if result['data'][0]['is_admin'] == 1:
+                return redirect("adminEdit")
+            else: 
+                return redirect('operator')
         else:
             return render(request, 'signUp/login.html')
     else:
@@ -396,6 +395,7 @@ def register(request):
             "password" : "",
             "email" : "",
             "branch_id" : "",
+            "is_admin" : 0,
         }
         jsons['lastname'] = request.POST.get('lastname')
         jsons['firstname'] = request.POST.get('firstname')
@@ -414,3 +414,6 @@ def register(request):
     else:
         return render(request, 'signUp/register.html')
     
+def hairStyle(request):
+    return render(request, 'hairStyle.html')
+

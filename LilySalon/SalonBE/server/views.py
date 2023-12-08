@@ -35,6 +35,7 @@ def register(request):
         firstname = jsond.get('firstname')
         branch_id = jsond.get('branch_id')
         email = jsond.get('email')
+        is_admin = jsond.get('is_admin')
         password = mandakhHash(password)
         con = connect()
         cursor = con.cursor()
@@ -43,8 +44,8 @@ def register(request):
     
         if not temp_checker:
             cursor.execute(""" INSERT INTO t_operator(
-                                id, lastname, firstname, phone, email, branch_id, reg_date, is_active, password)
-                                VALUES (DEFAULT, %s, %s, %s, %s, %s, DEFAULT, DEFAULT, %s);""",[lastname,firstname,phone,email,branch_id,password])
+                                id, lastname, firstname, phone, email, branch_id, reg_date, is_active, password, is_admin)
+                                VALUES (DEFAULT, %s, %s, %s, %s, %s, DEFAULT, DEFAULT, %s, %s);""",[lastname,firstname,phone,email,branch_id,password,is_admin])
             con.commit()
             resp = sendResponse(200, 'success', "" ,action)
             return resp
@@ -144,6 +145,27 @@ def add_services(request):
         resp = sendResponse(404, e, "" ,action)
         return resp
 
+def add_services_test(request):
+    try:
+        jsond = json.loads(request.body)
+        action = jsond.get('action')
+        name = jsond.get('name')
+        description = jsond.get('description')
+        price = jsond.get('price')
+        duration = jsond.get('duration')
+        con = connect()
+        cursor = con.cursor()
+        cursor.execute("""  INSERT INTO t_services_test(
+                            id, name, description, price, category_id, duration)
+                            VALUES (DEFAULT, %s, %s, %s, %s);""",[name,description,price,duration])
+        con.commit()
+        resp = sendResponse(200, 'success', "" ,action)
+        return resp
+    except Exception as e:
+        resp = sendResponse(404, e, "" ,action)
+        return resp
+
+
 # List
 def list_category(request):
     jsons = json.loads(request.body)
@@ -211,7 +233,7 @@ def list_services(request):
     con = connect()
     cur = con.cursor()
     try:
-        cur.execute(f'''SELECT * FROM t_services;''')
+        cur.execute(f'''SELECT * FROM t_services_test;''')
         columns = cur.description
         respRow = [{columns[index][0]:column for index,
                     column in enumerate(value)} for value in cur.fetchall()]
@@ -466,7 +488,7 @@ def main(request):
     if action == "add_branch":
         resp = add_branch(request)
     if action == "add_services":
-        resp = add_services(request)
+        resp = add_services_test(request)
 
     # Edit
     if action == "edit_category":
@@ -517,42 +539,5 @@ def main(request):
 
 
 
-
-
-
-# def getAngilal(request):
-#     action = 'getAngilal'
-#     con = connect()
-#     cursor = con.cursor()
-#     cursor.execute("SELECT * FROM public.t_angilal;")
-#     columns = cursor.description
-#     respRow = [{columns[index][0]:column for index,
-#                 column in enumerate(value)} for value in cursor.fetchall()]
-#     resp = sendResponse('200', "success", respRow, action)
-#     return HttpResponse(resp)
-
-
-# def insertZar(request):
-    print("zarnemegdeh gej bna")
-    action = 'insertZar'
-    # print(request.body)
-    jsond = json.loads(request.body)
-    action = jsond.get('action', 'nokey')
-    title = jsond.get('title', 'nokey')
-    charter = str(jsond.get('charter', 'nokey'))
-    address = str(jsond.get('address', 'nokey'))
-    tsalin = jsond.get('tsalin', 'nokey')
-    aid = jsond.get('aid', 'nokey')
-    uid = jsond.get('uid', 'nokey')
-
-    con = connect()
-    cursor = con.cursor()
-    cursor.execute(f"""INSERT INTO public.t_zar( z_title, z_charter, z_address, z_tsalin, a_id, u_id)
-	                                VALUES ('{title}', '{charter}', '{address}', '{tsalin}', '{aid}', '{uid}');""")
-    con.commit()
-    print('zar nemegdsen')
-    resp = sendResponse('200', 'success', '',  action)
-
-    return HttpResponse(resp)
 
 
