@@ -22,14 +22,12 @@
             <nav class="bg-[#F4C2C2] rounded-b-2xl shadow-lg fixed w-full z-20 top-0 left-0 ">
                 <div class="mx-1 mb-1 border-white border-l-2 border-r-2 border-b-2 rounded-bl-xl rounded-br-xl">
                     <nav class="flex items-center justify-between flex-wrap bg-teal p-1">
-                        <a href="{% url 'index' %}">
-                            <div class="flex items-center flex-no-shrink text-white mx-10 ">
-                                <img src="{% static 'images/flowerLogo.png' %}"
-                                     alt="Lily logo"
-                                     class="w-16 h-16  rounded-badge m-2 border-2 border-slate-50">
-                                <span class="font-semibold text-3xl tracking-tight font-['Open_Sans']">Lily Salon</span>
-                            </div>
-                        </a>
+                        <div class="flex items-center flex-no-shrink text-white mx-10 ">
+                            <img src="{% static 'images/flowerLogo.png' %}"
+                                 alt="Lily logo"
+                                 class="w-16 h-16  rounded-badge m-2 border-2 border-slate-50">
+                            <span class="font-semibold text-3xl tracking-tight font-['Open_Sans']">Lily Salon</span>
+                        </div>
                         <div class="block lg:hidden">
                             <button class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white">
                                 <svg class="h-3 w-3"
@@ -39,6 +37,20 @@
                                     <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
                                 </svg>
                             </button>
+                        </div>
+                        <div class="w-full block  lg:flex lg:items-center lg:w-auto ">
+                            <div class="text-xl lg:flex-grow  gap-12 text-gray-800 font-serif mr-5">
+                                <a href="{% url 'login' %}"
+                                   class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">
+                                    Login
+                                </a>
+                            </div>
+                            <div class="text-xl lg:flex-grow  gap-12 text-gray-800 font-serif mr-5">
+                                <a href="{% url 'register' %}"
+                                   class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">
+                                    Sign Up
+                                </a>
+                            </div>
                         </div>
                     </nav>
                 </div>
@@ -52,45 +64,28 @@
                     <div class="absolute bg-black opacity-60 inset-0 z-0"></div>
                     <div class="max-w-md w-full space-y-8 p-10 bg-white rounded-xl z-10">
                         <div class="text-center">
-                            <h2 class="mt-6 text-3xl font-bold text-[#E17F93]">Нэвтрэх</h2>
-                            <p class="mt-2 text-sm text-gray-600">Бүртгэлдээ нэвтрэн үү!</p>
-                            <!-- Please sign in to your account -->
+                            <h2 class="mt-6 text-3xl font-bold text-[#E17F93]">Occupation</h2>
                         </div>
                         <form class="mt-8 space-y-6" method="POST">
                             {% csrf_token %}
                             <input type="hidden" name="remember" value="true">
                             <div class="relative">
-                                <label class="text-sm  font-bold text-gray-700 tracking-wide">Утас</label>
-                                <input name="phone"
-                                       class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
-                                       type=""
-                                       placeholder="88556655"
-                                       class="bg-white">
+                                <label class="text-sm  font-bold text-gray-700 tracking-wide">Нэр</label>
+                                <input name="name" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="name" value={{ occupation.name }}>
                             </div>
-                            <div class="mt-8 content-center">
-                                <label class="text-sm font-bold text-gray-700 tracking-wide">Нууц үг</label>
-                                <input name="password"
-                                       class="w-full bg-white content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
-                                       type="password"
-                                       placeholder="*****">
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center">
-                                    <input id="remember_me"
-                                           name="remember_me"
-                                           type="checkbox"
-                                           class="h-4 w-4 bg-indigo-500 focus:ring-indigo-400 border-gray-300 rounded">
-                                    <label for="remember_me" class="ml-2 block text-sm text-gray-900">Санах</label>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="pt-5">
+                                    <button type="submit"
+                                            class="w-full flex justify-center bg-[#F4C2C2] text-gray-100 p-4  rounded-full tracking-wide font-semibold  focus:outline-none focus:shadow-outline hover:bg-[#E17F93] shadow-lg cursor-pointer transition ease-in duration-300">
+                                        Цуцлах
+                                    </button>
                                 </div>
-                                <div class="text-sm">
-                                    <a href="#" class="font-medium  text-[#E17F93]  hover:text-[#F4C2C2]">Нууц үгээ мартсан уу?</a>
+                                <div class="pt-5">
+                                    <button type="submit"
+                                            class="w-full flex justify-center bg-[#F4C2C2] text-gray-100 p-4  rounded-full tracking-wide font-semibold  focus:outline-none focus:shadow-outline hover:bg-[#E17F93] shadow-lg cursor-pointer transition ease-in duration-300">
+                                        Нэмэх
+                                    </button>
                                 </div>
-                            </div>
-                            <div>
-                                <button type="submit"
-                                        class="w-full flex justify-center bg-[#F4C2C2] text-gray-100 p-4  rounded-full tracking-wide font-semibold  focus:outline-none focus:shadow-outline hover:bg-[#E17F93] shadow-lg cursor-pointer transition ease-in duration-300">
-                                    Нэвтрэх
-                                </button>
                             </div>
                         </form>
                     </div>

@@ -1,131 +1,145 @@
 {% load static %}
 <!DOCTYPE HTML>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="pragma" content="no-cache" />
-    <meta http-equiv="cache-control" content="max-age=604800" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script src="{% static 'js/tailwind.js' %}"></script>
-    <script src="{% static 'js/script.js' %}"></script>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link href="{% static 'css/daisy.css' %}" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.8.2/dist/full.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-
-</head>
-<body class=" bg-[#F4C2C2]">
-    <!-- ========================= HEADER ========================= -->
-
-    <div class="">
-
-        <nav class="bg-[#F4C2C2] rounded-b-2xl shadow-lg fixed w-full z-20 top-0 left-0 ">
-            <div class="mx-1 mb-1 border-white border-l-2 border-r-2 border-b-2 rounded-bl-xl rounded-br-xl">
-                <nav class="flex items-center justify-between  p-1">
-                    <a href="{% url 'index' %}">
-                        <div class="flex items-center flex-no-shrink text-white mx-10 ">
-                            <img src="{% static 'images/flowerLogo.png' %}"  alt="Lily logo" class="w-16 h-16  rounded-badge m-2 border-2 border-slate-50">
-                            <span class="font-semibold text-3xl tracking-tight font-['Open_Sans']">Lily Salon</span>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="pragma" content="no-cache" />
+        <meta http-equiv="cache-control" content="max-age=604800" />
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <script src="{% static 'js/tailwind.js' %}"></script>
+        <script src="{% static 'js/script.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link href="{% static 'css/daisy.css' %}" rel="stylesheet" type="text/css" />
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@3.8.2/dist/full.css"
+              rel="stylesheet"
+              type="text/css" />
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body class=" bg-[#F4C2C2]">
+        <!-- ========================= HEADER ========================= -->
+        <div class="">
+            <nav class="bg-[#F4C2C2] rounded-b-2xl shadow-lg fixed w-full z-20 top-0 left-0 ">
+                <div class="mx-1 mb-1 border-white border-l-2 border-r-2 border-b-2 rounded-bl-xl rounded-br-xl">
+                    <nav class="flex items-center justify-between  p-1">
+                        <a href="{% url 'index' %}">
+                            <div class="flex items-center flex-no-shrink text-white mx-10 ">
+                                <img src="{% static 'images/flowerLogo.png' %}"
+                                     alt="Lily logo"
+                                     class="w-16 h-16  rounded-badge m-2 border-2 border-slate-50">
+                                <span class="font-semibold text-3xl tracking-tight font-['Open_Sans']">Lily Salon</span>
+                            </div>
+                        </a>
+                        <div class="block lg:hidden">
+                            <button class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white">
+                                <svg class="h-3 w-3"
+                                     viewBox="0 0 20 20"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <title>Menu</title>
+                                    <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+                                </svg>
+                            </button>
                         </div>
-                    </a>
-                  <div class="block lg:hidden">
-                    <button class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white">
-                      <svg class="h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-                    </button>
-                  </div>
-                  <div class="w-full block  lg:flex lg:items-center lg:w-auto ">
-                    <div class="lg:flex-grow grid grid-cols-5 gap-5 text-gray-800 font-serif text-lg text-center ">
-                        {% if request.path == '/' %}
-                            <a href="" class="font-bold block lg:inline-block lg:mt-0 text-white hover:text-white">
-                                Нүүр
-                            </a>
-                        {% else %}
-                            <a href="{% url 'index' %}" class="block lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">
-                                Нүүр
-                            </a>
-                        {% endif %}
-                    
-                        {% if request.path == '/' %}
-                        <a href="" id="scrolltoAbout" onclick="return false;" class="block lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">
-                            Бидний тухай
-                        </a>
-                        {% else %}
-                        <a href="{% url 'index' %}#aboutElement" id="scrolltoAbout" class="block lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">
-                            Бидний тухай
-                        </a>
-                        {% endif %}
-
-                        {% if request.path == '/' %}
-                        <a href="" id="scrolltoServices" onclick="return false;" class="block lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">
-                            Үйлчилгээ
-                        </a>
-                        {% else %}
-                        <a href="{% url 'index' %}#serviceElement" id="scrolltoServices" class="block lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">
-                            Үйлчилгээ
-                        </a>
-                        {% endif %}
-
-                        {% if request.path == '/order/' %}
-                            <a href="{% url 'order' %}" class="font-bold block lg:inline-block lg:mt-0 text-white hover:text-white ">
-                                Цаг захиалах
-                            </a>
-                        {% else %}
-                            <a href="{% url 'order' %}" class="block lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">
-                                Цаг захиалах
-                            </a>
-                        {% endif %}
-
-                        {% if request.path == '/login/' %}
-                        <a href="{% url 'login' %}" class="font-bold block lg:inline-block lg:mt-0 text-white hover:text-white ">
-                            <img src="{% static 'images/icons/login1.png' %}"  >
-                        </a>
-                        {% else %}
-                        <a href="{% url 'login' %}" class="block lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">
-                          <img src="{% static 'images/icons/login1.png' %}"  >
-                        </a>
-                        {% endif %}
-                        
-                    </div>
-                  </div>
-                </nav>
-            </div>
-        </nav>
-          
-    </div>
-
-
-
-    <!-- ========================= HEADER END // ========================= -->
-
-    <main class="min-h-screen ">
-
-        {% block content %}
-        {% endblock %}
-        
-    </main>
-    <!-- ========================= FOOTER  ========================= -->
-    <header>
-    <div class=" float-bottom">
-    <footer class=" dark:bg-gray-900">
-        <div class="container px-6 py-8 mx-auto">
-            <hr class=" border-gray-200 dark:border-gray-500" />
-
-            <div class="flex flex-col items-center sm:flex-row sm:justify-between">
-                <p class="text-sm text-gray-500">© Lily Salon 2023. All Rights Reserved.</p>
-
-                <div class="flex mt-3 -mx-2 sm:mt-0">
-                    <a href="#" class="mx-2 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300" aria-label="Reddit"> Teams </a>
-                    <a href="#" class="mx-2 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300" aria-label="Reddit"> Privacy </a>
-                    <a href="#" class="mx-2 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300" aria-label="Reddit"> Cookies </a>
+                        <div class="w-full block  lg:flex lg:items-center lg:w-auto ">
+                            <div class="lg:flex-grow grid grid-cols-5 gap-5 text-gray-800 font-serif text-lg text-center ">
+                                {% if request.path == '/' %}
+                                    <a href=""
+                                       class="font-bold block lg:inline-block lg:mt-0 text-white hover:text-white">
+                                        Нүүр
+                                    </a>
+                                {% else %}
+                                    <a href="{% url 'index' %}"
+                                       class="block lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">
+                                        Нүүр
+                                    </a>
+                                {% endif %}
+                                {% if request.path == '/' %}
+                                    <a href=""
+                                       id="scrolltoAbout"
+                                       onclick="return false;"
+                                       class="block lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">
+                                        Бидний тухай
+                                    </a>
+                                {% else %}
+                                    <a href="{% url 'index' %}#aboutElement"
+                                       id="scrolltoAbout"
+                                       class="block lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">
+                                        Бидний тухай
+                                    </a>
+                                {% endif %}
+                                {% if request.path == '/' %}
+                                    <a href=""
+                                       id="scrolltoServices"
+                                       onclick="return false;"
+                                       class="block lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">
+                                        Үйлчилгээ
+                                    </a>
+                                {% else %}
+                                    <a href="{% url 'index' %}#serviceElement"
+                                       id="scrolltoServices"
+                                       class="block lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">
+                                        Үйлчилгээ
+                                    </a>
+                                {% endif %}
+                                {% if request.path == '/order/' %}
+                                    <a href="{% url 'order' %}"
+                                       class="font-bold block lg:inline-block lg:mt-0 text-white hover:text-white ">
+                                        Цаг захиалах
+                                    </a>
+                                {% else %}
+                                    <a href="{% url 'order' %}"
+                                       class="block lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">
+                                        Цаг захиалах
+                                    </a>
+                                {% endif %}
+                                {% if request.path == '/login/' %}
+                                    <a href="{% url 'login' %}"
+                                       class="font-bold block lg:inline-block lg:mt-0 text-white hover:text-white ">
+                                        <img src="{% static 'images/icons/login1.png' %}">
+                                    </a>
+                                {% else %}
+                                    <a href="{% url 'login' %}"
+                                       class="block lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">
+                                        <img src="{% static 'images/icons/login1.png' %}">
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </nav>
                 </div>
-            </div>
+            </nav>
         </div>
-    </footer>
-  </div>
-</header>
-    <!-- ========================= FOOTER END ========================= -->
-</body>
-<script>
+        <!-- ========================= HEADER END // ========================= -->
+        <main class="min-h-screen ">
+            {% block content %}{% endblock %}
+        </main>
+        <!-- ========================= FOOTER  ========================= -->
+        <header>
+            <div class=" float-bottom">
+                <footer class=" dark:bg-gray-900">
+                    <div class="container px-6 py-8 mx-auto">
+                        <hr class=" border-gray-200 dark:border-gray-500" />
+                        <div class="flex flex-col items-center sm:flex-row sm:justify-between">
+                            <p class="text-sm text-gray-500">© Lily Salon 2023. All Rights Reserved.</p>
+                            <div class="flex mt-3 -mx-2 sm:mt-0">
+                                <a href="#"
+                                   class="mx-2 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300"
+                                   aria-label="Reddit">Teams</a>
+                                <a href="#"
+                                   class="mx-2 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300"
+                                   aria-label="Reddit">Privacy</a>
+                                <a href="#"
+                                   class="mx-2 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300"
+                                   aria-label="Reddit">Cookies</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </header>
+        <!-- ========================= FOOTER END ========================= -->
+    </body>
+    <script>
     document.getElementById('scrolltoAbout').addEventListener('click', function() {
       window.scrollTo({ top: 750, behavior: 'smooth' });
     }) 
@@ -133,6 +147,5 @@
     document.getElementById('scrolltoServices').addEventListener('click', function() {
       window.scrollTo({ top: 1350, behavior: 'smooth' });
     })
-</script>
-
+    </script>
 </html>

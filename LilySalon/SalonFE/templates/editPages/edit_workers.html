@@ -1,126 +1,145 @@
 {% load static %}
 <!DOCTYPE HTML>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="pragma" content="no-cache" />
-    <meta http-equiv="cache-control" content="max-age=604800" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script src="{% static 'js/tailwind.js' %}"></script>
-    <script src="{% static 'js/script.js' %}"></script>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link href="{% static 'css/daisy.css' %}" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.8.2/dist/full.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-
-</head>
-<body class=" bg-[#F4C2C2]">
-    <!-- ========================= HEADER ========================= -->
-
-    <div class="">
-
-        <nav class="bg-[#F4C2C2] rounded-b-2xl shadow-lg fixed w-full z-20 top-0 left-0 ">
-            <div class="mx-1 mb-1 border-white border-l-2 border-r-2 border-b-2 rounded-bl-xl rounded-br-xl">
-                <nav class="flex items-center justify-between flex-wrap bg-teal p-1">
-                  <div class="flex items-center flex-no-shrink text-white mx-10 ">
-                    <img src="{% static 'images/flowerLogo.png' %}"  alt="Lily logo" class="w-16 h-16  rounded-badge m-2 border-2 border-slate-50">
-                    <span class="font-semibold text-3xl tracking-tight font-['Open_Sans']">Lily Salon</span>
-                  </div>
-                  <div class="block lg:hidden">
-                    <button class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white">
-                      <svg class="h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-                    </button>
-                  </div>
-                  <div class="w-full block  lg:flex lg:items-center lg:w-auto ">
-                    <div class="text-xl lg:flex-grow  gap-12 text-gray-800 font-serif mr-5">
-                        <a href="{% url 'login' %}" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">
-                            Login
-                        </a>
-                    </div>
-                    <div class="text-xl lg:flex-grow  gap-12 text-gray-800 font-serif mr-5">
-                        <a href="{% url 'register' %}" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">
-                            Sign Up
-                        </a>
-                    </div>
-                  </div>
-                </nav>
-            </div>
-        </nav>
-          
-    </div>
-    <!-- ========================= HEADER END // ========================= -->
-
-    <main class="min-h-screen ">
- 
-        <div class=" mx-auto mt-4 mx-5 pt-16">
-
-            <div class="relative min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 bg-gray-500 bg-no-repeat bg-cover relative items-center"
-                style="background-image: url(../../static/images/pink_marble.jpg);">
-                <div class="absolute bg-black opacity-60 inset-0 z-0"></div>
-                <div class="max-w-md w-full space-y-8 p-10 bg-white rounded-xl z-10">
-                    <div class="text-center">
-                        <h2 class="mt-6 text-3xl font-bold text-[#E17F93]">
-                            Register
-                        </h2>
-                        {% if errorMessage %}
-                        <p class="mt-2 text-sm text-red-600">!! {{errorMessage}} !!</p>
-                        {% else %}
-                        <p class="mt-2 text-sm text-gray-600">Enter your information to register</p>
-                        {% endif %}
-                    </div>
-                    <form class="mt-8 space-y-6" method="POST" >
-                        {% csrf_token %} 
-                        <input type="hidden" name="remember" value="true" >
-                        <div class="relative">
-                            <label class="text-sm  font-bold text-gray-700 tracking-wide">Username</label>
-                            <input name="username" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="John"  class="bg-white">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="pragma" content="no-cache" />
+        <meta http-equiv="cache-control" content="max-age=604800" />
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <script src="{% static 'js/tailwind.js' %}"></script>
+        <script src="{% static 'js/script.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link href="{% static 'css/daisy.css' %}" rel="stylesheet" type="text/css" />
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@3.8.2/dist/full.css"
+              rel="stylesheet"
+              type="text/css" />
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body class=" bg-[#F4C2C2]">
+        <!-- ========================= HEADER ========================= -->
+        <div class="">
+            <nav class="bg-[#F4C2C2] rounded-b-2xl shadow-lg fixed w-full z-20 top-0 left-0 ">
+                <div class="mx-1 mb-1 border-white border-l-2 border-r-2 border-b-2 rounded-bl-xl rounded-br-xl">
+                    <nav class="flex items-center justify-between flex-wrap bg-teal p-1">
+                        <div class="flex items-center flex-no-shrink text-white mx-10 ">
+                            <img src="{% static 'images/flowerLogo.png' %}"
+                                 alt="Lily logo"
+                                 class="w-16 h-16  rounded-badge m-2 border-2 border-slate-50">
+                            <span class="font-semibold text-3xl tracking-tight font-['Open_Sans']">Lily Salon</span>
                         </div>
-                        <div class="relative">
-                            <label class="text-sm  font-bold text-gray-700 tracking-wide">Phone number</label>
-                            <input name="phone" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="88995566"  class="bg-white">
-                        </div>
-                        <div class="relative">
-                            <label class="text-sm  font-bold text-gray-700 tracking-wide">Email</label>
-                            <input phone="email" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="email" placeholder="name@gmail.com"  class="bg-white">
-                        </div>
-                        <div class="mt-8 content-center">
-                            <label class="text-sm font-bold text-gray-700 tracking-wide">
-                                Password
-                            </label>
-                            <input name="password" class="w-full bg-white content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="password" placeholder="*****" >
-                        </div>
-                        <div class="pt-5">
-                            <button type="submit" class="w-full flex justify-center bg-[#F4C2C2] text-gray-100 p-4  rounded-full tracking-wide
-                                            font-semibold  focus:outline-none focus:shadow-outline hover:bg-[#E17F93] shadow-lg cursor-pointer transition ease-in duration-300">
-                                Register
+                        <div class="block lg:hidden">
+                            <button class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white">
+                                <svg class="h-3 w-3"
+                                     viewBox="0 0 20 20"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <title>Menu</title>
+                                    <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+                                </svg>
                             </button>
                         </div>
-                        
-                    </form>
+                        <div class="w-full block  lg:flex lg:items-center lg:w-auto ">
+                            <div class="text-xl lg:flex-grow  gap-12 text-gray-800 font-serif mr-5">
+                                <a href="{% url 'login' %}"
+                                   class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">
+                                    Login
+                                </a>
+                            </div>
+                            <div class="text-xl lg:flex-grow  gap-12 text-gray-800 font-serif mr-5">
+                                <a href="{% url 'register' %}"
+                                   class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">
+                                    Sign Up
+                                </a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </nav>
+        </div>
+        <!-- ========================= HEADER END // ========================= -->
+        <main class="min-h-screen ">
+            <div class=" mx-auto mt-4 mx-5 pt-16">
+                <div class="relative min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 bg-gray-500 bg-no-repeat bg-cover relative items-center"
+                     style="background-image: url(../../static/images/pink_marble.jpg)">
+                    <div class="absolute bg-black opacity-60 inset-0 z-0"></div>
+                    <div class="max-w-md w-full space-y-8 p-10 bg-white rounded-xl z-10">
+                        <div class="text-center">
+                            <h2 class="mt-6 text-3xl font-bold text-[#E17F93]">Edit Worker</h2>
+                        </div>
+                        <form class="mt-8 space-y-6" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="remember" value="true">
+                            <div class="relative">
+                                <label class="text-sm  font-bold text-gray-700 tracking-wide">lastname</label>
+                                <input name="lastname" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="John" value={{ worker.lastname }} class="bg-white">
+                            </div>
+                            <div class="relative">
+                                <label class="text-sm  font-bold text-gray-700 tracking-wide">firstname</label>
+                                <input name="firstname" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" value={{ worker.firstname }} placeholder="John" class="bg-white">
+                            </div>
+                            <div class="relative">
+                                <label class="text-sm  font-bold text-gray-700 tracking-wide">Phone number</label>
+                                <input name="phone" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="88995566" value={{ worker.phone }} class="bg-white">
+                            </div>
+                            <div class="relative">
+                                <label class="text-sm  font-bold text-gray-700 tracking-wide">Email</label>
+                                <input name="email" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="email" placeholder="name@gmail.com" value={{ worker.email }}>
+                            </div>
+                            <div class="relative">
+                                <label class="text-sm  font-bold text-gray-700 tracking-wide">Branch</label>
+                                <select class="p-2 block text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none"
+                                        name="occupation_id"
+                                        id="occupation">
+                                    {% for branch in branches %}
+                                        <option value={{ branch.id }}>Салбар-{{ branch.id }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="relative">
+                                <label class="text-sm  font-bold text-gray-700 tracking-wide">Occupation</label>
+                                <select class="p-2 block text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none"
+                                        name="occupation_id"
+                                        id="occupation">
+                                    {% for occupation in occupations %}
+                                        <option value={{ occupation.id }}>{{ occupation.name }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="pt-5">
+                                <button type="submit"
+                                        class="w-full flex justify-center bg-[#F4C2C2] text-gray-100 p-4  rounded-full tracking-wide font-semibold  focus:outline-none focus:shadow-outline hover:bg-[#E17F93] shadow-lg cursor-pointer transition ease-in duration-300">
+                                    Register
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </main>
-    <!-- ========================= FOOTER  ========================= -->
-    <div class=" float-bottom">
-    <footer class=" dark:bg-gray-900">
-        <div class="container px-6 py-8 mx-auto">
-            <hr class=" border-gray-200 dark:border-gray-500" />
-
-            <div class="flex flex-col items-center sm:flex-row sm:justify-between">
-                <p class="text-sm text-gray-500">© Lily Salon 2023. All Rights Reserved.</p>
-
-                <div class="flex mt-3 -mx-2 sm:mt-0">
-                    <a href="#" class="mx-2 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300" aria-label="Reddit"> Teams </a>
-                    <a href="#" class="mx-2 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300" aria-label="Reddit"> Privacy </a>
-                    <a href="#" class="mx-2 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300" aria-label="Reddit"> Cookies </a>
+        </main>
+        <!-- ========================= FOOTER  ========================= -->
+        <div class=" float-bottom">
+            <footer class=" dark:bg-gray-900">
+                <div class="container px-6 py-8 mx-auto">
+                    <hr class=" border-gray-200 dark:border-gray-500" />
+                    <div class="flex flex-col items-center sm:flex-row sm:justify-between">
+                        <p class="text-sm text-gray-500">© Lily Salon 2023. All Rights Reserved.</p>
+                        <div class="flex mt-3 -mx-2 sm:mt-0">
+                            <a href="#"
+                               class="mx-2 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300"
+                               aria-label="Reddit">Teams</a>
+                            <a href="#"
+                               class="mx-2 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300"
+                               aria-label="Reddit">Privacy</a>
+                            <a href="#"
+                               class="mx-2 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300"
+                               aria-label="Reddit">Cookies</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </footer>
         </div>
-    </footer>
-  </div>
-
-    <!-- ========================= FOOTER END ========================= -->
-</body>
-
+        <!-- ========================= FOOTER END ========================= -->
+    </body>
 </html>

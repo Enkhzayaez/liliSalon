@@ -75,20 +75,20 @@
                             {% csrf_token %}
                             <input type="hidden" name="remember" value="true">
                             <div class="relative">
+                                <label class="text-sm  font-bold text-gray-700 tracking-wide">Салбар</label>
+                                <input name="new_id" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="name" value={{ branch.id }}>
+                            </div>
+                            <div class="relative">
+                                <label class="text-sm  font-bold text-gray-700 tracking-wide">Нэр</label>
+                                <input name="name" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="name" value={{ branch.name }}>
+                            </div>
+                            <div class="relative">
                                 <label class="text-sm  font-bold text-gray-700 tracking-wide">Утас</label>
-                                <input name="phone"
-                                       class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
-                                       type="text"
-                                       placeholder="phone"
-                                       class="bg-white">
+                                <input name="phone" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="phone" value={{ branch.phone }}>
                             </div>
                             <div class="relative">
                                 <label class="text-sm  font-bold text-gray-700 tracking-wide">Хаяг</label>
-                                <input name="address"
-                                       class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
-                                       type="text"
-                                       placeholder="Байршлын мэдээлэл"
-                                       class="bg-white">
+                                <textarea class="bg-white" name="address" placeholder="Enter address here" value={{ branch.address }}></textarea>
                             </div>
                             <div class="grid grid-cols-2 gap-4">
                                 <div class="pt-5">

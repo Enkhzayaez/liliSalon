@@ -1,0 +1,50 @@
+{% extends "base/base.html" %}
+{% block content %}
+    {% load static %}
+    <div class=" mx-auto mt-4 mx-5 pt-16">
+        <div class="relative min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 bg-gray-500 bg-no-repeat bg-cover relative items-center"
+             style="background-image: url(../../static/images/pink_marble.jpg)">
+            <div class="absolute bg-black opacity-60 inset-0 z-0"></div>
+            <div class=" w-full space-y-8 p-10 bg-white rounded-xl z-10">
+                <div class="text-center">
+                    <h2 class="mt-6 text-3xl font-bold text-[#E17F93]">
+                        <p>Ta zahialgaa batalgaajuulah iin tuld ooriin medeelelee oruulna uu.</p>
+                        <p>shaardlagatai bol operator tai holbogdono uu.</p>
+                        <p>99887766, 80528787</p>
+                    </h2>
+                </div>
+                <form class="mt-8 space-y-6" method="POST">
+                    {% csrf_token %}
+                    <div class="relative">
+                        <label class="text-sm  font-bold text-gray-700 tracking-wide">Нэр</label>
+                        <input name="name"
+                               class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
+                               type="text">
+                    </div>
+                    <div class="relative">
+                        <label class="text-sm  font-bold text-gray-700 tracking-wide">Phone</label>
+                        <input name="phone"
+                               class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
+                               type="text">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="pt-5">
+                            <a href ="{% url 'index' %}">
+                                <button type="button"
+                                        class="w-full flex justify-center bg-[#F4C2C2] text-gray-100 p-4  rounded-full tracking-wide font-semibold  focus:outline-none focus:shadow-outline hover:bg-[#E17F93] shadow-lg cursor-pointer transition ease-in duration-300">
+                                    Цуцлах
+                                </button>
+                            </a>
+                        </div>
+                        <div class="pt-5">
+                            <button type="submit"
+                                    class="w-full flex justify-center bg-[#F4C2C2] text-gray-100 p-4  rounded-full tracking-wide font-semibold  focus:outline-none focus:shadow-outline hover:bg-[#E17F93] shadow-lg cursor-pointer transition ease-in duration-300">
+                                Нэмэх
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

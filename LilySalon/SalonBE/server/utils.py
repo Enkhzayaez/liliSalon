@@ -5,11 +5,11 @@ import bson
 
 def connect():
     con = psycopg2.connect(
-        dbname = 'Salon',
+        dbname = 'postgres',
         user = 'postgres',
-        password = 'z02212205',
+        password = '153298',
         host = 'localhost',
-        port = '5432',
+        port = '5433',
     )
     return con
 

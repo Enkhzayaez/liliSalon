@@ -96,6 +96,14 @@
                         <td></td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                           <div class="flex items-center">
+                            <input class="p-2 block w-full text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none "
+                                   placeholder="Нэр"
+                                   id="name"
+                                   name="name">
+                          </div>
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                          <div class="flex items-center">
                             <textarea class="bg-white" name="address" placeholder="Enter address here"></textarea>
                           </div>
                         </td>
@@ -117,10 +125,10 @@
                   </tr>
                   <tr>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      Зураг
+                      Салбар
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      Салбар
+                      Нэр
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Хаяг
@@ -137,16 +145,14 @@
                 <tbody>
                   {% for branch in branches %}
                     <tr>
-                      <td class="px-5 py-5 border-b border-gray-200 w-48  ">
-                        <div class="flex-shrink-0 w-10 h-10 ">
-                          <img class="w-full h-full border border-black rounded-full"
-                               src="{% static 'images/icons/branch.png' %}"
-                               alt="" />
+                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <div class="flex items-center">
+                          <p class="text-gray-900 whitespace-no-wrap">Салбар-{{ branch.id }}</p>
                         </div>
                       </td>
                       <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <div class="flex items-center">
-                          <p class="text-gray-900 whitespace-no-wrap">Салбар-{{ branch.id }}</p>
+                          <p class="text-gray-900 whitespace-no-wrap">{{ branch.name }}</p>
                         </div>
                       </td>
                       <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">

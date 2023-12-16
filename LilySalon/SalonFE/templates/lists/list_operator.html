@@ -170,10 +170,10 @@
                           <select class="p-2 block text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none"
                                   name="branch_id"
                                   id="branch">
-                            <option value="1">Салбар-1</option>
-                            <option value="2">Салбар-2</option>
-                            <option value="3">Салбар-3</option>
-                            <option value="4">Салбар-4</option>
+                            {% for branch in branches %}
+                              <option value={{ branch.id }}>Салбар-{{ branch.id }}
+                              </option>
+                            {% endfor %}
                           </select>
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -242,7 +242,7 @@
                           <p class="text-gray-900 whitespace-no-wrap">Салбар-{{ operator.branch_id }}</p>
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <p class="text-gray-900 whitespace-no-wrap">{{ operator.reg_date }}</p>
+                          <p class="text-gray-900 whitespace-no-wrap">{{ operator.regdate }}</p>
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                           <a href="{% url 'edit_operator' operator.id %}">Засах</a>
