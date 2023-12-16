@@ -38,20 +38,7 @@
                                 </svg>
                             </button>
                         </div>
-                        <div class="w-full block  lg:flex lg:items-center lg:w-auto ">
-                            <div class="text-xl lg:flex-grow  gap-12 text-gray-800 font-serif mr-5">
-                                <a href="{% url 'login' %}"
-                                   class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">
-                                    Login
-                                </a>
-                            </div>
-                            <div class="text-xl lg:flex-grow  gap-12 text-gray-800 font-serif mr-5">
-                                <a href="{% url 'register' %}"
-                                   class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">
-                                    Sign Up
-                                </a>
-                            </div>
-                        </div>
+                        
                     </nav>
                 </div>
             </nav>
@@ -88,10 +75,7 @@
                                 <label class="text-sm  font-bold text-gray-700 tracking-wide">Үнэ</label>
                                 <input name="price" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="number" placeholder="name" value={{ service.price }}>
                             </div>
-                            <div class="relative">
-                                <label class="text-sm  font-bold text-gray-700 tracking-wide">Дундаж хугацаа</label>
-                                <input name="average_duration" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="number" placeholder="name" value={{ service.average_duration }}>
-                            </div>
+                            
                             <div class="grid grid-cols-2 gap-4">
                                 <div class="pt-5">
                                     <button type="submit"

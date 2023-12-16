@@ -31,7 +31,18 @@
                       <svg class="h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
                     </button>
                   </div>
-                  
+                  <div class="w-full block  lg:flex lg:items-center lg:w-auto ">
+                    <div class="text-xl lg:flex-grow  gap-12 text-gray-800 font-serif mr-5">
+                        <a href="{% url 'login' %}" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">
+                            Login
+                        </a>
+                    </div>
+                    <div class="text-xl lg:flex-grow  gap-12 text-gray-800 font-serif mr-5">
+                        <a href="{% url 'register' %}" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">
+                            Sign Up
+                        </a>
+                    </div>
+                  </div>
                 </nav>
             </div>
         </nav>
@@ -53,25 +64,16 @@
                         </h2>
                        
                     </div>
-                    <form class="mt-8 space-y-6" method="POST" enctype="multipart/form-data">
+                    <form class="mt-8 space-y-6" method="POST" >
                         {% csrf_token %} 
+                        <input type="hidden" name="remember" value="true" >
                         <div class="relative">
-                            
-                            <label class="text-sm  font-bold text-gray-700 tracking-wide">New Image</label>
-                            <input type="hidden" value = {{sales.image}} name="oldImage" />
-                            <input class=" block w-full text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none"
-                                   id="image"
-                                   name="image"
-                                   
-                                   type="file">
+                            <label class="text-sm  font-bold text-gray-700 tracking-wide">Нэр</label>
+                            <input name="sales_name" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="Хумс будалт" >
                         </div>
                         <div class="relative">
-                            <label class="text-sm  font-bold text-gray-700 tracking-wide">Description</label>
-                            <input value={{sales.description}} name="description" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="Description" >
-                        </div>
-                        <div class="relative">
-                            <label class="text-sm  font-bold text-gray-700 tracking-wide">end_date</label>
-                            <input name="end_date" value={{sales.end_date}}  class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="date" placeholder="date" >
+                            <label class="text-sm  font-bold text-gray-700 tracking-wide">Дуусах хугацаа</label>
+                            <input name="end_time"  class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="date" placeholder="88995566" >
                         </div>
                         
                         <div class="grid grid-cols-2 gap-4">

@@ -38,20 +38,7 @@
                                 </svg>
                             </button>
                         </div>
-                        <div class="w-full block  lg:flex lg:items-center lg:w-auto ">
-                            <div class="text-xl lg:flex-grow  gap-12 text-gray-800 font-serif mr-5">
-                                <a href="{% url 'login' %}"
-                                   class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">
-                                    Login
-                                </a>
-                            </div>
-                            <div class="text-xl lg:flex-grow  gap-12 text-gray-800 font-serif mr-5">
-                                <a href="{% url 'register' %}"
-                                   class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">
-                                    Sign Up
-                                </a>
-                            </div>
-                        </div>
+                        
                     </nav>
                 </div>
             </nav>
@@ -64,13 +51,13 @@
                     <div class="absolute bg-black opacity-60 inset-0 z-0"></div>
                     <div class="max-w-md w-full space-y-8 p-10 bg-white rounded-xl z-10">
                         <div class="text-center">
-                            <h2 class="mt-6 text-3xl font-bold text-[#E17F93]">Occupation</h2>
+                            <h2 class="mt-6 text-3xl font-bold text-[#E17F93]">Мэргэжил</h2>
                         </div>
                         <form class="mt-8 space-y-6" method="POST">
                             {% csrf_token %}
                             <input type="hidden" name="remember" value="true">
                             <div class="relative">
-                                <label class="text-sm  font-bold text-gray-700 tracking-wide">Нэр</label>
+                                <label class="text-sm  font-bold text-gray-700 tracking-wide">Мэргэжилийн нэр</label>
                                 <input name="name" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="name" value={{ occupation.name }}>
                             </div>
                             <div class="grid grid-cols-2 gap-4">

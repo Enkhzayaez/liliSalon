@@ -41,7 +41,7 @@
             <div class="w-full block  lg:flex lg:items-center lg:w-auto ">
               <div class="text-xl lg:flex-grow  gap-12 text-gray-800 font-serif mr-5">
                 <a href="#"
-                   class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">Admin</a>
+                   class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">Оператор</a>
               </div>
             </div>
           </nav>
@@ -93,25 +93,31 @@
                     <tr>
                       <form method="POST">
                         {% csrf_token %}
-                        <td></td>
+                        
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                           <div class="flex items-center">
                             <input class="p-2 block w-full text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none "
-                                   placeholder="Нэр"
+                                   placeholder="Салбарын байршил"
                                    id="name"
                                    name="name">
                           </div>
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                           <div class="flex items-center">
-                            <textarea class="bg-white" name="address" placeholder="Enter address here"></textarea>
+                            <input class="p-2 block w-full text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none "
+                                   placeholder="Хаяг"
+                                   id="name"
+                                   name="address">
                           </div>
+                          <!-- <div class="flex items-center">
+                            <textarea class="bg-white border p-1 " name="address" placeholder="Хаяг"></textarea>
+                          </div> -->
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <input class="p-2 block w-full text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none "
+                          <input class="p-2 block w-full text-xs text-gray-900 border border-gray-600  cursor-pointer bg-gray-50 focus:outline-none "
                                  placeholder="Утас"
                                  id="price"
-                                 type="textarea"
+                                 type="number"
                                  name="phone">
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -125,10 +131,10 @@
                   </tr>
                   <tr>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      Салбар
+                      Салбарын дугаар
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      Нэр
+                      Салбарын байршил
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Хаяг
@@ -171,18 +177,6 @@
                   {% endfor %}
                 </tbody>
               </table>
-              <div class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between ">
-                <span class="text-xs xs:text-sm text-gray-900">Showing 1 to 4 of 50 Entries</span>
-                <div class="inline-flex mt-2 xs:mt-0">
-                  <button class="text-sm text-white transition duration-150 bg-[#F4C2C2] hover:bg-[#E17F93] font-semibold py-2 px-4 rounded-l">
-                    Prev
-                  </button>
-                  &nbsp; &nbsp;
-                  <button class="text-sm text-white transition duration-150 bg-[#F4C2C2] hover:bg-[#E17F93] font-semibold py-2 px-4 rounded-r">
-                    Next
-                  </button>
-                </div>
-              </div>
             </div>
           </div>
           <div class=" space-x-8 mt-10">

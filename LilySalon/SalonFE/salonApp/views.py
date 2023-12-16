@@ -11,12 +11,6 @@ import base64
 BE_URL = "http://127.0.0.1:8080"
 # Create your views here.
 
-orders = {
-        'services' : [],
-        'worker': "",
-        'location': "",
-    }
-
 selectedServices = []
 
 def index(request):
@@ -28,10 +22,47 @@ def index(request):
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
         context['occupations'] = result['data']
+        jsons = {
+            "action" : "list_sales",
+        }
+        con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+        result = json.loads(con.text)
+        context['sales'] = result['data']
     return render(request, 'index.html',context)
 
-def services(request):
-    return render(request, 'services.html')
+def services(request,occ_id = None):
+    context = {}
+    if request.method == "POST":
+        # jsons = {
+        #     "action" : "add_service",
+        #     "name" : "",
+        #     "occupation_id" : "",
+        #     "price" : "",
+        # }
+        # jsons['name'] = request.POST.get('name')
+        # jsons['occupation_id'] = request.POST.get('occupation_id')
+        # jsons['price'] = request.POST.get('price')
+        # con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+        # result = json.loads(con.text)
+        # context['errorMessage'] = result['data']
+        return redirect('services')
+    else:
+        jsons = {
+            "action" : "get_occupation",
+            "id" : occ_id,
+        }
+        con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+        result = json.loads(con.text)
+        context['occupation'] = result['data']
+        jsons = {
+            "action" : "get_occ_service",
+            "occ_id" : occ_id,
+        }
+        con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+        result = json.loads(con.text)
+        context['services'] = result['data']
+    print(context)
+    return render(request, 'services.html',context)
 
 
 orders = {
@@ -82,6 +113,8 @@ def order(request):
         context['last_order'] = result['data']
         return redirect('order_confirm',result['data'][0]['id'])
     else:
+        if request.GET.get('selectedBranchName') == None and request.GET.get('selectedService') and request.GET.get('selectedWorker') and request.GET.get('selectedDate') and request.GET.get('selectedTime'):
+            orders["total"] = 0
         if request.GET.get('selectedBranchName'):
             jsons = {
             "action" : "get_branch",
@@ -117,7 +150,6 @@ def order(request):
             context['selectedWorker'] = result['data']
             orders['selectedWorkers'].append(context["selectedWorker"][0]['firstname'])
         if request.GET.get('selectedDate') and request.GET.get('selectedTime'):
-            print()
             context['selectedDate'] = request.GET.get('selectedDate')
             context['selectedTime'] = request.GET.get('selectedTime')
 
@@ -147,7 +179,6 @@ def order(request):
                 orders["total"] += service[0]['price']
                 context['total'] = orders["total"]
     context['orders'] = orders
-    # print(context)
     return render(request, 'order.html',context)
 
 def order_confirm(request, order_id=None):
@@ -169,7 +200,6 @@ def order_confirm(request, order_id=None):
         jsons['order_id'] = order_id
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
-        print(result)
         return redirect('order_confirm',0)
     return render(request,'order_confirm.html',context)
 
@@ -234,12 +264,10 @@ def list_services(request):
             "name" : "",
             "occupation_id" : "",
             "price" : "",
-            "duration" : "",
         }
         jsons['name'] = request.POST.get('name')
         jsons['occupation_id'] = request.POST.get('occupation_id')
         jsons['price'] = request.POST.get('price')
-        jsons['duration'] = request.POST.get('duration')
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
         context['errorMessage'] = result['data']
@@ -278,13 +306,11 @@ def edit_service(request,service_id = None):
             "action" : "edit_service",
             "name" : "",
             "price" : "",
-            "average_duration" : "",
             "ocupation_id" : "",
             "id" : service_id,
         }
         jsons['name'] = request.POST.get('name')
         jsons['price'] = request.POST.get('price')
-        jsons['average_duration'] = request.POST.get('average_duration')
         jsons['ocupation_id'] = request.POST.get('occupation_id') 
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
@@ -308,7 +334,34 @@ def edit_service(request,service_id = None):
 
 
 def list_sales(request):
-    return render(request, 'lists/list_sales.html')
+    context = {}
+    if request.method == "POST":
+        jsons = {
+            "action" : "add_sales",
+            "image" : "",
+            "description" : "",
+            "end_date" : "",
+        }
+        img = request.FILES.get('image')
+        if not isinstance(img, InMemoryUploadedFile):
+            raise ValueError("Input must be an InMemoryUploadedFile")
+        base64_encoded = base64.b64encode(img.read()).decode('utf-8')
+        jsons['image'] = base64_encoded
+        jsons['description'] = request.POST.get('description')
+        jsons['end_date'] = request.POST.get('end_date')
+        con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+        result = json.loads(con.text)
+        context['errorMessage'] = result['data']
+        
+        return redirect('list_sales')
+    else:
+        jsons = {
+            "action" : "list_sales",
+        }
+        con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+        result = json.loads(con.text)
+        context['sales'] = result['data']
+    return render(request, 'lists/list_sales.html',context)
 
 def list_location(request):
     context = {}
@@ -318,7 +371,6 @@ def list_location(request):
             "name" : "",
             "address" : "",
             "phone" : "",
-            "operator_id" : "6",
         }
         jsons['address'] = request.POST.get('address')
         jsons['name'] = request.POST.get('name')
@@ -374,26 +426,28 @@ def delete_occupation(request,occupation_id = None):
     return redirect('list_occupation')
 
 def list_orderlist(request):
-    orders = [
-        {
-            "order" : "Туяа",
-            "phone" : 99554488,
-            "date" : "2024/12/19 12:00:00",
-        },
-        {
-            "order" : "Батаа",
-            "phone" : 80528787,
-            "date" : "2024/02/07 16:00:00",
-        },
-        {
-            "order" : "Гэрлээ",
-            "phone" : 99887799,
-            "date" : "2024/06/01 14:00:00",
-        },
-    ]
-    context = {
-        "orders" : orders
-    }
+    context = {}
+    if request.method == "POST":
+        return redirect('list_workers')
+    else:
+        jsons = {
+            "action" : "list_order",
+        }
+        con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+        result = json.loads(con.text)
+        context['orders'] = result['data']
+        jsons = {
+            "action" : "list_service",
+        }
+        con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+        result = json.loads(con.text)
+        context['services'] = result['data']
+        jsons = {
+            "action" : "list_worker",
+        }
+        con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+        result = json.loads(con.text)
+        context['workers'] = result['data']
     return render(request, 'lists/list_orderlist.html',context)
 
 def order_detail(request,phone = None):
@@ -523,7 +577,6 @@ def list_occupation(request):
         context['occupations'] = result['data']
     return render(request, 'lists/list_occupation.html',context)
 
-
 # Edit Pages
 def edit_operator(request,operator_id = None):
     context = {}
@@ -585,7 +638,7 @@ def edit_occupation(request,occupation_id = None):
 def edit_services(request):
     return render(request, 'editPages/edit_services.html')
 
-def edit_sales(request):
+def edit_sales(request,sale_id = None):
     return render(request, 'editPages/edit_sales.html')
 
 def edit_location(request,branch_id = None):
@@ -606,7 +659,6 @@ def edit_location(request,branch_id = None):
 
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
-        
         context['errorMessage'] = result['data']
         return redirect('list_location')
     else:
@@ -619,8 +671,93 @@ def edit_location(request,branch_id = None):
         context['branch'] = result['data'][0]
     return render(request, 'editPages/edit_location.html',context)
 
-def edit_orderlist(request):
-    return render(request, 'editPages/edit_orderlist.html')
+def edit_order(request,order_id = None):
+    context = {}
+    if request.method == "POST":
+        jsons = {
+            "action" : "edit_branch",
+            "address" : "",
+            "phone" : "",
+            "name" : "",
+            "new_id" : ""
+        }
+        jsons['address'] = request.POST.get('address')
+        jsons['phone'] = request.POST.get('phone')
+        jsons['name'] = request.POST.get('name')
+        jsons['new_id'] = request.POST.get('new_id')
+
+        con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+        result = json.loads(con.text)
+        context['errorMessage'] = result['data']
+        return redirect('list_location')
+    else:
+        jsons = {
+            "action" : "get_branch",
+        }
+        con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+        result = json.loads(con.text)
+        context['branch'] = result['data'][0]
+    return render(request, 'editPages/edit_order.html')
+
+def delete_order(request,order_id = None):
+    context = {}
+    jsons = {
+        "action" : "delete_order",
+        "id" : order_id,
+    }
+    con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+    result = json.loads(con.text)
+    context['errorMessage'] = result['data']
+
+    return redirect('list_orderlist')
+
+def delete_sales(request,sale_id = None):
+    context = {}
+    jsons = {
+        "action" : "delete_sales",
+        "id" : sale_id,
+    }
+    con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+    result = json.loads(con.text)
+    context['errorMessage'] = result['data']
+    return redirect('list_sales')
+
+def edit_sales(request,sale_id = None):
+    context = {}
+    if request.method == "POST":
+        jsons = {
+            "action" : "edit_sales",
+            "image" : "",
+            "description" : "",
+            "end_date" : "",
+            "id" : sale_id,
+        }
+        jsons['description'] = request.POST.get('description')
+        
+        jsons['end_date'] = request.POST.get('end_date')
+        print(jsons['end_date'])
+        img = request.FILES.get('image')
+        if img == None:
+            jsons["image"] = request.POST.get("oldImage")
+        else:
+            if not isinstance(img, InMemoryUploadedFile):
+                raise ValueError("Input must be an InMemoryUploadedFile")
+            base64_encoded = base64.b64encode(img.read()).decode('utf-8')
+            jsons['image'] = base64_encoded
+        con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+        result = json.loads(con.text)
+        context['errorMessage'] = result['data']
+        return redirect('list_sales')
+    else:
+        jsons = {
+            "action" : "get_sales",
+            "id" : sale_id,
+        }
+        con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+        result = json.loads(con.text)
+        context['sales'] = result['data'][0]
+    return render(request, 'editPages/edit_sales.html',context)
+
 
 def edit_workers(request,worker_id = None):
     context = {}

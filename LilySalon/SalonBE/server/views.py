@@ -45,7 +45,6 @@ def add_operator(request):
     admin_id = jsond.get("admin_id")
     password = jsond.get("password")
     action = jsond.get("action")
-    password = mandakhHash(password)
     con = connect()
     cur = con.cursor()
     try:
@@ -76,10 +75,7 @@ def edit_operator(request):
     con = connect()
     cur = con.cursor()
     try:
-        cur.execute('''SELECT * FROM t_operator WHERE password = %s''',[password])
-        pas = cur.fetchall()
-        if pas == []:
-            password = mandakhHash(password)
+
         cur.execute(''' UPDATE t_operator
                         SET lastname=%s, firstname=%s, phone=%s, email=%s, password=%s, branch_id=%s
                         WHERE id = %s;''',[lastname,firstname,phone,email,password,branch_id,id])
@@ -140,14 +136,13 @@ def add_branch(request):
     name = jsond.get("name")
     address = jsond.get("address")
     phone = jsond.get("phone")
-    operator_id = jsond.get("operator_id")
     action = jsond.get("action")
     con = connect()
     cur = con.cursor()
     try:
         cur.execute(''' INSERT INTO t_branch(
-                        id, name, address, operator_id, phone)
-                        VALUES (DEFAULT, %s, %s, %s, %s);''',[name,address,operator_id,phone])
+                        id, name, address, phone)
+                        VALUES (DEFAULT, %s, %s, %s);''',[name,address,phone])
         con.commit()
         resp = sendResponse(200, 'success', "" ,action)
     except Exception as e:
@@ -394,14 +389,13 @@ def add_service(request):
     name = jsond.get("name")
     occupation_id = jsond.get("occupation_id")
     price = jsond.get("price")
-    duration = jsond.get("duration")
     action = jsond.get("action")
     con = connect()
     cur = con.cursor()
     try:
         cur.execute(''' INSERT INTO t_service(
-                        id, category_id, name, price, average_duration, ocupation_id)
-                        VALUES (DEFAULT, 1, %s, %s, %s, %s);''',[name,price,duration,occupation_id])
+                        id, category_id, name, price, ocupation_id)
+                        VALUES (DEFAULT, 1, %s, %s, %s);''',[name,price,occupation_id])
         con.commit()
         resp = sendResponse(200, 'success', "" ,action)
     except Exception as e:
@@ -411,7 +405,6 @@ def add_service(request):
 def edit_service(request):
     jsond = json.loads(request.body)
     name = jsond.get("name")
-    average_duration = jsond.get("average_duration")
     ocupation_id = jsond.get("ocupation_id")
     price = jsond.get("price")
     id = jsond.get('id')
@@ -420,8 +413,8 @@ def edit_service(request):
     cur = con.cursor()
     try:
         cur.execute(''' UPDATE t_service
-                        SET name=%s, average_duration=%s,ocupation_id=%s,price=%s
-                        WHERE id=%s;''',[name,average_duration,ocupation_id,price,id])
+                        SET name=%s,ocupation_id=%s,price=%s
+                        WHERE id=%s;''',[name,ocupation_id,price,id])
         con.commit()
         resp = sendResponse(200, 'success', "" ,action)
     except Exception as e:
@@ -443,6 +436,101 @@ def delete_service(request):
         resp = sendResponse(401, str(e), "" ,action)
     return resp
 
+def list_order(request):
+    jsond = json.loads(request.body)
+    action = jsond.get("action")
+    con = connect()
+    cur = con.cursor()
+    try:
+        cur.execute(f'''SELECT * FROM t_order INNER JOIN t_user ON t_order.user_id = t_user.id;''')
+        columns = cur.description
+        respRow = [{columns[index][0]:column for index,
+                    column in enumerate(value)} for value in cur.fetchall()]
+        resp = sendResponse(200, 'success', respRow ,  action)
+    except Exception as e:
+        resp = sendResponse(401, 'error', "" ,action)
+    return resp
+
+def list_sales(request):
+    jsond = json.loads(request.body)
+    action = jsond.get("action")
+    con = connect()
+    cur = con.cursor()
+    try:
+        cur.execute(f'''SELECT * FROM t_sale;''')
+        columns = cur.description
+        respRow = [{columns[index][0]:column for index,
+                    column in enumerate(value)} for value in cur.fetchall()]
+        resp = sendResponse(200, 'success', respRow ,  action)
+    except Exception as e:
+        resp = sendResponse(401, 'error', str(e) ,action)
+    return resp
+
+def edit_sales(request):
+    jsond = json.loads(request.body)
+    image = jsond.get("image")
+    description = jsond.get("description")
+    end_date = jsond.get("end_date")
+    id = jsond.get("id")
+    action = jsond.get("action")
+    con = connect()
+    cur = con.cursor()
+    try:
+        cur.execute(''' UPDATE t_sale
+                        SET image=%s,description=%s,end_date=%s
+                        WHERE id=%s;''',[image,description,end_date,id])
+        con.commit()
+        
+        resp = sendResponse(200, 'success', "" ,action)
+    except Exception as e:
+        resp = sendResponse(401, str(e), "" ,action)
+    return resp
+
+def get_sales(request):
+    jsond = json.loads(request.body)
+    action = jsond.get("action")
+    id = jsond.get("id")
+    con = connect()
+    cur = con.cursor()
+    try:
+        cur.execute('''SELECT * FROM t_sale WHERE id = %s;''',[id])
+        columns = cur.description
+        respRow = [{columns[index][0]:column for index,
+                    column in enumerate(value)} for value in cur.fetchall()]
+        resp = sendResponse(200, 'success', respRow ,  action)
+    except Exception as e:
+        resp = sendResponse(401, 'error', "" ,action)
+    return resp
+
+def delete_order(request):
+    jsond = json.loads(request.body)
+    id = jsond.get("id")
+    action = jsond.get("action")
+    con = connect()
+    cur = con.cursor()
+    try:
+        cur.execute(''' DELETE FROM t_order
+	                    WHERE id = %s;''',[id])
+        con.commit()
+        resp = sendResponse(200, 'success', "" ,action)
+    except Exception as e:
+        resp = sendResponse(401, str(e), "" ,action)
+    return resp
+
+def delete_sales(request):
+    jsond = json.loads(request.body)
+    id = jsond.get("id")
+    action = jsond.get("action")
+    con = connect()
+    cur = con.cursor()
+    try:
+        cur.execute(''' DELETE FROM t_sale
+	                    WHERE id = %s;''',[id])
+        con.commit()
+        resp = sendResponse(200, 'success', "" ,action)
+    except Exception as e:
+        resp = sendResponse(401, str(e), "" ,action)
+    return resp
 
 def add_order(request):
     jsond = json.loads(request.body)
@@ -521,11 +609,29 @@ def add_user(request):
         resp = sendResponse(401, str(e), "" ,action)
     return resp
     
+def add_sales(request):
+    jsond = json.loads(request.body)
+    image = jsond.get("image")
+    description = jsond.get("description")
+    end_date = jsond.get("end_date")
+    action = jsond.get("action")
+    con = connect()
+    cur = con.cursor()
+    try:
+        cur.execute(''' INSERT INTO t_sale(
+                        id, end_date, description, image)
+                        VALUES (DEFAULT, %s, %s, %s);''',[end_date,description,image])
+        con.commit()
+        resp = sendResponse(200, 'success', "" ,action)
+    except Exception as e:
+        resp = sendResponse(401, str(e), "" ,action)
+    return resp
+
 def login(request):
     jsond = json.loads(request.body)
     action = jsond.get("action")
     phone = jsond.get("phone")
-    password = mandakhHash(jsond.get("password"))
+    password = jsond.get("password")
     con = connect()
     cur = con.cursor()
     try:
@@ -540,6 +646,25 @@ def login(request):
         resp = sendResponse(200, message, respRow ,  action)
     except Exception as e:
         resp = sendResponse(401, 'error', "" ,action)
+    return resp
+
+def get_occ_service(request):
+    jsond = json.loads(request.body)
+    action = jsond.get("action")
+    occ_id = jsond.get('occ_id')
+    print(occ_id)
+    con = connect()
+    cur = con.cursor()
+    try:
+        cur.execute('''SELECT * FROM t_service WHERE ocupation_id = %s;''',[occ_id])
+        columns = cur.description
+        respRow = [{columns[index][0]:column for index,
+                    column in enumerate(value)} for value in cur.fetchall()]
+        
+        resp = sendResponse(200, 'success', respRow ,  action)
+        print(resp)
+    except Exception as e:
+        resp = sendResponse(401, str(e), str(e) ,action)
     return resp
 
 @csrf_exempt
@@ -595,7 +720,7 @@ def main(request):
     if action == "delete_occupation":
         resp = delete_occupation(request)
 
-    # occupation
+    # service
     if action == "add_service":
         resp = add_service(request)
     if action == "list_service":
@@ -607,11 +732,30 @@ def main(request):
     if action == "delete_service":
         resp = delete_service(request)
 
+    if action == "get_occ_service":
+        resp = get_occ_service(request)
+
     # order
     if action == "add_order":
         resp = add_order(request)
     if action == "get_last_order":
         resp = get_last_order(request)
+    if action == "list_order":
+        resp = list_order(request)
+    if action == "delete_order":
+        resp = delete_order(request)
+
+    # sales
+    if action == "list_sales":
+        resp = list_sales(request)
+    if action == "add_sales":
+        resp = add_sales(request)
+    if action == "get_sales":
+        resp = get_sales(request)
+    if action == "delete_sales":
+        resp = delete_sales(request)
+    if action == "edit_sales":
+        resp = edit_sales(request)
 
     # user
     if action == "add_user":

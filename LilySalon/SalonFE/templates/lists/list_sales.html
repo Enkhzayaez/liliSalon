@@ -31,7 +31,7 @@
                   <div class="w-full block  lg:flex lg:items-center lg:w-auto ">
                     <div class="text-xl lg:flex-grow  gap-12 text-gray-800 font-serif mr-5">
                         <a href="#" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">
-                            Admin
+                          Оператор 
                         </a>
                     </div>
                   </div>
@@ -73,22 +73,28 @@
                     <table class="min-w-full leading-normal">
                       <thead>
                         <tr>
-                          <form>
+                          <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
                             <td class="px-5 py-5 border-b border-gray-200 " >
                               <div class="flex-shrink-0  ">
-                                <input class=" block w-full text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none" id="img" type="file">  
+                                
+                                <input class=" block w-full text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none"
+                                   id="image"
+                                   name="image"
+                                 
+                                   type="file">
                               </div>
                             </td>
 
                             <td class="px-5 py-5 border-b border-gray-200 " >
                               <div class="flex-shrink-0  ">
-                                <input class="p-2 block w-full text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none" placeholder="Тайлбар" id="text" type="text">   
+                                <input class="p-2 block w-full text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none" placeholder="Тайлбар" name="description" type="text">   
                               </div>
                             </td>
 
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                               <div class="flex items-center">
-                                    <input class="p-2 block w-full text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none"  id="date" type="date">   
+                                    <input class="p-2 block w-full text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none"  name="end_date" type="date">   
                                   </div>
                             </td>
   
@@ -119,57 +125,32 @@
                         </tr>
                       </thead>
                       <tbody>
+                        {% for sale in sales %}
                         <tr>
                           <td class="px-5 py-5 border-b border-gray-200 w-48  " >
                             <div class="flex-shrink-0 w-10 h-10 ">
-                              <img class="w-full h-full border border-black rounded-full" src="{% static 'images/icons/sales.png'  %}" alt="" />
+                              <img class="w-full h-full border border-black rounded-full" src="data:image/png;base64,{{sale.image}}" alt="" />
                             </div>
                           </td>
                           <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             <div class="flex items-center">
                                   <p class="text-gray-900 whitespace-no-wrap">
-                                    Үс будалтын 50%-ийн хөнгөлөлт
+                                    {{sale.description}}
                                   </p>
                               </div>
                           </td>
                           <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <p class="text-gray-900 whitespace-no-wrap">2023/12/30</p>
+                            <p class="text-gray-900 whitespace-no-wrap">{{sale.end_date}}</p>
                           </td>
                           
                           <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <a href="#">Засах</a>
+                            <a href="{% url 'edit_sales' sale.id %}">Засах</a>
                           </td>
                           <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <a href="#">Устгах</a>
+                            <a href="{% url 'delete_sales' sale.id %}">Устгах</a>
                           </td>
                         </tr>
-                        
-                        <tr>
-                          <td class="px-5 py-5 border-b border-gray-200 " >
-                            <div class="flex-shrink-0 w-10 h-10 ">
-                              <img class="w-full h-full border border-black rounded-full" src="{% static 'images/icons/sales.png'  %}"  />
-                            </div>
-                          </td>
-                         
-                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <div class="flex items-center">
-                                  <p class="text-gray-900 whitespace-no-wrap">
-                                    Хумсны гелэн будалт 10-сарыг дуустал үнэгүй боллоо.
-                                  </p>
-                              </div>
-                          </td>
-                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <p class="text-gray-900 whitespace-no-wrap">2023/12/30</p>
-                          </td>
-                          
-                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <a href="#">Засах</a>
-                          </td>
-                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <a href="#">Устгах</a>
-                          </td>
-                        </tr>
-                      
+                        {% endfor %}
                       </tbody>
                     </table>
                     <div

@@ -38,20 +38,7 @@
                                 </svg>
                             </button>
                         </div>
-                        <div class="w-full block  lg:flex lg:items-center lg:w-auto ">
-                            <div class="text-xl lg:flex-grow  gap-12 text-gray-800 font-serif mr-5">
-                                <a href="{% url 'login' %}"
-                                   class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">
-                                    Login
-                                </a>
-                            </div>
-                            <div class="text-xl lg:flex-grow  gap-12 text-gray-800 font-serif mr-5">
-                                <a href="{% url 'register' %}"
-                                   class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">
-                                    Sign Up
-                                </a>
-                            </div>
-                        </div>
+                        
                     </nav>
                 </div>
             </nav>
@@ -73,35 +60,42 @@
                         </div>
                         <form class="mt-8 space-y-6" method="POST">
                             {% csrf_token %}
-                            <input type="hidden" name="remember" value="true">
-                            <div class="relative">
-                                <label class="text-sm  font-bold text-gray-700 tracking-wide">Салбар</label>
-                                <input name="new_id" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="name" value={{ branch.id }}>
-                            </div>
-                            <div class="relative">
-                                <label class="text-sm  font-bold text-gray-700 tracking-wide">Нэр</label>
-                                <input name="name" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="name" value={{ branch.name }}>
-                            </div>
-                            <div class="relative">
-                                <label class="text-sm  font-bold text-gray-700 tracking-wide">Утас</label>
-                                <input name="phone" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="phone" value={{ branch.phone }}>
-                            </div>
-                            <div class="relative">
-                                <label class="text-sm  font-bold text-gray-700 tracking-wide">Хаяг</label>
-                                <textarea class="bg-white" name="address" placeholder="Enter address here" value={{ branch.address }}></textarea>
-                            </div>
-                            <div class="grid grid-cols-2 gap-4">
-                                <div class="pt-5">
-                                    <button type="submit"
-                                            class="w-full flex justify-center bg-[#F4C2C2] text-gray-100 p-4  rounded-full tracking-wide font-semibold  focus:outline-none focus:shadow-outline hover:bg-[#E17F93] shadow-lg cursor-pointer transition ease-in duration-300">
-                                        Цуцлах
-                                    </button>
+                            <div class="text-black">
+                                <input type="hidden" name="remember" value="true">
+                                <div class="relative">
+                                    <label class="text-sm  font-bold text-gray-700 tracking-wide">Салбарын дугаар</label>
+                                    <input name="new_id" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="name" value={{ branch.id }}>
                                 </div>
-                                <div class="pt-5">
-                                    <button type="submit"
-                                            class="w-full flex justify-center bg-[#F4C2C2] text-gray-100 p-4  rounded-full tracking-wide font-semibold  focus:outline-none focus:shadow-outline hover:bg-[#E17F93] shadow-lg cursor-pointer transition ease-in duration-300">
-                                        Нэмэх
-                                    </button>
+                                <div class="relative">
+                                    <label class="text-sm  font-bold text-gray-700 tracking-wide">Салбарын байршил</label>
+                                    <input name="name" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="name" value={{ branch.name }}>
+                                </div>
+                                <!-- <div class="relative">
+                                    <label class="text-sm  font-bold text-gray-700 tracking-wide">Хаяг</label>
+                                    <input name="add" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="name" value={{ branch.address }}>
+                                </div> -->
+                                <div class="relative">
+                                    <label class="text-sm  font-bold text-gray-700 tracking-wide flex items-center">Хаяг</label>
+                                    <textarea class="bg-white border" name="address" placeholder="Enter address here" value={{ branch.address }}></textarea>
+                                </div>
+                                <div class="relative">
+                                    <label class="text-sm  font-bold text-gray-700 tracking-wide">Утас</label>
+                                    <input name="phone" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="phone" value={{ branch.phone }}>
+                                </div>
+                                
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="pt-5">
+                                        <button type="submit"
+                                                class="w-full flex justify-center bg-[#F4C2C2] text-gray-100 p-4  rounded-full tracking-wide font-semibold  focus:outline-none focus:shadow-outline hover:bg-[#E17F93] shadow-lg cursor-pointer transition ease-in duration-300">
+                                            Цуцлах
+                                        </button>
+                                    </div>
+                                    <div class="pt-5">
+                                        <button type="submit"
+                                                class="w-full flex justify-center bg-[#F4C2C2] text-gray-100 p-4  rounded-full tracking-wide font-semibold  focus:outline-none focus:shadow-outline hover:bg-[#E17F93] shadow-lg cursor-pointer transition ease-in duration-300">
+                                            Хадгалах
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </form>

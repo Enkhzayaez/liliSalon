@@ -7,6 +7,7 @@ urlpatterns = [
     # user page url
     path('', views.index, name = 'index'),
     path('services/', views.services, name = 'services'),
+    path('services/<int:occ_id>', views.services, name = 'services'),
     path('order/', views.order, name = 'order'),
     path('order_confirm/<int:order_id>', views.order_confirm, name = 'order_confirm'),
 
@@ -26,16 +27,18 @@ urlpatterns = [
     # editPages url
     path('edit_operator/<int:operator_id>', views.edit_operator, name = 'edit_operator'),
     path('delete_operator/<int:operator_id>', views.delete_operator, name = 'delete_operator'),
-    path('edit_sales/', views.edit_sales, name = 'edit_sales'),
+    path('edit_sales/<int:sale_id>', views.edit_sales, name = 'edit_sales'),
+    path('delete_sales/<int:sale_id>', views.delete_sales, name = 'delete_sales'),
     path('edit_location/<int:branch_id>', views.edit_location, name = 'edit_location'),
     path('delete_location/<int:branch_id>', views.delete_location, name = 'delete_location'),
-    path('edit_orderlist/', views.edit_orderlist, name = 'edit_orderlist'),
+    path('edit_order/<int:order_id>', views.edit_order, name = 'edit_order'),
     path('edit_workers/<int:worker_id>', views.edit_workers, name = 'edit_workers'),
     path('delete_workers/<int:worker_id>', views.delete_workers, name = 'delete_workers'),
     path('edit_occupation/<int:occupation_id>', views.edit_occupation, name = 'edit_occupation'),
     path('delete_occupation/<int:occupation_id>', views.delete_occupation, name = 'delete_occupation'),
     path('edit_service/<int:service_id>', views.edit_service, name = 'edit_service'),
     path('delete_service/<int:service_id>', views.delete_service, name = 'delete_service'),
+    path('delete_order/<int:order_id>', views.delete_order, name = 'delete_order'),
 
     # addPages url
     path('add_services/', views.add_services, name = 'add_services'),

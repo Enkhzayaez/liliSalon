@@ -5,16 +5,14 @@ import bson
 
 def connect():
     con = psycopg2.connect(
-        dbname = 'postgres',
+        dbname = 'Salon',
         user = 'postgres',
-        password = '153298',
+        password = 'z02212205',
         host = 'localhost',
-        port = '5433',
+        port = '5432',
     )
     return con
 
-def mandakhHash(password):
-    return hashlib.md5(password.encode('utf-8')).hexdigest()
 
 def sendResponse(resultCode , resultMessege, data, action):
     resp = {}
