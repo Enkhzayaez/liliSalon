@@ -176,7 +176,7 @@
                                   name="branch_id"
                                   id="branch">
                             {% for branch in branches %}
-                              <option value={{ branch.id }}>Салбар-{{ branch.id }}
+                              <option selected value={{ branch.id }}>Салбар-{{ branch.id }}
                               </option>
                             {% endfor %}
                           </select>
@@ -251,7 +251,13 @@
                         <p class="text-gray-900 whitespace-no-wrap">Салбар-{{ worker.branch_id }}</p>
                       </td>
                       <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p class="text-gray-900 whitespace-no-wrap">Маникур</p>
+                        <p class="text-gray-900 whitespace-no-wrap">
+                          {% for occupation in occupations %}
+                            {% if occupation.id == worker.ocupation_id %}
+                              {{occupation.name}}
+                            {% endif %}
+                          {% endfor %}
+                        </p>
                       </td>
                       <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <p class="text-gray-900 whitespace-no-wrap">{{ worker.regdate }}</p>

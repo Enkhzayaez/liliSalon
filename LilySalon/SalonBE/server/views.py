@@ -325,13 +325,14 @@ def edit_occupation(request):
     jsond = json.loads(request.body)
     name = jsond.get("name")
     id = jsond.get('id')
+    image = jsond.get('image')
     action = jsond.get("action")
     con = connect()
     cur = con.cursor()
     try:
         cur.execute(''' UPDATE t_ocupation
-                        SET name=%s
-                        WHERE id=%s;''',[name,id])
+                        SET name=%s , image=%s
+                        WHERE id=%s;''',[name,image,id])
         con.commit()
         resp = sendResponse(200, 'success', "" ,action)
     except Exception as e:

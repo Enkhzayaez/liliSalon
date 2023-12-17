@@ -53,9 +53,17 @@
                         <div class="text-center">
                             <h2 class="mt-6 text-3xl font-bold text-[#E17F93]">Мэргэжил</h2>
                         </div>
-                        <form class="mt-8 space-y-6" method="POST">
+                        <form class="mt-8 space-y-6" method="POST"  enctype="multipart/form-data">
                             {% csrf_token %}
                             <input type="hidden" name="remember" value="true">
+                            <div class="flex items-center">
+                                <p>Зураг</p>
+                                <input type="hidden" value = {{occupation.image}} name="oldImage" />
+                                <input class=" block w-full text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none"
+                                       id="image"
+                                       name="image"
+                                       type="file">
+                              </div>
                             <div class="relative">
                                 <label class="text-sm  font-bold text-gray-700 tracking-wide">Мэргэжилийн нэр</label>
                                 <input name="name" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="name" value={{ occupation.name }}>

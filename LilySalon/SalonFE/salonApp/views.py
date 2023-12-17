@@ -618,7 +618,16 @@ def edit_occupation(request,occupation_id = None):
             "action" : "edit_occupation",
             "name" : "",
             "id" : occupation_id,
+            "image" : ""
         }
+        img = request.FILES.get('image')
+        if img == None:
+            jsons["image"] = request.POST.get("oldImage")
+        else:
+            if not isinstance(img, InMemoryUploadedFile):
+                raise ValueError("Input must be an InMemoryUploadedFile")
+            base64_encoded = base64.b64encode(img.read()).decode('utf-8')
+            jsons['image'] = base64_encoded
         jsons['name'] = request.POST.get('name')
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
@@ -779,7 +788,7 @@ def edit_workers(request,worker_id = None):
         jsons['branch_id'] = request.POST.get('branch_id')
         jsons['occupation_id'] = request.POST.get('occupation_id') 
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
-
+        print(con.text)
         result = json.loads(con.text)
         context['errorMessage'] = result['data']
         return redirect('list_workers')

@@ -380,15 +380,19 @@
                                     <div class="relative h-350-px">
                                         <div class="bg-white p-4 rounded-md ">
                                             <h2 class="text-gray-500 text-lg font-semibold pb-4">Таны захиалсан цагууд:</h2>
-                                            <div class="my-1"></div>
-                                            <p>Where: {{ selectedBranchName }}</p>
-                                            <p>selectedDate: {{ selectedDate }}</p>
-                                            <p>selectedTime: {{ selectedTime }}</p>
-                                            <p>total: {{ total }}</p>
-                                            <p>
-                                                selectedWorkers:
-                                                {% for worker in orders.selectedWorkers %}{{ worker }},{% endfor %}
-                                            </p>
+                                            <div class="grid gird-cols-1 md:grid-cols-2">
+                                                <div><p>Сонгосон Салбар: {{ selectedBranchName }}</p></div>
+                                                <div><p>Сонгосон Өдөр: {{ selectedDate }}</p></div>
+                                                <div><p>Сонгосон Цаг: {{ selectedTime }}</p></div>
+                                                <div>
+                                                    <p>
+                                                        Сонгосон Ажилтан:
+                                                        {% for worker in orders.selectedWorkers %}{{ worker }},{% endfor %}
+                                                    </p>
+                                                </div>
+                                                <div><p>Нийт дүн: {{ total }}</p></div>
+                                               
+                                            </div>
                                             <div class="bg-gray-400 h-px mb-6"></div>
                                             <table class="w-full table-auto text-sm">
                                                 <thead>
@@ -429,7 +433,7 @@
                                             <div class="bg-gray-400 h-px mb-6"></div>
                                             <div class="grid grid-cols-2 gap-4">
                                                 <div>
-                                                    <h2 class="text-gray-500 text-lg font-semibold pb-4">Төлбөр:</h2>
+                                                    <h2 class="text-gray-500 text-lg font-semibold pb-4">Нийт дүн:</h2>
                                                 </div>
                                                 <div>
                                                     <h2 class="text-gray-500 text-lg font-semibold pb-4 text-right">250'000₮</h2>

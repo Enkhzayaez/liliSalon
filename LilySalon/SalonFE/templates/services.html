@@ -9,15 +9,15 @@
 
         <div class=" min-h-screen flex items-center justify-center bg-gray-50 px-4 sm:px-6 lg:px-8 bg-gray-500  bg-cover relative items-center"
             style="background-image: url(../../static/images/pink_marble.jpg);">
-            <div class="absolute bg-black opacity-60 inset-0 z-0"></div>
+            
                 
                 <div class="w-[90%] h-[70%] py-4 my-10 mx- h-full px-4 sm:px-6 lg:px-4 mb-12 z-10 ">
-                    <div class="w-100 p-4 h-full text-center border border-white rounded-xl">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                            <div class="relative w-full h-screen  bg-cover bg-center group rounded-lg overflow-hidden shadow-lg hover:shadow-2xl  transition  ease-in-out"
+                    <div class="w-100 p-4 h-full text-center border border-2 border-white rounded-xl">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 ">
+                            <div class="relative w-full h-screen bg-cover bg-center group rounded-lg overflow-hidden "
                                 >
-                                <img src="data:image/png;base64,{{occupation.0.image}}"/>
-                                <div class="absolute inset-0 bg-black bg-opacity-50 group-hover:opacity-75 transition duration-300 ease-in-out"></div>
+                                <img src="data:image/png;base64,{{occupation.0.image}}" class="object-cover h-full"/>
+                               
                             </div>
                             <div class="relative w-full h-screen  bg-cover bg-center group rounded-lg overflow-hidden shadow-lg hover:shadow-2xl  transition duration-300 ease-in-out">
                                 <div class="absolute p-10 inset-0 bg-black bg-opacity-50  transition ">
@@ -30,7 +30,7 @@
                                         <div>{{service.name}}</div>
                                         <div>{{service.price}}₮</div>
                                         {% endfor %}
-                                        
+
                                     </div>
                                 </div>
                                 
