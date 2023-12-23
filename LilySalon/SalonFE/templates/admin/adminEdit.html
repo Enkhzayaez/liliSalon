@@ -1,129 +1,28 @@
+{% extends "../base/adminBase.html" %}
+{% block content %}
 {% load static %}
-<!DOCTYPE HTML>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="pragma" content="no-cache" />
-    <meta http-equiv="cache-control" content="max-age=604800" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script src="{% static 'js/tailwind.js' %}"></script>
-    <script src="{% static 'js/script.js' %}"></script>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link href="{% static 'css/daisy.css' %}" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.8.2/dist/full.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-
-</head>
-<body class=" bg-[#F4C2C2]">
-    <!-- ========================= HEADER ========================= -->
-
-    <div class="">
-
-        <nav class="bg-[#F4C2C2] rounded-b-2xl shadow-lg fixed w-full z-20 top-0 left-0 ">
-            <div class="mx-1 mb-1 border-white border-l-2 border-r-2 border-b-2 rounded-bl-xl rounded-br-xl">
-                <nav class="flex items-center justify-between flex-wrap bg-teal p-1">
-                <a href="{% url 'index' %}">
-                  <div class="flex items-center flex-no-shrink text-white mx-10 ">
-                    <img src="{% static 'images/flowerLogo.png' %}"  alt="Lily logo" class="w-16 h-16  rounded-badge m-2 border-2 border-slate-50">
-                    <span class="font-semibold text-3xl tracking-tight font-['Open_Sans']">Lily Salon</span>
-                  </div>
-                </a>
-                  <div class="block lg:hidden">
-                    <button class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white">
-                      <svg class="h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-                    </button>
-                  </div>
-                  <div class="w-full block  lg:flex lg:items-center lg:w-auto ">
-                    <div class="text-xl lg:flex-grow  gap-12 text-gray-800 font-serif mr-5">
-                        <div class="a_dropdown relative inline-block text-left ">
-                            <button class="inline-flex justify-center  mt-4  lg:mt-0 text-teal-lighter hover:text-white  " 
-                            type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
-                                <span>Админ</span>
-                                <svg class="w-5 h-5 ml-2 -mr-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                                </button
-                            >
-                            <div class="opacity-0 invisible a_dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
-                            <div class="absolute right-0 w-56 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
-                                <div class="px-4 py-3">         
-                                <p class="text-sm leading-5">Нэвтэрсэн:</p>
-                                <p class="text-sm font-medium leading-5 text-gray-900 truncate">admin@gmail.com</p>
-                                </div>
-
-                                <div class="py-1">
-                                    <a href="javascript:void(0)" tabindex="0" class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left"  role="menuitem" >Тохиргоо</a>
-                                <a href="{% url 'logout' %}" tabindex="3" class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left"  role="menuitem" >Гарах</a></div>
-                            </div>
-                            </div>
+<div class="bg-[#FDE2ED]">
+    <div class=" min-h-screen flex items-center justify-center ">
+            <div class="w-full space-y-8 p-5  z-10 flex items-center ">
+            <section class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-4 mb-12 ">
+                <article>
+                    <section class="mt-6  gap-x-6 gap-y-8 items-center">
+                        <div class="w-96 p-4 text-center border border-white rounded-xl">
+                            <a  href="{% url 'list_operator' %}">
+                                <article class="relative w-full h-64 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg hover:shadow-2xl  transition duration-300 ease-in-out"
+                                    style="background-image: url('https://images.unsplash.com/photo-1569012871812-f38ee64cd54c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');">
+                                    <div class="absolute inset-0 bg-black bg-opacity-50 group-hover:opacity-75 transition duration-300 ease-in-out"></div>
+                                    <div class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex justify-center items-center">
+                                        <p class="text-white text-2xl font-bold text-center">Оператор</p> 
+                                    </div>
+                                </article>
+                            </a>
                         </div>
-   
-                        <style>
-                            .a_dropdown:focus-within .a_dropdown-menu {
-                                opacity:1;
-                                transform: translate(0) scale(1);
-                                visibility: visible;
-                                }
-                        </style>
-
-
-                    </div>
-                  </div>
-                </nav>
-            </div>
-        </nav>
-          
-    </div>
-    <!-- ========================= HEADER END // ========================= -->
-
-    <main class="min-h-screen ">
- 
-        <div class="mx-auto mt-4 mx-5 pt-16">
-
-            <div class="relative min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 bg-gray-500 bg-no-repeat bg-cover relative items-center"
-                style="background-image: url(../../static/images/pink_marble.jpg);">
-                <div class="absolute bg-black opacity-60 inset-0 z-0"></div>
-                    <div class="w-full space-y-8 p-5  z-10 flex items-center ">
-                    <section class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-4 mb-12 ">
-                        <article>
-                            <section class="mt-6  gap-x-6 gap-y-8 items-center">
-                                <div class="w-96 p-4 text-center border border-white rounded-xl">
-                                    <a  href="{% url 'list_operator' %}">
-                                        <article class="relative w-full h-64 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg hover:shadow-2xl  transition duration-300 ease-in-out"
-                                            style="background-image: url('https://images.unsplash.com/photo-1569012871812-f38ee64cd54c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');">
-                                            <div class="absolute inset-0 bg-black bg-opacity-50 group-hover:opacity-75 transition duration-300 ease-in-out"></div>
-                                            <div class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex justify-center items-center">
-                                                <p class="text-white text-2xl font-bold text-center">Оператор</p> 
-                                            </div>
-                                        </article>
-                                    </a>
-                                </div>
-                            </section>
-                        </article>
                     </section>
-                </div>
-            </div>
+                </article>
+            </section>
         </div>
-    </main>
-    <!-- ========================= FOOTER  ========================= -->
-    <header>
-    <div class=" float-bottom">
-    <footer class=" dark:bg-gray-900">
-        <div class="container px-6 py-8 mx-auto">
-            <hr class=" border-gray-200 dark:border-gray-500" />
-
-            <div class="flex flex-col items-center sm:flex-row sm:justify-between">
-                <p class="text-sm text-gray-500">© Lily Salon 2023. All Rights Reserved.</p>
-
-                <div class="flex mt-3 -mx-2 sm:mt-0">
-                    <a href="#" class="mx-2 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300" aria-label="Reddit"> Teams </a>
-                    <a href="#" class="mx-2 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300" aria-label="Reddit"> Privacy </a>
-                    <a href="#" class="mx-2 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300" aria-label="Reddit"> Cookies </a>
-                </div>
-            </div>
-        </div>
-    </footer>
-  </div>
-</header>
-    <!-- ========================= FOOTER END ========================= -->
-</body>
-
-</html>
+    </div>
+</div>
+    
+{% endblock %}

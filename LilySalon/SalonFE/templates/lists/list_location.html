@@ -1,61 +1,12 @@
+{% extends "../base/operatorBase.html" %}
+{% block content %}
 {% load static %}
-<!DOCTYPE HTML>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="pragma" content="no-cache" />
-    <meta http-equiv="cache-control" content="max-age=604800" />
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script src="{% static 'js/tailwind.js' %}"></script>
-    <script src="{% static 'js/script.js' %}"></script>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link href="{% static 'css/daisy.css' %}" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.8.2/dist/full.css"
-          rel="stylesheet"
-          type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class=" bg-[#F4C2C2]">
-    <!-- ========================= HEADER ========================= -->
-    <div class="">
-      <nav class="bg-[#F4C2C2] rounded-b-2xl shadow-lg fixed w-full z-20 top-0 left-0 ">
-        <div class="mx-1 mb-1 border-white border-l-2 border-r-2 border-b-2 rounded-bl-xl rounded-br-xl">
-          <nav class="flex items-center justify-between flex-wrap bg-teal p-1">
-            <div class="flex items-center flex-no-shrink text-white mx-10 ">
-              <img src="{% static 'images/flowerLogo.png' %}"
-                   alt="Lily logo"
-                   class="w-16 h-16  rounded-badge m-2 border-2 border-slate-50">
-              <span class="font-semibold text-3xl tracking-tight font-['Open_Sans']">Lily Salon</span>
-            </div>
-            <div class="block lg:hidden">
-              <button class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white">
-                <svg class="h-3 w-3"
-                     viewBox="0 0 20 20"
-                     xmlns="http://www.w3.org/2000/svg">
-                  <title>Menu</title>
-                  <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-                </svg>
-              </button>
-            </div>
-            <div class="w-full block  lg:flex lg:items-center lg:w-auto ">
-              <div class="text-xl lg:flex-grow  gap-12 text-gray-800 font-serif mr-5">
-                <a href="#"
-                   class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white ">Оператор</a>
-              </div>
-            </div>
-          </nav>
-        </div>
-      </nav>
-    </div>
-    <!-- ========================= HEADER END // ========================= -->
-    <main class="min-h-screen ">
-      <div class="max-w-7xl mx-auto mt-12 mx-5 pt-16 pb-5">
-        <!-- ========================= LIST  // ========================= -->
+
+      <div class="max-w-7xl mx-auto mt-12 mx-5 pb-5">
         <div class="bg-white p-8 rounded-md w-full">
           <div class=" flex grid grid-cols-3 w-full items-center justify-between pb-6">
             <div>
-              <h2 class="text-gray-600 font-semibold">Салбар {{ errorMessage }}</h2>
+              <h2 class="text-black text-lg font-semibold">Салбар {{ errorMessage }}</h2>
             </div>
             <div class="">
               <form>
@@ -74,11 +25,11 @@
                   </div>
                   <input type="search"
                          id="default-search"
-                         class="block  p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50  border border-[#F4C2C2]  dark:bg-white dark:text-dark  focus:border-white  focus:ring-white  "
+                         class="block  p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg  border border-[#F4C2C2]  dark:bg-white dark:text-dark  focus:border-white  focus:ring-white  "
                          placeholder="Салбар хайх..."
                          required>
                   <button type="submit"
-                          class=" text-white absolute right-2.5 bottom-2.5 bg-[#F4C2C2] hover:bg-[#E17F93]  focus:outline-none focus:ring-blue-300 font-medium  text-sm px-4 py-2   ">
+                          class=" text-white absolute right-2.5 bottom-2.5 bg-[#F4C2C2] hover:bg-[#E17F93] rounded-lg focus:outline-none focus:ring-blue-300 font-medium  text-sm px-4 py-2   ">
                     Хайх
                   </button>
                 </div>
@@ -88,39 +39,36 @@
           <div>
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
               <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                <table class="min-w-full leading-normal">
+                <table class="min-w-full leading-normal ">
                   <thead>
                     <tr>
                       <form method="POST">
                         {% csrf_token %}
                         
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
                           <div class="flex items-center">
-                            <input class="p-2 block w-full text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none "
+                            <input class="p-2 block w-full text-xs text-black rounded-lg border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none "
                                    placeholder="Салбарын байршил"
                                    id="name"
                                    name="name">
                           </div>
                         </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
                           <div class="flex items-center">
-                            <input class="p-2 block w-full text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none "
+                            <input class="p-2 block w-full text-xs text-black rounded-lg border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none "
                                    placeholder="Хаяг"
                                    id="name"
                                    name="address">
                           </div>
-                          <!-- <div class="flex items-center">
-                            <textarea class="bg-white border p-1 " name="address" placeholder="Хаяг"></textarea>
-                          </div> -->
                         </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <input class="p-2 block w-full text-xs text-gray-900 border border-gray-600  cursor-pointer bg-gray-50 focus:outline-none "
+                        <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
+                          <input class="p-2 block w-full text-xs text-gray-900 border rounded-lg border-gray-300  cursor-pointer bg-gray-50 focus:outline-none "
                                  placeholder="Утас"
                                  id="price"
                                  type="number"
                                  name="phone">
                         </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
                           <input class="bg-[#F4C2C2] hover:bg-[#E17F93] px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer"
                                  value="Нэмэх"
                                  type="submit"
@@ -129,48 +77,48 @@
                       </td>
                     </form>
                   </tr>
-                  <tr>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                  <tr class="bg-[#FDE2ED]">
+                    <th class="px-5 py-3 border-b-2 border-[#FDE2ED]  text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Салбарын дугаар
                     </th>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th class="px-5 py-3 border-b-2 border-[#FDE2ED] text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Салбарын байршил
                     </th>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th class="px-5 py-3 border-b-2 border-[#FDE2ED] text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Хаяг
                     </th>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th class="px-5 py-3 border-b-2 border-[#FDE2ED] text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Холбоо барих утас
                     </th>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th class="px-5 py-3 border-b-2 border-[#FDE2ED] text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                     </th>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th class="px-5 py-3 border-b-2 border-[#FDE2ED] text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   {% for branch in branches %}
                     <tr>
-                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
                         <div class="flex items-center">
                           <p class="text-gray-900 whitespace-no-wrap">Салбар-{{ branch.id }}</p>
                         </div>
                       </td>
-                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
                         <div class="flex items-center">
                           <p class="text-gray-900 whitespace-no-wrap">{{ branch.name }}</p>
                         </div>
                       </td>
-                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
                         <p class="text-gray-900 whitespace-no-wrap">{{ branch.address }}</p>
                       </td>
-                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
                         <p class="text-gray-900 whitespace-no-wrap">{{ branch.phone }}</p>
                       </td>
-                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
                         <a href="{% url 'edit_location' branch.id %}">Засах</a>
                       </td>
-                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
                         <a href="{% url 'delete_location' branch.id %}">Устгах</a>
                       </td>
                     </tr>
@@ -185,33 +133,6 @@
           </div>
         </div>
       </div>
-      <!-- ========================= LIST END // ========================= -->
     </div>
-  </main>
-  <!-- ========================= FOOTER  ========================= -->
-  <header>
-    <div class=" float-bottom">
-      <footer class=" dark:bg-gray-900">
-        <div class="container px-6 py-8 mx-auto">
-          <hr class=" border-gray-200 dark:border-gray-500" />
-          <div class="flex flex-col items-center sm:flex-row sm:justify-between">
-            <p class="text-sm text-gray-500">© Lily Salon 2023. All Rights Reserved.</p>
-            <div class="flex mt-3 -mx-2 sm:mt-0">
-              <a href="#"
-                 class="mx-2 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300"
-                 aria-label="Reddit">Teams</a>
-              <a href="#"
-                 class="mx-2 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300"
-                 aria-label="Reddit">Privacy</a>
-              <a href="#"
-                 class="mx-2 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300"
-                 aria-label="Reddit">Cookies</a>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
-  </header>
-  <!-- ========================= FOOTER END ========================= -->
-</body>
-</html>
+
+ {% endblock %}

@@ -70,6 +70,7 @@ orders = {
     "selectedService" : "",
     "selectedWorker" : "",
     "selectedWorkers" : [],
+    
     "selectedBranchId" : "",
     "selectedTime" : "",
     "selectedDate" : "",
@@ -78,7 +79,7 @@ orders = {
 
 
 def order(request):
-    context = {}
+    context = {'timelist' : ["8", "9", "11", "14", "15", "17", "18"]}
     if request.method == 'POST':
         jsons = {
         "action" : "get_branch",
@@ -111,6 +112,16 @@ def order(request):
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
         context['last_order'] = result['data']
+        orders['selectedService'] = ""
+        orders["selectedBranchName"] = ""
+        orders["selectedService"] = ""
+        orders["selectedWorker"] = ""
+        orders["selectedWorkers"] = []
+        orders["selectedBranchId"] = ""
+        orders["selectedTime"] = ""
+        orders["selectedDate"] = ""
+        selectedServices.clear()
+        orders["total"] = 0
         return redirect('order_confirm',result['data'][0]['id'])
     else:
         if request.GET.get('selectedBranchName') == None and request.GET.get('selectedService') and request.GET.get('selectedWorker') and request.GET.get('selectedDate') and request.GET.get('selectedTime'):
@@ -174,11 +185,19 @@ def order(request):
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
         context['workers'] = result['data']
+        jsons = {
+            "action" : "list_order",
+            }
+        con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+        result = json.loads(con.text)
+        context['allorder'] = result['data']
         if context['selectedServices']:
             for service in context['selectedServices']:
-                orders["total"] += service[0]['price']
+                if service[0]['price']:
+                    orders["total"] += service[0]['price']
                 context['total'] = orders["total"]
     context['orders'] = orders
+    print(context['allorder'])
     return render(request, 'order.html',context)
 
 def order_confirm(request, order_id=None):
@@ -200,7 +219,7 @@ def order_confirm(request, order_id=None):
         jsons['order_id'] = order_id
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
-        return redirect('order_confirm',0)
+        return redirect('index')
     return render(request,'order_confirm.html',context)
 
 def adminEdit(request):
@@ -837,7 +856,31 @@ def a_location(request):
     return render(request, 'admin/a_location.html')
 
 def operator(request):
-    return render(request, 'operator/operator.html')
+    context = {
+        'data' :
+        [
+            {
+                'name' : 'Үйлчилгээ' ,'image' : '../../static/images/full.jpg', 'path': 'list_services'
+            },
+              {
+                'name' : 'Салбар' ,'image' : '../../static/images/full.jpg','path': 'list_location'
+            },
+              {
+                'name' : 'Хөнгөлөлт' ,'image' : '../../static/images/full.jpg','path': 'list_sales'
+            },
+              {
+                'name' : 'Захиалгууд' ,'image' : '../../static/images/full.jpg','path': 'list_orderlist'
+            },
+              {
+                'name' : 'Мэргэжил' ,'image' : '../../static/images/full.jpg','path': 'list_occupation'
+            },
+              {
+                'name' : 'Ажилтан' ,'image' : '../../static/images/full.jpg','path': 'list_workers'
+            },
+            
+        ]
+    }
+    return render(request, 'operator/operator.html',context)
 
 @login_required(login_url="login")
 def logout(request):

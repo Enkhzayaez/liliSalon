@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="pragma" content="no-cache" />
+        <meta http-equiv="cache-control" content="max-age=604800" />
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <script src="{% static 'js/tailwind.js' %}"></script>
+        <script src="{% static 'js/script.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link href="{% static 'css/daisy.css' %}" rel="stylesheet" type="text/css" />
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@3.8.2/dist/full.css"
+              rel="stylesheet"
+              type="text/css" />
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body class=" bg-white">
+        <!-- ========================= HEADER ========================= -->
+        <div class="">
+            <nav class="bg-white  shadow-lg fixed w-full z-20 top-0 left-0 p-2">
+                <div class="grid grid-cols-1 md:grid-cols-4 px-5">
+                    <div>
+                        <a href="{% url 'operator' %}">
+                            <div class="flex items-center flex-no-shrink  ">
+                                <img src="{% static 'images/flowerLogo.png' %}"
+                                    alt="Lily logo"
+                                    class="w-12 h-12  rounded-badge mr-2   border-slate-50">
+                                <span class="font-semibold text-2xl tracking-tight font-['Open_Sans'] text-black">Lily Salon</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-span-2 ">
+                    </div>
+                    <div class="flex items-center justify-end ">
+                        <div class="w-full block  lg:flex lg:items-center lg:w-auto ">
+                            <div class="text-xl lg:flex-grow  gap-12 text-gray-800 font-serif mr-5">
+                                <div class="a_dropdown relative inline-block text-left ">
+                                    <button class="inline-flex justify-center  mt-4  lg:mt-0 text-teal-lighter hover:text-white  "
+                                            type="button"
+                                            aria-haspopup="true"
+                                            aria-expanded="true"
+                                            aria-controls="headlessui-menu-items-117">
+                                        <span>Oператор</span>
+                                        <svg class="w-5 h-5 ml-2 -mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                    <div class="opacity-0 invisible a_dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
+                                        <div class="absolute right-0 w-56 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
+                                             aria-labelledby="headlessui-menu-button-1"
+                                             id="headlessui-menu-items-117"
+                                             role="menu">
+                                            <div class="px-4 py-3">
+                                                <p class="text-sm leading-5">Нэвтэрсэн:</p>
+                                                <p class="text-sm font-medium leading-5 text-gray-900 truncate">operator1@gmail.com</p>
+                                            </div>
+                                            <div class="py-1">
+                                                <a href="javascript:void(0)"
+                                                   tabindex="0"
+                                                   class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left"
+                                                   role="menuitem">Тохиргоо</a>
+                                                <a href="{% url 'index' %}"
+                                                   tabindex="3"
+                                                   class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left"
+                                                   role="menuitem">Гарах</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <style>
+                            .a_dropdown:focus-within .a_dropdown-menu {
+                                opacity:1;
+                                transform: translate(0) scale(1);
+                                visibility: visible;
+                                }
+                                </style>
+                            </div>
+                        </div>
+                    </div>
+                </div>   </div>
+            </nav>
+        </div>
+        <!-- ========================= HEADER END // ========================= -->
+        <main class="min-h-screen mt-16 ">
+            {% block content %}{% endblock %}
+        </main>
+        <!-- ========================= FOOTER  ========================= -->
+        <header>
+            <div class=" float-bottom">
+                <footer class=" dark:bg-gray-900">
+                    <div class="container px-6 py-8 mx-auto">
+                        <hr class=" border-gray-200 dark:border-gray-500" />
+                        <div class="flex flex-col items-center sm:flex-row sm:justify-between">
+                            <p class="text-sm text-gray-500">© Lily Salon 2023. All Rights Reserved.</p>
+                            <div class="flex mt-3 -mx-2 sm:mt-0">
+                                <a href="#"
+                                   class="mx-2 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300"
+                                   aria-label="Reddit">Teams</a>
+                                <a href="#"
+                                   class="mx-2 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300"
+                                   aria-label="Reddit">Privacy</a>
+                                <a href="#"
+                                   class="mx-2 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300"
+                                   aria-label="Reddit">Cookies</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </header>
+        <!-- ========================= FOOTER END ========================= -->
+    </body>
+    <script>
+    document.getElementById('scrolltoAbout').addEventListener('click', function() {
+      window.scrollTo({ top: 750, behavior: 'smooth' });
+    }) 
+
+    document.getElementById('scrolltoServices').addEventListener('click', function() {
+      window.scrollTo({ top: 1350, behavior: 'smooth' });
+    })
+    </script>
+</html>

@@ -1,29 +1,29 @@
 {% extends "base/base.html" %}
 {% block content %}
-    {% load static %}
-    <div class="m-5">
-        <div class="w-full relative flex ct-docs-disable-sidebar-content pt-44">
-            <div class="px-4 md:px-6 mx-auto w-full -mt-12">
+    {% load static %}     
+        <div class="w-full relative flex ct-docs-disable-sidebar-content pt-16 bg-[#FDE2ED]">
+            <div class="px-4 md:px-6 mx-auto w-full -mt-12 ">
                 <div class="flex flex-wrap">
                     <!-- ========================= SERVICES  ========================= -->
-                    <div class="w-full xl:w-7/12 px-4">
+                    <div class="w-full xl:w-7/12 px-4  ">
                         <!-- Branch -->
-                        <div class="relative flex flex-col min-w-0 break-words w-full mb-8 shadow-lg rounded-lg bg-white"
+                        <div class="relative flex flex-col   min-w-0 break-words w-full mb-8 shadow-lg rounded-lg bg-white"
                              id="branch"
                              style="{% if selectedBranchName %} display:none {% else %} {% if selectedService %} display:none {% else %} {% if selectedWorker %} display:none {% else %} {% endif %} {% endif %} {% endif %}">
                             <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
                                 <div class="flex flex-wrap items-center">
                                     <div class="relative w-full max-w-full flex-grow flex-1">
-                                        <h2 class="text-xl font-semibold text-[#E17F93]">Үйлчилгээ сонгох:</h2>
+                                        <h2 class="text-xl font-semibold text-black">Үйлчилгээ сонгох:</h2>
                                     </div>
                                 </div>
                             </div>
                             <div class="p-4 flex-auto  ">
-                                <div class="relative h-350-px ">
-                                    <div class="grid grid-cols-8  ">
+                                <div class="relative h-350-px pb-5 ">
+                                     
+                                    <div class="grid grid-cols-8  pb-5">
                                         <p class="font-bold text-black min-vw-100">Салбар</p>
                                         <p class="font-bold text-black">>></p>
-                                        <p>Үйлчилгээ</p>
+                                        <p>Үйлчилгээ </p>
                                         <p>>></p>
                                         <p>Ажилтан</p>
                                         <p>>></p>
@@ -47,38 +47,38 @@
                                             </div>
                                             <input type="search"
                                                    id="default-search"
-                                                   class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50  border border-[#F4C2C2]  dark:bg-white dark:text-dark  focus:border-white  focus:ring-white  "
+                                                   class="rounded-lg block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50  border border-[#F4C2C2]  dark:bg-white dark:text-dark  focus:border-white  focus:ring-white  "
                                                    placeholder="Хайх..."
                                                    required>
                                             <button type="submit"
-                                                    class="text-white absolute right-2.5 bottom-2.5 bg-[#F4C2C2] hover:bg-[#E17F93]  focus:outline-none focus:ring-blue-300 font-medium  text-sm px-4 py-2   ">
+                                                    class="rounded-lg text-white absolute right-2.5 bottom-2.5 bg-[#F4C2C2] hover:bg-[#E17F93]  focus:outline-none focus:ring-blue-300 font-medium  text-sm px-4 py-2   ">
                                                 Хайх
                                             </button>
                                         </div>
                                     </form>
                                     {% for data in branches %}
-                                        <div class="grid grid-cols-5 bg-[#F4C2C2] shadow-md pr-4 my-5 items-center">
-                                            <div class="">
-                                                <img class="object-cover h-24 w-48" src="{% static 'images/ggg.jpg' %}">
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="font-serif text-black text-lg mx-4">{{ data.name }}</div>
-                                                <div class="font-serif text-black text-sm mx-4">{{ data.address }}</div>
-                                            </div>
-                                            <div></div>
-                                            <div></div>
-                                            <div>
-                                                <form method="GET">
-                                                    {% csrf_token %}
-                                                    <input type="hidden"
-                                                           id="selectedBranchName"
-                                                           name="selectedBranchName"
-                                                           value="{{ data.id }}">
-                                                    <button type="submit"
-                                                            class="text-white text-md font-semibold bg-black py-2 px-4 rounded-lg shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 float-right">
-                                                        Сонгох
-                                                    </button>
-                                                </form>
+                                        <div class=" shadow-md pr-4 my-5  bg-[#FDE2ED] rounded-lg">
+                                            <div class="grid grid-cols-5 items-center">
+                                                <div>
+                                                    <img class="object-cover h-24 w-48 rounded-l-lg" src="{% static 'images/ggg.jpg' %}">
+                                                </div>
+                                                <div class="col-span-3">
+                                                    <div class="font-serif text-black text-lg mx-4">{{ data.name }}</div>
+                                                    <div class="font-serif text-black text-sm mx-4">{{ data.address }}</div>
+                                                </div>
+                                                <div >
+                                                    <form method="GET">
+                                                        {% csrf_token %}
+                                                        <input type="hidden"
+                                                            id="selectedBranchName"
+                                                            name="selectedBranchName"
+                                                            value="{{ data.id }}">
+                                                        <button type="submit"
+                                                                class="text-black text-md font-semibold bg-white py-2 px-4 rounded-lg shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 float-right">
+                                                            Сонгох
+                                                        </button>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
                                     {% endfor %}
@@ -98,13 +98,13 @@
                             <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
                                 <div class="flex flex-wrap items-center">
                                     <div class="relative w-full max-w-full flex-grow flex-1">
-                                        <h2 class="text-xl font-semibold text-[#E17F93]">Үйлчилгээ сонгох:</h2>
+                                        <h2 class="text-xl font-semibold text-black">Үйлчилгээ сонгох:</h2>
                                     </div>
                                 </div>
                             </div>
                             <div class="p-4 flex-auto ">
-                                <div class="relative h-350-px ">
-                                    <div class="grid grid-cols-8 ">
+                                <div class="relative h-350-px pb-5">
+                                    <div class="grid grid-cols-8 pb-5 ">
                                         <p class="font-bold text-black">Салбар</p>
                                         <p class="font-bold text-black">>></p>
                                         <p class="font-bold text-black">Үйлчилгээ</p>
@@ -131,19 +131,19 @@
                                                 </div>
                                                 <input type="search"
                                                        id="default-search"
-                                                       class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50  border border-[#F4C2C2]  dark:bg-white dark:text-dark  focus:border-white  focus:ring-white  "
+                                                       class="rounded-lg block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50  border border-[#F4C2C2]  dark:bg-white dark:text-dark  focus:border-white  focus:ring-white  "
                                                        placeholder="Хайх..."
                                                        required>
                                                 <button type="submit"
-                                                        class="text-white absolute right-2.5 bottom-2.5 bg-[#F4C2C2] hover:bg-[#E17F93]  focus:outline-none focus:ring-blue-300 font-medium  text-sm px-4 py-2   ">
+                                                        class="rounded-lg text-white absolute right-2.5 bottom-2.5 bg-[#F4C2C2] hover:bg-[#E17F93]  focus:outline-none focus:ring-blue-300 font-medium  text-sm px-4 py-2   ">
                                                     Хайх
                                                 </button>
                                             </div>
                                         </form>
                                         {% for data in services %}
-                                            <div class="grid grid-cols-5 bg-[#F4C2C2] shadow-md pr-4 my-5 items-center">
+                                            <div class="grid grid-cols-5 bg-[#FDE2ED]  rounded-lg shadow-md pr-4 my-5 items-center">
                                                 <div class="">
-                                                    <img class="object-cover h-24 w-48" src="{% static 'images/ggg.jpg' %}">
+                                                    <img class="object-cover h-24 w-48 rounded-l-lg" src="{% static 'images/ggg.jpg' %}">
                                                 </div>
                                                 <div class="font-serif text-black text-lg mx-4">{{ data.name }}</div>
                                                 <div></div>
@@ -153,7 +153,7 @@
                                                         {% csrf_token %}
                                                         <input type="hidden" id="selectedService" name="selectedService" value={{ data.id }}>
                                                         <button type="submit"
-                                                                class="text-white text-md font-semibold bg-black py-2 px-4 rounded-lg shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 float-right">
+                                                                class="text-black text-md font-semibold bg-white py-2 px-4 rounded-lg shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 float-right">
                                                             Сонгох
                                                         </button>
                                                     </form>
@@ -174,204 +174,201 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- Worker -->
-                            <div class="relative flex flex-col min-w-0 break-words w-full mb-8 shadow-lg rounded-lg bg-white"
-                                 id="worker"
-                                 style="{% if selectedService %} {% else %} display:none {% endif %}">
-                                <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
-                                    <div class="flex flex-wrap items-center">
-                                        <div class="relative w-full max-w-full flex-grow flex-1">
-                                            <h2 class="text-xl font-semibold text-[#E17F93]">Үйлчилгээ сонгох:</h2>
-                                        </div>
+                        </div>
+                        <!-- Worker -->
+                        <div class="relative flex flex-col min-w-0 break-words w-full mb-8 shadow-lg rounded-lg bg-white"
+                                id="worker"
+                                style="{% if selectedService %} {% else %} display:none {% endif %}">
+                            <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
+                                <div class="flex flex-wrap items-center">
+                                    <div class="relative w-full max-w-full flex-grow flex-1">
+                                        <h2 class="text-xl font-semibold text-black">Үйлчилгээ сонгох:</h2>
                                     </div>
                                 </div>
-                                <div class="p-4 flex-auto ">
-                                    <div class="relative h-350-px ">
-                                        <div class="grid grid-cols-8 ">
-                                            <p class="font-bold text-black">Салбар</p>
-                                            <p class="font-bold text-black">>></p>
-                                            <p class="font-bold text-black">Үйлчилгээ</p>
-                                            <p class="font-bold text-black">>></p>
-                                            <p class="font-bold text-black">Ажилтан</p>
-                                            <p class="font-bold text-black">>></p>
-                                            <p>Өдөр</p>
-                                        </div>
-                                        <form>
-                                            <label for="default-search"
-                                                   class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-[#F4C2C2]">
-                                                Хайх
-                                            </label>
-                                            <div class="relative">
-                                                <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                                    <svg class="w-5 h-5 text-gray-500 dark:text-gray-400"
-                                                         fill="none"
-                                                         stroke="currentColor"
-                                                         viewBox="0 0 24 24"
-                                                         xmlns="http://www.w3.org/2000/svg">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z">
-                                                        </path>
-                                                    </svg>
-                                                </div>
-                                                <input type="search"
-                                                       id="default-search"
-                                                       class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50  border border-[#F4C2C2]  dark:bg-white dark:text-dark  focus:border-white  focus:ring-white  "
-                                                       placeholder="Хайх..."
-                                                       required>
-                                                <button type="submit"
-                                                        class="text-white absolute right-2.5 bottom-2.5 bg-[#F4C2C2] hover:bg-[#E17F93]  focus:outline-none focus:ring-blue-300 font-medium  text-sm px-4 py-2   ">
-                                                    Хайх
-                                                </button>
+                            </div>
+                            <div class="p-4 flex-auto ">
+                                <div class="relative h-350-px ">
+                                    <div class="grid grid-cols-8 pb-5">
+                                        <p class="font-bold text-black">Салбар</p>
+                                        <p class="font-bold text-black">>></p>
+                                        <p class="font-bold text-black">Үйлчилгээ</p>
+                                        <p class="font-bold text-black">>></p>
+                                        <p class="font-bold text-black">Ажилтан</p>
+                                        <p class="font-bold text-black">>></p>
+                                        <p>Өдөр</p>
+                                    </div>
+                                    <form>
+                                        <label for="default-search"
+                                                class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-[#F4C2C2]">
+                                            Хайх
+                                        </label>
+                                        <div class="relative">
+                                            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                                <svg class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        viewBox="0 0 24 24"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z">
+                                                    </path>
+                                                </svg>
                                             </div>
-                                        </form>
-                                        {% for worker in workers %}
-                                            <div class="grid grid-cols-5 bg-[#F4C2C2] shadow-md pr-4 my-5 items-center">
-                                                <div class="">
-                                                    <img class="object-cover h-24 w-48" src="{% static 'images/ggg.jpg' %}">
+                                            <input type="search"
+                                                    id="default-search"
+                                                    class=" rounded-lg block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50  border border-[#F4C2C2]  dark:bg-white dark:text-dark  focus:border-white  focus:ring-white  "
+                                                    placeholder="Хайх..."
+                                                    required>
+                                            <button type="submit"
+                                                    class=" rounded-lg text-white absolute right-2.5 bottom-2.5 bg-[#F4C2C2] hover:bg-[#E17F93]  focus:outline-none focus:ring-blue-300 font-medium  text-sm px-4 py-2   ">
+                                                Хайх
+                                            </button>
+                                        </div>
+                                    </form>
+                                    {% for worker in workers %}
+                                        <div class=" bg-[#FDE2ED]  rounded-lg shadow-md pr-4 my-5 ">
+                                            <div class="grid grid-cols-5 items-center"> 
+                                                <div>
+                                                    <img class="object-cover h-24 w-48 rounded-l-lg" src="{% static 'images/ggg.jpg' %}">
                                                 </div>
-                                                <div class="font-serif text-black text-lg mx-4">{{ worker.firstname }} {{ worker.lastname }}</div>
-                                                <div></div>
-                                                <div></div>
+                                                <div class="font-serif text-black text-lg mx-4 col-span-3">{{ worker.firstname }} {{ worker.lastname }}</div>
                                                 <div>
                                                     <form method="GET">
                                                         {% csrf_token %}
                                                         <input type="hidden" id="selectedWorker" name="selectedWorker" value={{ worker.id }}>
                                                         <button type="submit"
-                                                                class="text-white text-md font-semibold bg-black py-2 px-4 rounded-lg shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 float-right">
+                                                                class="text-black text-md font-semibold bg-white py-2 px-4 rounded-lg shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 float-right">
                                                             Сонгох
                                                         </button>
                                                     </form>
                                                 </div>
                                             </div>
-                                        {% endfor %}
-                                        <div class="flex justify-center gap-5">
-                                            <button class=" bg-[#E17F93] py-2 px-4 rounded-full shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 "
-                                                    onclick="branch()">
-                                                <p class=" text-white text-md font-semibold text-xl">
-                                                    <<
-                                                </p>
-                                            </button>
-                                            <button class=" bg-[#E17F93] py-2 px-4 rounded-full shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 "
-                                                    onclick="worker()">
-                                                <p class=" text-white text-md font-semibold text-xl">>></p>
-                                            </button>
                                         </div>
+                                    {% endfor %}
+                                    <div class="flex justify-center gap-5">
+                                        <button class=" bg-[#E17F93] py-2 px-4 rounded-full shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 "
+                                                onclick="branch()">
+                                            <p class=" text-white text-md font-semibold text-xl">
+                                                <<
+                                            </p>
+                                        </button>
+                                        <button class=" bg-[#E17F93] py-2 px-4 rounded-full shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 "
+                                                onclick="worker()">
+                                            <p class=" text-white text-md font-semibold text-xl">>></p>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Date -->
-                            <div class="relative flex flex-col min-w-0 break-words w-full mb-8 shadow-lg rounded-lg bg-white"
-                                 id="date"
-                                 style="{% if selectedWorker %}  {% else %} display:none {% endif %}">
-                                <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
-                                    <div class="flex flex-wrap items-center">
-                                        <div class="relative w-full max-w-full flex-grow flex-1">
-                                            <h2 class="text-xl font-semibold text-[#E17F93]">Үйлчилгээ сонгох:</h2>
-                                        </div>
+                        </div>
+                        <!-- Date -->
+                        <div class="relative flex flex-col min-w-0 break-words w-full mb-8 shadow-lg rounded-lg bg-white"
+                                id="date"
+                                style="{% if selectedWorker %}  {% else %} display:none {% endif %}">
+                            <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
+                                <div class="flex flex-wrap items-center">
+                                    <div class="relative w-full max-w-full flex-grow flex-1">
+                                        <h2 class="text-xl font-semibold text-black">Үйлчилгээ сонгох:</h2>
                                     </div>
                                 </div>
-                                <div class="p-4 flex-auto ">
-                                    <div class="relative h-350-px ">
-                                        <div class="grid grid-cols-8 ">
-                                            <p class="font-bold text-black">Салбар</p>
-                                            <p class="font-bold text-black">>></p>
-                                            <p class="font-bold text-black">Үйлчилгээ</p>
-                                            <p class="font-bold text-black">>></p>
-                                            <p class="font-bold text-black">Ажилтан</p>
-                                            <p class="font-bold text-black">>></p>
-                                            <p class="font-bold text-black">Өдөр</p>
-                                        </div>
-                                        <div>
+                            </div>
+                            <div class="p-4 flex-auto ">
+                                <div class="relative h-350-px  ">
+                                    <div class="grid grid-cols-8 pb-5">
+                                        <p class="font-bold text-black">Салбар</p>
+                                        <p class="font-bold text-black">>></p>
+                                        <p class="font-bold text-black">Үйлчилгээ</p>
+                                        <p class="font-bold text-black">>></p>
+                                        <p class="font-bold text-black">Ажилтан</p>
+                                        <p class="font-bold text-black">>></p>
+                                        <p class="font-bold text-black">Өдөр</p>
+                                    </div>
+                                    <div>
+                                        <!-- CALENDAR -->
+                                        <div class="grid grid-cols-4 ">
                                             <!-- CALENDAR -->
-                                            <div class="grid grid-cols-4 ">
-                                                <!-- CALENDAR -->
-                                                <div class="col-span-3 lg:w-10/12 md:w-9/12 sm:w-10/12 mx-auto p-4">
-                                                    <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-                                                        <div class="flex items-center justify-between px-6 py-3 bg-[#E17F93]">
-                                                            <button id="prevMonth" class="text-white">
-                                                                <<
-                                                            </button>
-                                                            <h2 id="currentMonth" class="text-white"></h2>
-                                                            <button id="nextMonth" class="text-white">>></button>
-                                                        </div>
-                                                        <div class="grid grid-cols-7 gap-2 p-4" id="calendar">
-                                                            <!-- Calendar Days -->
-                                                        </div>
-                                                        <div id="myModal"
-                                                             class="modal hidden fixed inset-0 flex items-center justify-center z-50">
-                                                            <div class="modal-overlay absolute inset-0 bg-black opacity-50">
-                                                                <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
-                                                                    <div class="modal-content py-4 text-left px-6">
-                                                                        <div class="flex justify-between items-center pb-3">
-                                                                            <p class="text-2xl font-bold">Selected Date</p>
-                                                                            <button id="closeModal"
-                                                                                    class="modal-close px-3 py-1 rounded-full bg-gray-200 hover:bg-gray-300 focus:outline-none focus:ring">
-                                                                                ✕
-                                                                            </button>
-                                                                        </div>
-                                                                        <div id="modalDate" class="text-xl font-semibold"></div>
+                                            <div class="col-span-3 lg:w-10/12 md:w-9/12 sm:w-10/12 mx-auto p-4">
+                                                <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                                                    <div class="flex items-center justify-between px-6 py-3 bg-[#E17F93]">
+                                                        <button id="prevMonth" class="text-white">
+                                                            <<
+                                                        </button>
+                                                        <h2 id="currentMonth" class="text-white"></h2>
+                                                        <button id="nextMonth" class="text-white">>></button>
+                                                    </div>
+                                                    <div class="grid grid-cols-7 gap-2 p-4" id="calendar">
+                                                        <!-- Calendar Days -->
+                                                    </div>
+                                                    <div id="myModal"
+                                                            class="modal hidden fixed inset-0 flex items-center justify-center z-50">
+                                                        <div class="modal-overlay absolute inset-0 bg-black opacity-50">
+                                                            <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+                                                                <div class="modal-content py-4 text-left px-6">
+                                                                    <div class="flex justify-between items-center pb-3">
+                                                                        <p class="text-2xl font-bold">Selected Date</p>
+                                                                        <button id="closeModal"
+                                                                                class="modal-close px-3 py-1 rounded-full bg-gray-200 hover:bg-gray-300 focus:outline-none focus:ring">
+                                                                            ✕
+                                                                        </button>
                                                                     </div>
+                                                                    <div id="modalDate" class="text-xl font-semibold"></div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- TIME -->
-                                                <div class="">
-                                                    <h1 class="font-bold text-black">Цаг сонгох:</h1>
-                                                    <div class="grid grid-cols-1 flex flex-cols items-center">
-                                                        <button onclick="selectTime('08:00')"
-                                                                class="rounded-lg bg-[#E17F93] m-2 py-2 px-4 text-xs font-bold  text-white shadow-lg shadow-[#E17F93]/20 hover:shadow-[#E17F93]/40 focus:opacity-[0.85]  ">
-                                                            08:00~9:30
-                                                        </button>
-                                                        <button onclick="selectTime('09:30')"
-                                                                class="rounded-lg bg-[#E17F93] m-2 py-2 px-4 text-xs font-bold  text-white shadow-lg shadow-[#E17F93]/20 hover:shadow-[#E17F93]/40 focus:opacity-[0.85]  ">
-                                                            9:30~11:00
-                                                        </button>
-                                                        <button onclick="selectTime('11:00')"
-                                                                class="rounded-lg bg-[#E17F93] m-2 py-2 px-4 text-xs font-bold  text-white shadow-lg shadow-[#E17F93]/20 hover:shadow-[#E17F93]/40 focus:opacity-[0.85]  ">
-                                                            11:00~01:30
-                                                        </button>
-                                                        <button onclick="selectTime('14:00')"
-                                                                class="rounded-lg bg-[#E17F93] m-2 py-2 px-4 text-xs font-bold  text-white shadow-lg shadow-[#E17F93]/20 hover:shadow-[#E17F93]/40 focus:opacity-[0.85]  ">
-                                                            02:00~03:30
-                                                        </button>
-                                                        <button onclick="selectTime('15:30')"
-                                                                class="rounded-lg bg-[#E17F93] m-2 py-2 px-4 text-xs font-bold  text-white shadow-lg shadow-[#E17F93]/20 hover:shadow-[#E17F93]/40 focus:opacity-[0.85]  ">
-                                                            03:30~05:00
-                                                        </button>
-                                                        <button onclick="selectTime('17:00')"
-                                                                class="rounded-lg bg-[#E17F93] m-2 py-2 px-4 text-xs font-bold  text-white shadow-lg shadow-[#E17F93]/20 hover:shadow-[#E17F93]/40 focus:opacity-[0.85]  ">
-                                                            05:00~06:30
-                                                        </button>
-                                                        <button onclick="selectTime('18:30')"
-                                                                class="rounded-lg bg-[#E17F93] m-2 py-2 px-4 text-xs font-bold  text-white shadow-lg shadow-[#E17F93]/20 hover:shadow-[#E17F93]/40 focus:opacity-[0.85]  ">
-                                                            06:30~08:00
-                                                        </button>
-                                                    </div>
+                                            </div>
+                                            <!-- TIME -->
+                                            <div class="">
+                                                <h1 class="font-bold text-black ">Цаг сонгох:</h1>
+                                                <div class="grid grid-cols-1 flex flex-cols items-center">
+                                                    <button id="8" onclick="selectTime('08:00')"
+                                                    style="display: block;"
+                                                            class="rounded-lg  m-2 py-2 px-4 text-xs font-bold  text-black shadow-lg shadow-[#E17F93]/20 hover:shadow-[#E17F93]/40 focus:opacity-[0.85]  ">
+                                                        08:00~10:00
+                                                    </button>
+                                                    <button id="9" onclick="selectTime('09:30')" style="display: block;"
+                                                            class="rounded-lg  m-2 py-2 px-4 text-xs font-bold  text-black shadow-lg shadow-[#E17F93]/20 hover:shadow-[#E17F93]/40 focus:opacity-[0.85]  ">
+                                                        10:10~12:10
+                                                    </button>
+                                                    <button id="11" onclick="selectTime('11:00')" style="display: block;"
+                                                            class="rounded-lg  m-2 py-2 px-4 text-xs font-bold  text-black shadow-lg shadow-[#E17F93]/20 hover:shadow-[#E17F93]/40 focus:opacity-[0.85]  ">
+                                                        12:20~02:20
+                                                    </button>
+                                                    <button id="14" onclick="selectTime('14:00')" style="display: block;"
+                                                            class="rounded-lg  m-2 py-2 px-4 text-xs font-bold  text-black shadow-lg shadow-[#E17F93]/20 hover:shadow-[#E17F93]/40 focus:opacity-[0.85]  ">
+                                                        03:00~05:00
+                                                    </button>
+                                                    <button id="15" onclick="selectTime('15:30')" style="display: block;"
+                                                            class="rounded-lg  m-2 py-2 px-4 text-xs font-bold  text-black shadow-lg shadow-[#E17F93]/20 hover:shadow-[#E17F93]/40 focus:opacity-[0.85]  ">
+                                                        05:10~07:10
+                                                    </button>
+                                                    <button id="17" onclick="selectTime('17:00')" style="display: block;"
+                                                            class="rounded-lg  m-2 py-2 px-4 text-xs font-bold  text-black shadow-lg shadow-[#E17F93]/20 hover:shadow-[#E17F93]/40 focus:opacity-[0.85]  ">
+                                                        07:20~09:20
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="grid grid-cols-2">
-                                            <button class=" bg-[#E17F93] py-2 px-4 rounded-full shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 "
-                                                    onclick="services()">
-                                                <p class=" text-white text-md font-semibold text-xl">
-                                                    <<
-                                                </p>
+                                    </div>
+                                    <div class="grid grid-cols-2">
+                                        <button class=" bg-[#E17F93] py-2 px-4 rounded-full shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 "
+                                                onclick="services()">
+                                            <p class=" text-white font-semibold text-xl">
+                                                <<
+                                            </p>
+                                        </button>
+                                        <form method="GET">
+                                            {% csrf_token %}
+                                            <input name="selectedTime" id="selectedTime" type='hidden' value="{{selectedTime}}" />
+                                            <input name="selectedDate" id="selectedDate" type='hidden' value="{{selectedDate}}" />
+                                            <button type="submit"
+                                                    class=" text-white text-md font-semibold bg-[#E17F93] py-2 px-4 rounded-full shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 ">
+                                                Нэмэх
                                             </button>
-                                            <form method="GET">
-                                                {% csrf_token %}
-                                                <input name="selectedTime" id="selectedTime" type='hidden' value="{{selectedTime}}" />
-                                                <input name="selectedDate" id="selectedDate" type='hidden' value="{{selectedDate}}" />
-                                                <button type="submit"
-                                                        class=" text-white text-md font-semibold bg-[#E17F93] py-2 px-4 rounded-full shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 ">
-                                                    Захиалга Нэмэх
-                                                </button>
-                                            </form>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         </div>
                         <div class="w-full xl:w-5/12 px-4">
                             <!-- ========================= ORDERS  ========================= -->
@@ -379,7 +376,7 @@
                                 <div class="p-4 flex-auto">
                                     <div class="relative h-350-px">
                                         <div class="bg-white p-4 rounded-md ">
-                                            <h2 class="text-gray-500 text-lg font-semibold pb-4">Таны захиалсан цагууд:</h2>
+                                            <h2 class="text-black text-lg font-semibold pb-4">Сонгосон үйлчилгээ:</h2>
                                             <div class="grid gird-cols-1 md:grid-cols-2">
                                                 <div><p>Сонгосон Салбар: {{ selectedBranchName }}</p></div>
                                                 <div><p>Сонгосон Өдөр: {{ selectedDate }}</p></div>
@@ -394,14 +391,14 @@
                                                
                                             </div>
                                             <div class="bg-gray-400 h-px mb-6"></div>
-                                            <table class="w-full table-auto text-sm">
+                                            <table class="w-full table-auto text-sm text-black">
                                                 <thead>
                                                     <tr class="text-sm leading-normal">
                                                         <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">
                                                             Үйлчилгээ
                                                         </th>
                                                         <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">
-                                                            Duration
+                                                            Дундаж цаг
                                                         </th>
                                                         <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light text-right">
                                                             Үнэ
@@ -411,18 +408,17 @@
                                                 </thead>
                                                 <tbody>
                                                     {% for data in selectedServices %}
-                                                        <tr class="hover:bg-grey-lighter">
+                                                        <tr id="row_{{ data.0.id }}" class="hover:bg-grey-lighter">
                                                             <td class="py-2 px-4 border-b border-grey-light">{{ data.0.name }}</td>
                                                             <td class="py-2 px-4 border-b border-grey-light">{{ data.0.average_duration }}</td>
                                                             <td class="py-2 px-4 border-b border-grey-light text-right">${{ data.0.price }}</td>
                                                             <td class="py-2 px-4 border-b border-grey-light text-right">
-                                                                <button class="btn  hover:bg-[#F4C2C2] border-[#F4C2C2] hover:border-[#F4C2C2] btn-circle btn-outline">
-                                                                    <svg width="20"
-                                                                         height="20"
-                                                                         viewBox="0 0 20 20"
-                                                                         fill="none"
-                                                                         xmlns="http://www.w3.org/2000/svg">
-                                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9 2C8.62123 2 8.27497 2.214 8.10557 2.55279L7.38197 4H4C3.44772 4 3 4.44772 3 5C3 5.55228 3.44772 6 4 6L4 16C4 17.1046 4.89543 18 6 18H14C15.1046 18 16 17.1046 16 16V6C16.5523 6 17 5.55228 17 5C17 4.44772 16.5523 4 16 4H12.618L11.8944 2.55279C11.725 2.214 11.3788 2 11 2H9ZM7 8C7 7.44772 7.44772 7 8 7C8.55228 7 9 7.44772 9 8V14C9 14.5523 8.55228 15 8 15C7.44772 15 7 14.5523 7 14V8ZM12 7C11.4477 7 11 7.44772 11 8V14C11 14.5523 11.4477 15 12 15C12.5523 15 13 14.5523 13 14V8C13 7.44772 12.5523 7 12 7Z" fill="#E17F93" />
+                                                                <button class="btn  hover:bg-[#F4C2C2] border-[#F4C2C2] hover:border-[#F4C2C2] btn-circle btn-outline"
+                                                                        onclick="deleteRow('{{ data.0.id }}')">
+                                                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                              d="M9 2C8.62123 2 8.27497 2.214 8.10557 2.55279L7.38197 4H4C3.44772 4 3 4.44772 3 5C3 5.55228 3.44772 6 4 6L4 16C4 17.1046 4.89543 18 6 18H14C15.1046 18 16 17.1046 16 16V6C16.5523 6 17 5.55228 17 5C17 4.44772 16.5523 4 16 4H12.618L11.8944 2.55279C11.725 2.214 11.3788 2 11 2H9ZM7 8C7 7.44772 7.44772 7 8 7C8.55228 7 9 7.44772 9 8V14C9 14.5523 8.55228 15 8 15C7.44772 15 7 14.5523 7 14V8ZM12 7C11.4477 7 11 7.44772 11 8V14C11 14.5523 11.4477 15 12 15C12.5523 15 13 14.5523 13 14V8C13 7.44772 12.5523 7 12 7Z"
+                                                                              fill="#E17F93"/>
                                                                     </svg>
                                                                 </button>
                                                             </td>
@@ -430,13 +426,20 @@
                                                     {% endfor %}
                                                 </tbody>
                                             </table>
+                                            <script>
+                                                function deleteRow(rowId) {
+                                                    // Implement your logic to delete the row with the given id
+                                                    var row = document.getElementById('row_' + rowId);
+                                                    row.parentNode.removeChild(row);
+                                                }
+                                            </script>
                                             <div class="bg-gray-400 h-px mb-6"></div>
                                             <div class="grid grid-cols-2 gap-4">
                                                 <div>
-                                                    <h2 class="text-gray-500 text-lg font-semibold pb-4">Нийт дүн:</h2>
+                                                    <h2 class="text-black text-lg font-semibold pb-4">Нийт дүн:</h2>
                                                 </div>
                                                 <div>
-                                                    <h2 class="text-gray-500 text-lg font-semibold pb-4 text-right">250'000₮</h2>
+                                                    <h2 class="text-black text-lg font-semibold pb-4 text-right">{{ total }}₮</h2>
                                                 </div>
                                             </div>
                                             <div>
@@ -445,8 +448,8 @@
                                                     <input name="selectedTime" id="selectedTime1" type='hidden' value="{{selectedTime}}" />
                                                     <input name="selectedDate" id="selectedDate1" type='hidden' value="{{selectedDate}}" />
                                                     <button type="submit"
-                                                            class=" text-white text-md font-semibold bg-[#E17F93] py-2 px-4 rounded-full shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 ">
-                                                        Захиалга
+                                                            class=" text-black text-md font-semibold bg-[#FDE2ED] py-2 px-4 rounded-full shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 ">
+                                                        Захиалга өгөх
                                                     </button>
                                                 </form>
                                             </div>
@@ -458,8 +461,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <script>
+ 
+    <script>
     function branch(){
         document.getElementById('branch').style.display='none';
         document.getElementById('services').style.display='block';
@@ -586,14 +589,41 @@ function hideModal() {
 const dayElements = document.querySelectorAll('.cursor-pointer');
 dayElements.forEach(dayElement => {
     dayElement.addEventListener('click', () => {
+        
         const day = parseInt(dayElement.innerText);
         const selectedDate = new Date(currentYear, currentMonth, day);
+        const selectedDate1 = new Date(currentYear, currentMonth, day);
+        selectedDate1.setDate(selectedDate1.getDate() + 1);
+        const formattedDate1 = selectedDate1.toISOString().split('T')[0];
+        var timelist = ["8", "9", "11", "14", "15", "17", "18"]
+        {% for i in allorder %}
+        
+                        if ("{{i.order_date}}" == formattedDate1 ){
+                            console.log(timelist)
+                            console.log('HEllo')
+                            for (var m = 0; m < timelist.length; m++){
+                                if (timelist[m] == "{{i.order_time}}"){
+                         
+                                    document.getElementById(timelist[m]).style.display='none';
+                                    console.log(document.getElementById(timelist[m]))
+                                }
+                                else {
+                                    document.getElementById(timelist[m]).style.display='block';
+                                }
+                            }
+                        }
+                        else{
+                            var timelist = ["8", "9", "11", "14", "15", "17", "18"]
+                            for (var m = 0; m < timelist.length; m++){ 
+                                document.getElementById(timelist[m]).style.display='block';
+                            }
+                        }
+        {% endfor %}
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         const formattedDate = selectedDate.toLocaleDateString(undefined, options);
         dayElements.forEach(aDate => {
             if(aDate == dayElement)
             {
-    
                 document.getElementById(id="selectedDate").value = day;
                 document.getElementById(id="selectedDate1").value = day;
                 aDate.classList.add('bg-blue-500', 'text-white');
