@@ -13,6 +13,7 @@ BE_URL = "http://127.0.0.1:8080"
 
 selectedServices = []
 
+
 def index(request):
     context = {}
     if request.method == "GET":
@@ -79,6 +80,7 @@ orders = {
 
 
 def order(request):
+    shownSelectedServices = []
     context = {'timelist' : ["8", "9", "11", "14", "15", "17", "18"]}
     if request.method == 'POST':
         jsons = {
@@ -171,7 +173,7 @@ def order(request):
             context['selectedTime'] = request.GET.get('selectedTime')
             orders['selectedDate'] = request.GET.get('selectedDate')
             orders['selectedTime'] = request.GET.get('selectedTime')
-
+            shownSelectedServices = selectedServices
         jsons = {
             "action" : "list_service",
         }
@@ -203,6 +205,8 @@ def order(request):
             orders['total'] = total
         else: 
             orders['total'] = 0
+    
+    context['shownSelectedServices'] = shownSelectedServices
     context['orders'] = orders
     return render(request, 'order.html',context)
 
