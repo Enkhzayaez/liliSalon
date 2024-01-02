@@ -114,7 +114,6 @@ def order(request):
         context['last_order'] = result['data']
         orders['selectedService'] = ""
         orders["selectedBranchName"] = ""
-        orders["selectedService"] = ""
         orders["selectedWorker"] = ""
         orders["selectedWorkers"] = []
         orders["selectedBranchId"] = ""
@@ -197,7 +196,6 @@ def order(request):
                     orders["total"] += service[0]['price']
                 context['total'] = orders["total"]
     context['orders'] = orders
-    print(context['allorder'])
     return render(request, 'order.html',context)
 
 def order_confirm(request, order_id=None):

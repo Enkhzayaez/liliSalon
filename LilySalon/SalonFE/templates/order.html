@@ -619,14 +619,20 @@ dayElements.forEach(dayElement => {
                                     console.log(document.getElementById(timelist[m]))
                                 }
                                 else {
+                                    if(document.getElementById(timelist[m]) != null)
+                                    {
                                     document.getElementById(timelist[m]).style.display='block';
+                                    }
                                 }
                             }
                         }
                         else{
                             var timelist = ["8", "9", "11", "14", "15", "17", "18"]
                             for (var m = 0; m < timelist.length; m++){ 
-                                document.getElementById(timelist[m]).style.display='block';
+                                if(document.getElementById(timelist[m]) != null)
+                                    {
+                                    document.getElementById(timelist[m]).style.display='block';
+                                    }
                             }
                         }
         {% endfor %}
