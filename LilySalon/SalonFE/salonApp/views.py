@@ -164,7 +164,8 @@ def order(request):
             result = json.loads(con.text)
             context['selectedWorker'] = result['data']
             orders['selectedWorkers'].append(context["selectedWorker"][0]['firstname'])
-            selectedServices[-1]['worker'] = context['selectedWorker'][0]['firstname']
+            if selectedServices != []:
+                selectedServices[-1]['worker'] = context['selectedWorker'][0]['firstname']
         if request.GET.get('selectedDate') and request.GET.get('selectedTime'):
             context['selectedDate'] = request.GET.get('selectedDate')
             context['selectedTime'] = request.GET.get('selectedTime')
@@ -195,13 +196,21 @@ def order(request):
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
         context['allorder'] = result['data']
-        if context['selectedServices']:
-            for service in context['selectedServices']:
-                if service['service'][0]['price']:
-                    orders["total"] += service['service'][0]['price']
-                context['total'] = orders["total"]
+        if selectedServices != []:
+            total = 0
+            for service in selectedServices:
+                total += service['service'][0]['price']
+            orders['total'] = total
+        else: 
+            orders['total'] = 0
     context['orders'] = orders
     return render(request, 'order.html',context)
+
+def remove_order_item(request,item_id = None):
+    for service in selectedServices:
+        if item_id == service['service'][0]['id']:
+            selectedServices.remove(service)
+    return redirect('order')
 
 def order_confirm(request, order_id=None):
     
