@@ -1,56 +1,63 @@
 {% extends "../base/operatorBase.html" %}
 {% block content %}
 {% load static %}
-            <div class=" mx-auto mt-4 mx-5 ">
-                <div class="min-h-screen flex items-center justify-center">
+           
+    <div class="min-h-screen flex items-center justify-center">
+        <div class="max-w-2xl w-full space-y-8 p-10 bg-white rounded-xl z-10 border">
+            <div class="text-center">
+                <h2 class="mt-6 text-3xl font-bold text-[#E17F93]">Салбар</h2>
+                {% if errorMessage %}
+                    <p class="mt-2 text-sm text-red-600">!! {{ errorMessage }} !!</p>
+                {% else %}
+                    <p class="mt-2 text-sm text-gray-600">Алдаатай мэдээллийг засна уу!!</p>
+                {% endif %}
+            </div>
+            <form class="mt-8 space-y-6" method="POST">
+                {% csrf_token %}
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-black">
+                    <input type="hidden" name="remember" value="true">
                     
-                    <div class="max-w-md w-full space-y-8 p-10 bg-white rounded-xl z-10 border">
-                        <div class="text-center">
-                            <h2 class="mt-6 text-3xl font-bold text-[#E17F93]">Салбар</h2>
-                            {% if errorMessage %}
-                                <p class="mt-2 text-sm text-red-600">!! {{ errorMessage }} !!</p>
-                            {% else %}
-                                <p class="mt-2 text-sm text-gray-600">Алдаатай мэдээллийг засна уу!!</p>
-                            {% endif %}
-                        </div>
-                        <form class="mt-8 space-y-6" method="POST">
-                            {% csrf_token %}
-                            <div class="text-black">
-                                <input type="hidden" name="remember" value="true">
-                                <div class="relative">
-                                    <label class="text-sm  font-bold text-gray-700 tracking-wide">Салбарын дугаар</label>
-                                    <input name="new_id" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="name" value={{ branch.id }}>
-                                </div>
-                                <div class="relative">
-                                    <label class="text-sm  font-bold text-gray-700 tracking-wide">Салбарын байршил</label>
-                                    <input name="name" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="name" value={{ branch.name }}>
-                                </div>
-                                <div class="relative">
-                                    <label class="text-sm  font-bold text-gray-700 tracking-wide flex items-center">Хаяг</label>
-                                    <textarea class="bg-white border" name="address" placeholder="Enter address here" value={{ branch.address }}></textarea>
-                                </div>
-                                <div class="relative">
-                                    <label class="text-sm  font-bold text-gray-700 tracking-wide">Утас</label>
-                                    <input name="phone" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="phone" value={{ branch.phone }}>
-                                </div>
-                                
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div class="pt-5">
-                                        <button type="submit"
-                                                class="w-full flex justify-center bg-[#F4C2C2] text-white p-4  rounded-full tracking-wide font-semibold  focus:outline-none focus:shadow-outline hover:bg-[#E17F93] shadow-lg cursor-pointer transition ease-in duration-300">
-                                            Цуцлах
-                                        </button>
-                                    </div>
-                                    <div class="pt-5">
-                                        <button type="submit"
-                                                class="w-full flex justify-center bg-[#F4C2C2] text-white p-4  rounded-full tracking-wide font-semibold  focus:outline-none focus:shadow-outline hover:bg-[#E17F93] shadow-lg cursor-pointer transition ease-in duration-300">
-                                            Хадгалах
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                    <div class="relative">
+                        <label class="text-sm  font-bold text-gray-700 tracking-wide">Салбарын дугаар</label>
+                        <input name="new_id" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="name" value={{ branch.id }}>
+                    </div>
+                    <div class="relative">
+                        <label class="text-sm  font-bold text-gray-700 tracking-wide">Салбарын байршил</label>
+                        <input name="name" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="name" value={{ branch.name }}>
+                    </div>
+                    <div class="relative">
+                        <label class="text-sm  font-bold text-gray-700 tracking-wide flex items-center">Хаяг</label>
+                        <input class="w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" name="address" placeholder="Enter address here" value={{ branch.address }}></input>
+                    </div>
+                    <div class="relative">
+                        <label class="text-sm  font-bold text-gray-700 tracking-wide">Утас</label>
+                        <input name="phone" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="phone" value={{ branch.phone }}>
+                    </div>
+                    <div class="relative">
+                        <label class="text-sm  font-bold text-gray-700 tracking-wide mb-2">Зураг</label>
+                        <input type="hidden" value = {{sales.image}} name="oldImage" />
+                        <input class="p-1 rounded-lg block w-full text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none"
+                                id="image"
+                                name="image"
+                                type="file">
                     </div>
                 </div>
-            </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="pt-5">
+                        <button type="submit"
+                                class="w-full flex justify-center bg-[#F4C2C2] text-white p-4  rounded-full tracking-wide font-semibold  focus:outline-none focus:shadow-outline hover:bg-[#E17F93] shadow-lg cursor-pointer transition ease-in duration-300">
+                            Цуцлах
+                        </button>
+                    </div>
+                    <div class="pt-5">
+                        <button type="submit"
+                                class="w-full flex justify-center bg-[#F4C2C2] text-white p-4  rounded-full tracking-wide font-semibold  focus:outline-none focus:shadow-outline hover:bg-[#E17F93] shadow-lg cursor-pointer transition ease-in duration-300">
+                            Хадгалах
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
 {% endblock %}

@@ -1,9 +1,9 @@
 {% extends "../base/operatorBase.html" %}
 {% block content %}
 {% load static %}
-      <div class="max-w-7xl mx-auto mt-12 mx-5 pb-5">
-        <!-- ========================= LIST  // ========================= -->
-        <div class="bg-white p-8 rounded-md w-full">
+<div class="bg-[#FDE2ED]">
+    <div class="max-w-7xl mx-auto mt-12 mx-5 pb-5">
+        <div class=" p-8 rounded-md w-full">
           <div class=" flex grid grid-cols-3 w-full items-center justify-between pb-6">
             <div>
               <h2 class="text-black text-lg font-semibold">Үйлчилгээ</h2>
@@ -39,8 +39,8 @@
                 href="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.min.css" />
           <div class=" mx-auto">
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-              <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                <table class="min-w-full leading-normal">
+              <div class="inline-block min-w-full shadow rounded-lg overflow-hidden shadow-lg">
+                <table class="min-w-full leading-normal bg-white ">
                   <thead>
                     <tr>
                       <form method="POST">
@@ -59,7 +59,8 @@
                                   name="occupation_id"
                                   id="branch">
                             {% for occupation in occupations %}
-                              <option value={{ occupation.id }}>{{ occupation.name }}
+                              <option value={{ occupation.id }}>
+                                {{ occupation.name }}
                               </option>
                             {% endfor %}
                           </select>
@@ -150,4 +151,5 @@
       </div>
       <!-- ========================= LIST END // ========================= -->
     </div>
+</div>
 {% endblock %}

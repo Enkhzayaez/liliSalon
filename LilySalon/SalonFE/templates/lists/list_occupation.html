@@ -1,130 +1,130 @@
 {% extends "../base/operatorBase.html" %}
 {% block content %}
 {% load static %}
-
-  <div class="max-w-7xl mx-auto mt-12 mx-5  pb-5">
-      <div class="bg-white p-8 rounded-md w-full">
-        <div class=" flex grid grid-cols-3 w-full items-center justify-between pb-6">
-          <div>
-            <h2 class="text-black text-lg font-semibold">Мэргэжил</h2>
-          </div>
-          <div class="">
-            <form>
-              <label for="default-search"
-                      class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-[#F4C2C2]" >Хайх</label>
-              <div class="relative">
-                <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                  <svg class="w-5 h-5 text-gray-500 dark:text-gray-400"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z">
-                    </path>
-                  </svg>
+  <div class="bg-[#FDE2ED]">
+    <div class="max-w-7xl mx-auto mt-12 mx-5  pb-5">
+        <div class=" p-8 rounded-md w-full">
+          <div class=" flex grid grid-cols-3 w-full items-center justify-between pb-6">
+            <div>
+              <h2 class="text-black text-lg font-semibold">Мэргэжил</h2>
+            </div>
+            <div class="">
+              <form>
+                <label for="default-search"
+                        class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-[#F4C2C2]" >Хайх</label>
+                <div class="relative">
+                  <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                    <svg class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z">
+                      </path>
+                    </svg>
+                  </div>
+                  <input type="search"
+                          id="default-search"
+                          class="block rounded-lg p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50  border border-[#F4C2C2]  dark:bg-white dark:text-dark  focus:border-white  focus:ring-white  "
+                          placeholder="Мэргэжил хайх..."
+                          required>
+                  <button type="submit"
+                          class=" rounded-lg text-white absolute right-2.5 bottom-2.5 bg-[#F4C2C2] hover:bg-[#E17F93]  focus:outline-none focus:ring-blue-300 font-medium  text-sm px-4 py-2   ">
+                    Хайх
+                  </button>
                 </div>
-                <input type="search"
-                        id="default-search"
-                        class="block rounded-lg p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50  border border-[#F4C2C2]  dark:bg-white dark:text-dark  focus:border-white  focus:ring-white  "
-                        placeholder="Мэргэжил хайх..."
-                        required>
-                <button type="submit"
-                        class=" rounded-lg text-white absolute right-2.5 bottom-2.5 bg-[#F4C2C2] hover:bg-[#E17F93]  focus:outline-none focus:ring-blue-300 font-medium  text-sm px-4 py-2   ">
-                  Хайх
-                </button>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
-        </div>
-        <div>
-          <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-            <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-              <table class="min-w-full leading-normal">
-                <thead>
-                  <tr>
-                    <form method="POST" enctype="multipart/form-data">
-                      {% csrf_token %}
-                      <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
-                        <div class="flex items-center">
-                          <input class=" rounded-lg block w-full text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none"
-                                  id="image"
-                                  name="image"
-                                  type="file">
-                        </div>
+          <div>
+            <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+              <div class="inline-block min-w-full shadow rounded-lg overflow-hidden shadow-lg">
+                <table class="min-w-full leading-normal bg-white">
+                  <thead>
+                    <tr>
+                      <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
+                          <div class="flex items-center">
+                            <input class=" rounded-lg block w-full text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none"
+                                    id="image"
+                                    name="image"
+                                    type="file">
+                          </div>
+                        </td>
+                        <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
+                          <div class="flex items-center">
+                            <input class="rounded-lg p-2 block w-full text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none "
+                                    placeholder="Мэргэжилийн нэр"
+                                    id="name"
+                                    name="name">
+                          </div>
+                        </td>
+                        <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
+                          <input class="bg-[#F4C2C2] hover:bg-[#E17F93] px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer"
+                                  value="Нэмэх"
+                                  type="submit"
+                                  name="hair">
+                        </input>
                       </td>
-                      <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
-                        <div class="flex items-center">
-                          <input class="rounded-lg p-2 block w-full text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none "
-                                  placeholder="Мэргэжилийн нэр"
-                                  id="name"
-                                  name="name">
-                        </div>
-                      </td>
-                      <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
-                        <input class="bg-[#F4C2C2] hover:bg-[#E17F93] px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer"
-                                value="Нэмэх"
-                                type="submit"
-                                name="hair">
-                      </input>
-                    </td>
-                  </form>
-                </tr>
-                <tr>
-                  <th class="px-5 py-3 border-b-2 border-[#FDE2ED] bg-[#FDE2ED] text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                    Зураг
-                  </th>
-                  <th class="px-5 py-3 border-b-2 border-[#FDE2ED] bg-[#FDE2ED] text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                    Мэргэжилийн нэр
-                  </th>
-                  <th class="px-5 py-3 border-b-2 border-[#FDE2ED] bg-[#FDE2ED] text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                  </th>
-                  <th class="px-5 py-3 border-b-2 border-[#FDE2ED] bg-[#FDE2ED] text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for occupation in occupations %}
-                  <tr>
-                    <td class="px-5 py-5 border-b border-[#FDE2ED] w-48  " >
-                      <div class="flex-shrink-0 w-10 h-10 ">
-                        <img class="w-full h-full border border-black rounded-full" src="data:image/png;base64,{{occupation.image}}" alt="" />
-                      </div>
-                    </td>
-                    <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
-                      <div class="flex items-center">
-                        <p class="text-gray-900 whitespace-no-wrap">{{ occupation.name }}</p>
-                      </div>
-                    </td>
-                    <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
-                      <a href="{% url 'edit_occupation' occupation.id %}">Засах</a>
-                    </td>
-                    <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
-                      <a href="{% url 'delete_occupation' occupation.id %}">Устгах</a>
-                    </td>
+                    </form>
                   </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-            <div class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between ">
-              <span class="text-xs xs:text-sm text-gray-900">Showing 1 to 4 of 50 Entries</span>
-              <div class="inline-flex mt-2 xs:mt-0">
-                <button class="text-sm text-white transition duration-150 bg-[#F4C2C2] hover:bg-[#E17F93] font-semibold py-2 px-4 rounded-l">
-                  Prev
-                </button>
-                &nbsp; &nbsp;
-                <button class="text-sm text-white transition duration-150 bg-[#F4C2C2] hover:bg-[#E17F93] font-semibold py-2 px-4 rounded-r">
-                  Next
-                </button>
+                  <tr>
+                    <th class="px-5 py-3 border-b-2 border-[#FDE2ED] bg-[#FDE2ED] text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                      Зураг
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-[#FDE2ED] bg-[#FDE2ED] text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                      Мэргэжилийн нэр
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-[#FDE2ED] bg-[#FDE2ED] text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-[#FDE2ED] bg-[#FDE2ED] text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for occupation in occupations %}
+                    <tr>
+                      <td class="px-5 py-5 border-b border-[#FDE2ED] w-48  " >
+                        <div class="flex-shrink-0 w-10 h-10 ">
+                          <img class="w-full h-full border border-black rounded-full" src="data:image/png;base64,{{occupation.image}}" alt="" />
+                        </div>
+                      </td>
+                      <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
+                        <div class="flex items-center">
+                          <p class="text-gray-900 whitespace-no-wrap">{{ occupation.name }}</p>
+                        </div>
+                      </td>
+                      <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
+                        <a href="{% url 'edit_occupation' occupation.id %}">Засах</a>
+                      </td>
+                      <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
+                        <a href="{% url 'delete_occupation' occupation.id %}">Устгах</a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table class='bg-white'>
+              <div class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between ">
+                <span class="text-xs xs:text-sm text-gray-900">Showing 1 to 4 of 50 Entries</span>
+                <div class="inline-flex mt-2 xs:mt-0">
+                  <button class="text-sm text-white transition duration-150 bg-[#F4C2C2] hover:bg-[#E17F93] font-semibold py-2 px-4 rounded-l">
+                    Prev
+                  </button>
+                  &nbsp; &nbsp;
+                  <button class="text-sm text-white transition duration-150 bg-[#F4C2C2] hover:bg-[#E17F93] font-semibold py-2 px-4 rounded-r">
+                    Next
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class=" space-x-8 mt-10">
-          <a href="{% url 'operator' %}"
-              class="bg-[#F4C2C2] hover:bg-[#E17F93] px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">Буцах</a>
+          <div class=" space-x-8 mt-10">
+            <a href="{% url 'operator' %}"
+                class="bg-[#F4C2C2] hover:bg-[#E17F93] px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">Буцах</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
   {% endblock %}

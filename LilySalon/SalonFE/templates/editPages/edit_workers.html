@@ -53,6 +53,14 @@
                                 {% endfor %}
                             </select>
                         </div>
+                        <div class="relative">
+                            <label class="text-sm  font-bold text-gray-700 tracking-wide mb-2">Зураг</label>
+                            <input type="hidden" value = {{sales.image}} name="oldImage" />
+                            <input class="p-1 rounded-lg block w-full text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none"
+                                   id="image"
+                                   name="image"
+                                   type="file">
+                        </div>
                     </div>
                     <div class="pt-5 grid grid-cols-1 md:grid-cols-2 gap-8">
                         <a href="{% url 'list_operator' %}"

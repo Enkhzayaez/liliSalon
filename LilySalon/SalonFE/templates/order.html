@@ -147,7 +147,7 @@
                                                 </div>
                                                 <div class="font-serif text-black text-lg mx-4">{{ data.name }}</div>
                                                 <div></div>
-                                                <div class="font-serif text-black text-lg mx-4">{{ data.price }}</div>
+                                                <div class="font-serif text-black text-lg mx-4">{{ data.price }} ₮</div>
                                                 <div>
                                                     <form method="GET">
                                                         {% csrf_token %}
@@ -375,7 +375,7 @@
                             <div class="relative flex flex-col min-w-0 break-words w-full mb-8 shadow-lg rounded-lg bg-white">
                                 <div class="p-4 flex-auto">
                                     <div class="relative h-350-px">
-                                        <div class="bg-white p-4 rounded-md ">
+                                        <div class="bg-white p-4 rounded-md">
                                             <h2 class="text-black text-lg font-semibold pb-4">Сонгосон үйлчилгээ:</h2>
                                             <div class="grid gird-cols-1 md:grid-cols-2">
                                                 <div><p>Сонгосон Салбар: {{ selectedBranchName }}</p></div>
@@ -387,7 +387,7 @@
                                                         {% for worker in orders.selectedWorkers %}{{ worker }},{% endfor %}
                                                     </p>
                                                 </div>
-                                                <div><p>Нийт дүн: {{ total }}</p></div>
+                                                
                                                
                                             </div>
                                             <div class="bg-gray-400 h-px mb-6"></div>
@@ -398,7 +398,7 @@
                                                             Үйлчилгээ
                                                         </th>
                                                         <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">
-                                                            Дундаж цаг
+                                                            Ажилтан
                                                         </th>
                                                         <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light text-right">
                                                             Үнэ
@@ -410,8 +410,8 @@
                                                     {% for data in selectedServices %}
                                                         <tr id="row_{{ data.0.id }}" class="hover:bg-grey-lighter">
                                                             <td class="py-2 px-4 border-b border-grey-light">{{ data.0.name }}</td>
-                                                            <td class="py-2 px-4 border-b border-grey-light">{{ data.0.average_duration }}</td>
-                                                            <td class="py-2 px-4 border-b border-grey-light text-right">${{ data.0.price }}</td>
+                                                            <td class="py-2 px-4 border-b border-grey-light">{% for worker in orders.selectedWorkers %}{{ worker }},{% endfor %}</td>
+                                                            <td class="py-2 px-4 border-b border-grey-light text-right">{{ data.0.price }}₮</td>
                                                             <td class="py-2 px-4 border-b border-grey-light text-right">
                                                                 <button class="btn  hover:bg-[#F4C2C2] border-[#F4C2C2] hover:border-[#F4C2C2] btn-circle btn-outline"
                                                                         onclick="deleteRow('{{ data.0.id }}')">
@@ -447,11 +447,22 @@
                                                     {% csrf_token %}
                                                     <input name="selectedTime" id="selectedTime1" type='hidden' value="{{selectedTime}}" />
                                                     <input name="selectedDate" id="selectedDate1" type='hidden' value="{{selectedDate}}" />
-                                                    <button type="submit"
+                                                    <button type="submit" 
                                                             class=" text-black text-md font-semibold bg-[#FDE2ED] py-2 px-4 rounded-full shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 ">
                                                         Захиалга өгөх
                                                     </button>
+                                                   
                                                 </form>
+
+                                                <button onclick="zzz()">Try it</button>
+                                                <script>
+                                                    function zzz() {
+                                                    confirm("Та үйлчилгээгээ захиалахдаа итгэлтэй байна уу!");
+                                                    }
+                                                </script>
+
+
+
                                             </div>
                                         </div>
                                     </div>

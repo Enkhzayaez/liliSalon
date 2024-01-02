@@ -467,6 +467,7 @@ def list_orderlist(request):
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
         context['workers'] = result['data']
+    print(context['orders'])
     return render(request, 'lists/list_orderlist.html',context)
 
 def order_detail(request,phone = None):
@@ -729,6 +730,7 @@ def edit_order(request,order_id = None):
 
 def delete_order(request,order_id = None):
     context = {}
+    print(order_id)
     jsons = {
         "action" : "delete_order",
         "id" : order_id,

@@ -443,7 +443,7 @@ def list_order(request):
     con = connect()
     cur = con.cursor()
     try:
-        cur.execute(f'''SELECT * FROM t_order INNER JOIN t_user ON t_order.user_id = t_user.id;''')
+        cur.execute(f'''SELECT * FROM t_user INNER JOIN t_order ON t_user.id = t_order.user_id''')
         columns = cur.description
         respRow = [{columns[index][0]:column for index,
                     column in enumerate(value)} for value in cur.fetchall()]
@@ -667,6 +667,7 @@ def get_occ_service(request):
     except Exception as e:
         resp = sendResponse(401, str(e), str(e) ,action)
     return resp
+
 
 @csrf_exempt
 def main(request):
