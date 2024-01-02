@@ -1,6 +1,7 @@
 {% extends "base/base.html" %}
 {% block content %}
-    {% load static %}     
+    {% load static %}
+    <div class="bg-[#FDE2ED] h-screen">    
         <div class="w-full relative flex ct-docs-disable-sidebar-content pt-16 bg-[#FDE2ED]">
             <div class="px-4 md:px-6 mx-auto w-full -mt-12 ">
                 <div class="flex flex-wrap">
@@ -82,12 +83,12 @@
                                             </div>
                                         </div>
                                     {% endfor %}
-                                    <div class="flex justify-center ">
+                                    <!-- <div class="flex justify-center ">
                                         <button class=" bg-[#E17F93] py-2 px-4 rounded-full shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 "
                                                 onclick="branch()">
                                             <p class=" text-white text-md font-semibold text-xl">>></p>
                                         </button>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -140,8 +141,9 @@
                                                 </button>
                                             </div>
                                         </form>
+                                        <div class="overflow-y-auto max-h-96 m-5">
                                         {% for data in services %}
-                                            <div class="grid grid-cols-5 bg-[#FDE2ED]  rounded-lg shadow-md pr-4 my-5 items-center">
+                                            <div class="grid grid-cols-5 bg-[#FDE2ED]  rounded-lg shadow-md pr-4 my-5 items-center  ">
                                                 <div class="">
                                                     <img class="object-cover h-24 w-48 rounded-l-lg" src="{% static 'images/ggg.jpg' %}">
                                                 </div>
@@ -160,17 +162,18 @@
                                                 </div>
                                             </div>
                                         {% endfor %}
+                                        </div>
                                         <div class="flex justify-center gap-5">
                                             <button class=" bg-[#E17F93] py-2 px-4 rounded-full shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 "
                                                     onclick="date()">
                                                 <p class=" text-white text-md font-semibold text-xl">
-                                                    <<
+                                                    Буцах
                                                 </p>
                                             </button>
-                                            <button class=" bg-[#E17F93] py-2 px-4 rounded-full shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 "
+                                            <!-- <button class=" bg-[#E17F93] py-2 px-4 rounded-full shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 "
                                                     onclick="services()">
                                                 <p class=" text-white text-md font-semibold text-xl">>></p>
-                                            </button>
+                                            </button> -->
                                         </div>
                                     </div>
                                 </div>
@@ -224,27 +227,29 @@
                                             </button>
                                         </div>
                                     </form>
-                                    {% for worker in workers %}
-                                        <div class=" bg-[#FDE2ED]  rounded-lg shadow-md pr-4 my-5 ">
-                                            <div class="grid grid-cols-5 items-center"> 
-                                                <div>
-                                                    <img class="object-cover h-24 w-48 rounded-l-lg" src="{% static 'images/ggg.jpg' %}">
-                                                </div>
-                                                <div class="font-serif text-black text-lg mx-4 col-span-3">{{ worker.firstname }} {{ worker.lastname }}</div>
-                                                <div>
-                                                    <form method="GET">
-                                                        {% csrf_token %}
-                                                        <input type="hidden" id="selectedWorker" name="selectedWorker" value={{ worker.id }}>
-                                                        <button type="submit"
-                                                                class="text-black text-md font-semibold bg-white py-2 px-4 rounded-lg shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 float-right">
-                                                            Сонгох
-                                                        </button>
-                                                    </form>
+                                    <div class="overflow-y-auto max-h-96 m-5">
+                                        {% for worker in workers %}
+                                            <div class=" bg-[#FDE2ED]  rounded-lg shadow-md pr-4 my-5 ">
+                                                <div class="grid grid-cols-5 items-center"> 
+                                                    <div>
+                                                        <img class="object-cover h-24 w-48 rounded-l-lg" src="{% static 'images/ggg.jpg' %}">
+                                                    </div>
+                                                    <div class="font-serif text-black text-lg mx-4 col-span-3">{{ worker.firstname }} {{ worker.lastname }}</div>
+                                                    <div>
+                                                        <form method="GET">
+                                                            {% csrf_token %}
+                                                            <input type="hidden" id="selectedWorker" name="selectedWorker" value={{ worker.id }}>
+                                                            <button type="submit"
+                                                                    class="text-black text-md font-semibold bg-white py-2 px-4 rounded-lg shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 float-right">
+                                                                Сонгох
+                                                            </button>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    {% endfor %}
-                                    <div class="flex justify-center gap-5">
+                                        {% endfor %}
+                                    </div>
+                                    <!-- <div class="flex justify-center gap-5">
                                         <button class=" bg-[#E17F93] py-2 px-4 rounded-full shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 "
                                                 onclick="branch()">
                                             <p class=" text-white text-md font-semibold text-xl">
@@ -255,7 +260,7 @@
                                                 onclick="worker()">
                                             <p class=" text-white text-md font-semibold text-xl">>></p>
                                         </button>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -349,14 +354,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="grid grid-cols-2">
+                                    <!-- <div class="grid grid-cols-2">
                                         <button class=" bg-[#E17F93] py-2 px-4 rounded-full shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 "
                                                 onclick="services()">
                                             <p class=" text-white font-semibold text-xl">
                                                 <<
                                             </p>
-                                        </button>
-                                        <form method="GET">
+                                        </button> -->
+                                        
+                                        <form method="GET" class="flex justify-center">
                                             {% csrf_token %}
                                             <input name="selectedTime" id="selectedTime" type='hidden' value="{{selectedTime}}" />
                                             <input name="selectedDate" id="selectedDate" type='hidden' value="{{selectedDate}}" />
@@ -365,7 +371,7 @@
                                                 Нэмэх
                                             </button>
                                         </form>
-                                    </div>
+                                    <!-- </div> -->
                                 </div>
                             </div>
                         </div>
@@ -378,15 +384,15 @@
                                         <div class="bg-white p-4 rounded-md">
                                             <h2 class="text-black text-lg font-semibold pb-4">Сонгосон үйлчилгээ:</h2>
                                             <div class="grid gird-cols-1 md:grid-cols-2">
-                                                <div><p>Сонгосон Салбар: {{ selectedBranchName }}</p></div>
-                                                <div><p>Сонгосон Өдөр: {{ selectedDate }}</p></div>
-                                                <div><p>Сонгосон Цаг: {{ selectedTime }}</p></div>
-                                                <div>
+                                                <div><p class="text-gray-500">Сонгосон Салбар: {{ selectedBranchName }}</p></div>
+                                                <!-- <div><p>Сонгосон Өдөр: {{ selectedDate }}</p></div>
+                                                <div><p>Сонгосон Цаг: {{ selectedTime }}</p></div> -->
+                                                <!-- <div>
                                                     <p>
                                                         Сонгосон Ажилтан:
                                                         {% for worker in orders.selectedWorkers %}{{ worker }},{% endfor %}
                                                     </p>
-                                                </div>
+                                                </div> -->
                                                 
                                                
                                             </div>
@@ -453,7 +459,7 @@
                                                     <button 
                                                             
                                                             data-modal-target="popup-modal" data-modal-toggle="popup-modal" 
-                                                            class=" text-white text-md font-semibold bg-[#F4C2C2] hover:bg-[#E17F93] py-2 px-4 rounded-full shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 ">
+                                                            class=" text-white text-md font-semibold bg-[#E17F93] py-2 px-4 rounded-full shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 ">
                                                         Захиалга өгөх
                                                     </button>
                                                    
@@ -464,9 +470,8 @@
                                                         <div class="relative bg-white rounded-lg  ">
                                                             <div class="p-4 md:p-5 text-center">
                                                                 <a href="{% url 'order' %}" class="flex justify-end">
-                                                                <svg class=" mb-4 text-gray-400 w-8 h-8 dark:text-gray-200 duration-500 transition transform-gpu hover:scale-110" data-name="Livello 1" id="Livello_1" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg"><title/>
-                                                                    <path d="M64,0a64,64,0,1,0,64,64A64.07,64.07,0,0,0,64,0Zm0,122a58,58,0,1,1,58-58A58.07,58.07,0,0,1,64,122Z"/><path d="M92.12,35.79a3,3,0,0,0-4.24,0L64,59.75l-23.87-24A3,3,0,0,0,35.88,40L59.76,64,35.88,88a3,3,0,0,0,4.25,4.24L64,68.25l23.88,24A3,3,0,0,0,92.13,88L68.24,64,92.13,40A3,3,0,0,0,92.12,35.79Z"/></svg>
-                                                                </a>
+                                                                    <?xml version="1.0" ?><svg class=" mb-4 text-gray-400 w-8 h-8 dark:text-gray-200 duration-500 transition transform-gpu hover:scale-110" fill="grey" id="Icons" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#686868;}</style></defs><path class="cls-1" d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm4.707,14.293a1,1,0,1,1-1.414,1.414L12,13.414,8.707,16.707a1,1,0,1,1-1.414-1.414L10.586,12,7.293,8.707A1,1,0,1,1,8.707,7.293L12,10.586l3.293-3.293a1,1,0,1,1,1.414,1.414L13.414,12Z"/></svg>
+                                                                </a> 
                                                                 <div class="w-full flex justify-center bg-[#F4C2C2] text-white p-1 mb-3  rounded-full  font-semibold  focus:outline-none focus:shadow-outline  shadow-lg  ">
                                                                     <p>Таны сонгосон үйлчилгээнүүд</p>
                                                                 </div>
@@ -525,8 +530,8 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                  </div>
-                                                  <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script>
+                                                </div>
+                                                <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script>
 
                                             </div>
                                         </div>
@@ -537,7 +542,7 @@
                     </div>
                 </div>
             </div>
- 
+    </div> 
     <script>
     function branch(){
         document.getElementById('branch').style.display='none';
