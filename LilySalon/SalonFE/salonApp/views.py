@@ -146,7 +146,12 @@ def order(request):
             }
             con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
             result = json.loads(con.text)
-            selectedServices.append(result['data'])
+            selectedServices.append(
+                {
+                    'service': result['data'],
+                    'worker' : '',
+                }
+            )
         context['selectedServices'] = selectedServices
         if request.GET.get('selectedWorker'):
             context['selectedWorker'] = request.GET.get('selectedWorker')
@@ -159,10 +164,10 @@ def order(request):
             result = json.loads(con.text)
             context['selectedWorker'] = result['data']
             orders['selectedWorkers'].append(context["selectedWorker"][0]['firstname'])
+            selectedServices[-1]['worker'] = context['selectedWorker'][0]['firstname']
         if request.GET.get('selectedDate') and request.GET.get('selectedTime'):
             context['selectedDate'] = request.GET.get('selectedDate')
             context['selectedTime'] = request.GET.get('selectedTime')
-
             orders['selectedDate'] = request.GET.get('selectedDate')
             orders['selectedTime'] = request.GET.get('selectedTime')
 
@@ -192,8 +197,8 @@ def order(request):
         context['allorder'] = result['data']
         if context['selectedServices']:
             for service in context['selectedServices']:
-                if service[0]['price']:
-                    orders["total"] += service[0]['price']
+                if service['service'][0]['price']:
+                    orders["total"] += service['service'][0]['price']
                 context['total'] = orders["total"]
     context['orders'] = orders
     return render(request, 'order.html',context)
