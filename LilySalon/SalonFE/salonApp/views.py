@@ -2,6 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.files.uploadedfile import UploadedFile
+from django.contrib.auth.decorators import user_passes_test
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login as auth_login, logout
 import dateutil.parser as dt
 import requests
 import json
@@ -63,7 +67,6 @@ def services(request,occ_id = None):
         context['services'] = result['data']
     print(context)
     return render(request, 'services.html',context)
-
 
 orders = {
     "selectedBranchName" : "",
@@ -234,10 +237,15 @@ def order_confirm(request, order_id=None):
         return redirect('index')
     return render(request,'order_confirm.html',context)
 
+@user_passes_test(lambda u: u.is_superuser,
+                  login_url="login",
+                redirect_field_name="index")
+@login_required(login_url="login")
 def adminEdit(request):
     return render(request, 'admin/adminEdit.html')
 
 # Operator Edit lists
+@login_required(login_url="login")
 def list_operator(request):
     context = {}
     if request.method == "POST":
@@ -259,6 +267,11 @@ def list_operator(request):
         jsons['branch_id'] = request.POST.get('branch_id')
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
+        if result['resultCode'] == 200:
+            user = User.objects.create_user(request.POST.get('phone'), request.POST.get('email'), request.POST.get('password'))
+            user.first_name = request.POST.get('firstname')
+            user.last_name = request.POST.get('lastname')
+            user.save()
         context['errorMessage'] = result['data']
         return redirect('list_operator')
     else:
@@ -276,6 +289,7 @@ def list_operator(request):
         context['branches'] = result['data']
     return render(request, 'lists/list_operator.html',context)
 
+@login_required(login_url="login")
 def delete_operator(request,operator_id = None):
     context = {}
     jsons = {
@@ -287,6 +301,7 @@ def delete_operator(request,operator_id = None):
     context['errorMessage'] = result['data']
     return redirect('list_operator')
 
+@login_required(login_url="login")
 def list_services(request):
     context = {}
     if request.method == "POST":
@@ -318,6 +333,7 @@ def list_services(request):
         context['occupations'] = result['data']
     return render(request, 'lists/list_services.html',context)
 
+@login_required(login_url="login")
 def delete_service(request,service_id = None):
     context = {}
     jsons = {
@@ -330,6 +346,7 @@ def delete_service(request,service_id = None):
 
     return redirect('list_services')
 
+@login_required(login_url="login")
 def edit_service(request,service_id = None):
     context = {}
     if request.method == "POST":
@@ -363,7 +380,7 @@ def edit_service(request,service_id = None):
         context['occupations'] = result['data']
     return render(request, 'editPages/edit_services.html',context)
 
-
+@login_required(login_url="login")
 def list_sales(request):
     context = {}
     if request.method == "POST":
@@ -394,6 +411,7 @@ def list_sales(request):
         context['sales'] = result['data']
     return render(request, 'lists/list_sales.html',context)
 
+@login_required(login_url="login")
 def list_location(request):
     context = {}
     if request.method == "POST":
@@ -420,6 +438,7 @@ def list_location(request):
         context['branches'] = result['data']
     return render(request, 'lists/list_location.html',context)
 
+@login_required(login_url="login")
 def delete_location(request,branch_id = None):
     context = {}
     jsons = {
@@ -432,6 +451,7 @@ def delete_location(request,branch_id = None):
 
     return redirect('list_location')
 
+@login_required(login_url="login")
 def delete_workers(request,worker_id = None):
     context = {}
     jsons = {
@@ -444,6 +464,7 @@ def delete_workers(request,worker_id = None):
 
     return redirect('list_workers')
 
+@login_required(login_url="login")
 def delete_occupation(request,occupation_id = None):
     context = {}
     jsons = {
@@ -456,6 +477,7 @@ def delete_occupation(request,occupation_id = None):
 
     return redirect('list_occupation')
 
+@login_required(login_url="login")
 def list_orderlist(request):
     context = {}
     if request.method == "POST":
@@ -482,6 +504,7 @@ def list_orderlist(request):
     print(context['orders'])
     return render(request, 'lists/list_orderlist.html',context)
 
+@login_required(login_url="login")
 def order_detail(request,phone = None):
     orders = [
         {   
@@ -537,6 +560,7 @@ def order_detail(request,phone = None):
     
     return render(request, 'lists/order_details.html',context)
 
+@login_required(login_url="login")
 def list_workers(request):
     context = {}
     if request.method == "POST":
@@ -580,6 +604,7 @@ def list_workers(request):
         context['occupations'] = result['data']
     return render(request, 'lists/list_workers.html',context)
 
+@login_required(login_url="login")
 def list_occupation(request):
     context = {}
     if request.method == "POST":
@@ -610,6 +635,7 @@ def list_occupation(request):
     return render(request, 'lists/list_occupation.html',context)
 
 # Edit Pages
+@login_required(login_url="login")
 def edit_operator(request,operator_id = None):
     context = {}
     if request.method == "POST":
@@ -643,6 +669,7 @@ def edit_operator(request,operator_id = None):
         context['operator'] = result['data'][0]
     return render(request, 'editPages/edit_operator.html',context)
 
+@login_required(login_url="login")
 def edit_occupation(request,occupation_id = None):
     context = {}
     if request.method == "POST":
@@ -675,13 +702,15 @@ def edit_occupation(request,occupation_id = None):
         context['occupation'] = result['data'][0]
     return render(request, 'editPages/edit_occupation.html',context)
 
-
+@login_required(login_url="login")
 def edit_services(request):
     return render(request, 'editPages/edit_services.html')
 
+@login_required(login_url="login")
 def edit_sales(request,sale_id = None):
     return render(request, 'editPages/edit_sales.html')
 
+@login_required(login_url="login")
 def edit_location(request,branch_id = None):
     context = {}
     if request.method == "POST":
@@ -712,6 +741,7 @@ def edit_location(request,branch_id = None):
         context['branch'] = result['data'][0]
     return render(request, 'editPages/edit_location.html',context)
 
+@login_required(login_url="login")
 def edit_order(request,order_id = None):
     context = {}
     if request.method == "POST":
@@ -740,6 +770,7 @@ def edit_order(request,order_id = None):
         context['branch'] = result['data'][0]
     return render(request, 'editPages/edit_order.html')
 
+@login_required(login_url="login")
 def delete_order(request,order_id = None):
     context = {}
     print(order_id)
@@ -753,6 +784,7 @@ def delete_order(request,order_id = None):
 
     return redirect('list_orderlist')
 
+@login_required(login_url="login")
 def delete_sales(request,sale_id = None):
     context = {}
     jsons = {
@@ -764,6 +796,7 @@ def delete_sales(request,sale_id = None):
     context['errorMessage'] = result['data']
     return redirect('list_sales')
 
+@login_required(login_url="login")
 def edit_sales(request,sale_id = None):
     context = {}
     if request.method == "POST":
@@ -800,7 +833,7 @@ def edit_sales(request,sale_id = None):
         context['sales'] = result['data'][0]
     return render(request, 'editPages/edit_sales.html',context)
 
-
+@login_required(login_url="login")
 def edit_workers(request,worker_id = None):
     context = {}
     if request.method == "POST":
@@ -869,7 +902,9 @@ def add_workers(request):
 def a_location(request):
     return render(request, 'admin/a_location.html')
 
+@login_required(login_url="login")
 def operator(request):
+    print(request.user.is_superuser)
     context = {
         'data' :
         [
@@ -899,7 +934,7 @@ def operator(request):
 @login_required(login_url="login")
 def logout(request):
     if request.method =="GET":
-        auth.logout(request=request)
+        auth.logout(request=request)    
     return redirect('login')
 
 def login(request):
@@ -915,8 +950,19 @@ def login(request):
         result = json.loads(con.text)
         if result['resultCode'] == 200:
             if result['resultMessege'] == 'admin':
+                user = authenticate(username=request.POST.get('phone'), password=request.POST.get('password'))
+                if user is None:
+                    user = User.objects.create_user(request.POST.get('phone'), result['data'][0]['email'], request.POST.get('password'))
+                    user.first_name = result['data'][0]['firstname']
+                    user.last_name = result['data'][0]['lastname']
+                    user.save()
+                user.is_superuser = True
+                user.save()
+                auth_login(request,user)
                 return redirect("adminEdit")
             else: 
+                user = authenticate(username=request.POST.get('phone'), password=request.POST.get('password'))
+                auth_login(request,user)
                 return redirect('operator')
         else:
             return render(request, 'signUp/login.html')

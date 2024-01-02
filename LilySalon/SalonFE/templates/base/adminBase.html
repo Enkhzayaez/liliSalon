@@ -47,12 +47,12 @@
                                     <div class="absolute right-0 w-56 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                                         <div class="px-4 py-3">         
                                         <p class="text-sm leading-5">Нэвтэрсэн:</p>
-                                        <p class="text-sm font-medium leading-5 text-gray-900 truncate">admin@gmail.com</p>
+                                        <p class="text-sm font-medium leading-5 text-gray-900 truncate">{{user.email}}</p>
                                         </div>
         
                                         <div class="py-1">
                                             <a href="javascript:void(0)" tabindex="0" class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left"  role="menuitem" >Тохиргоо</a>
-                                        <a href="{% url 'login' %}" tabindex="3" class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left"  role="menuitem" >Гарах</a></div>
+                                        <a href="{% url 'logout' %}" tabindex="3" class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left"  role="menuitem" >Гарах</a></div>
                                     </div>
                                     </div>
                                 </div>

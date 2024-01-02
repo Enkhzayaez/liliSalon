@@ -15,6 +15,17 @@
               rel="stylesheet"
               type="text/css" />
         <script src="https://cdn.tailwindcss.com"></script>
+        <style>
+            .nav-item {
+              display: inline-block;
+              margin-right: 10px;
+              cursor: pointer;
+            }
+        
+            .nav-item.active {
+              font-weight: bold;
+            }
+          </style>
     </head>
     <body class=" bg-white">
         <!-- ========================= HEADER ========================= -->
@@ -33,45 +44,48 @@
                     </div>
                     <div class="w-full block  lg:flex lg:items-center lg:w-auto col-span-2 ">
                         <div class="lg:flex-grow grid grid-cols-1 md:grid-cols-5 gap-5 text-gray-800 font-sans text-sm text-center ">
-                            {% if request.path == '/' %}
-                                <a href=""
-                                class="font-bold block lg:inline-block lg:mt-0 text-black ">
-                                    Нүүр
-                                </a>
-                            {% else %}
-                                <a href="{% url 'index' %}"
-                                class="block lg:inline-block lg:mt-0 text-teal-lighter hover:text-[#FDE2ED]  ">
-                                    Нүүр
-                                </a>
-                            {% endif %}
-                            {% if request.path == '/' %}
-                                <a href=""
-                                id="scrolltoAbout"
-                                onclick="return false;"
-                                class="block lg:inline-block lg:mt-0 text-teal-lighter  ">
-                                    Бидний тухай
-                                </a>
-                            {% else %}
-                                <a href="{% url 'index' %}#aboutElement"
-                                id="scrolltoAbout"
-                                class="block lg:inline-block lg:mt-0 text-teal-lighter hover:text-[#FDE2ED] ">
-                                    Бидний тухай
-                                </a>
-                            {% endif %}
-                            {% if request.path == '/' %}
-                                <a href=""
-                                id="scrolltoServices"
-                                onclick="return false;"
-                                class="block lg:inline-block lg:mt-0 text-teal-lighter  ">
-                                    Үйлчилгээ
-                                </a>
-                            {% else %}
-                                <a href="{% url 'index' %}#serviceElement"
-                                id="scrolltoServices"
-                                class="block lg:inline-block lg:mt-0 text-teal-lighter hover:text-[#FDE2ED] ">
-                                    Үйлчилгээ
-                                </a>
-                            {% endif %}
+                            <script>
+                                function toggleActive(clickedElement,path) {
+                                 
+                                  var navItems = document.querySelectorAll('.nav-item');
+                                  navItems.forEach(function(item) {
+                                    item.classList.remove('active');
+                                  });
+                                  clickedElement.classList.add('active');
+                                    if(path == 'home')
+                                    {
+                                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                                    }
+                                    if(path == 'aboutElement')
+                                    {
+                                        window.scrollTo({ top: 750, behavior: 'smooth' });
+                                    }
+                                    if(path == 'serviceElement')
+                                    {
+                                        window.scrollTo({ top: 1350, behavior: 'smooth' });
+                                    }
+                                    
+                                    
+                                }
+                              </script>
+ 
+                                {% if request.path == '/' %}
+                                <span class="nav-item" onclick="toggleActive(this,'home')">Нүүр</span>
+                                {% else %}
+                                <a class="nav-item" href="{% url 'index' %}">Нүүр</a>
+                                {% endif %}
+                                {% if request.path == '/' %}
+                                <span class="nav-item" onclick="toggleActive(this,'aboutElement')">Бидний тухай</span>
+                                {% else %}
+                                <a class="nav-item" href="{% url 'index' %}#aboutElement">Бидний тухай</a>
+                                {% endif %}
+                                {% if request.path == '/' %}
+                                <span class="nav-item" onclick="toggleActive(this,'serviceElement')">Үйлчилгээ</span>
+                                {% else %}
+                                <a class="nav-item" href="{% url 'index' %}#serviceElement">Үйлчилгээ</a>
+                                {% endif %}
+                                
+                       
                             {% if request.path == '/order/' %}
                                 <a href="{% url 'order' %}"
                                 class="font-bold block lg:inline-block lg:mt-0   ">
