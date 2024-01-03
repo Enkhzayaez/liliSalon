@@ -102,8 +102,8 @@ def order(request):
             "action" : "add_order",
             "service_id" : selectedServices,
             "worker_id" : selWorker,
-            "order_date" : str(dt.parse(request.POST.get('selectedDate'))),
-            "order_time" : str(request.POST.get('selectedTime')),
+            "order_date" : str(dt.parse(orders['selectedDate'])),
+            "order_time" : str(orders['selectedTime']),
             "branch_id" : selBranch,
             "total_price" : orders["total"],
         }
@@ -124,7 +124,24 @@ def order(request):
         orders["selectedDate"] = ""
         selectedServices.clear()
         orders["total"] = 0
-        return redirect('order_confirm',result['data'][0]['id'])
+        if result['data'][0]['id'] == 0:
+            context["order_id"] = 'Order_Done'
+            return render(request,'order_confirm.html',context)
+        context['order_id'] = result['data'][0]['id']
+        if request.method == "POST":
+            jsons = {
+                "action" : "add_user",
+                "phone" : "",
+                "name" : "",
+                "order_id" : "",
+            }
+            jsons['phone'] = request.POST.get("phone")
+            jsons['name'] = request.POST.get("name")
+            jsons['order_id'] = result['data'][0]['id']
+            con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+            result = json.loads(con.text)
+            return redirect('index')
+        return redirect('order')
     else:
         if request.GET.get('selectedBranchName') == None and request.GET.get('selectedService') and request.GET.get('selectedWorker') and request.GET.get('selectedDate') and request.GET.get('selectedTime'):
             orders["total"] = 0
@@ -949,21 +966,24 @@ def login(request):
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
         if result['resultCode'] == 200:
-            if result['resultMessege'] == 'admin':
-                user = authenticate(username=request.POST.get('phone'), password=request.POST.get('password'))
-                if user is None:
-                    user = User.objects.create_user(request.POST.get('phone'), result['data'][0]['email'], request.POST.get('password'))
-                    user.first_name = result['data'][0]['firstname']
-                    user.last_name = result['data'][0]['lastname']
+            if result['data']:
+                if result['resultMessege'] == 'admin':
+                    user = authenticate(username=request.POST.get('phone'), password=request.POST.get('password'))
+                    if user is None:
+                        user = User.objects.create_user(request.POST.get('phone'), result['data'][0]['email'], request.POST.get('password'))
+                        user.first_name = result['data'][0]['firstname']
+                        user.last_name = result['data'][0]['lastname']
+                        user.save()
+                    user.is_superuser = True
                     user.save()
-                user.is_superuser = True
-                user.save()
-                auth_login(request,user)
-                return redirect("adminEdit")
-            else: 
-                user = authenticate(username=request.POST.get('phone'), password=request.POST.get('password'))
-                auth_login(request,user)
-                return redirect('operator')
+                    auth_login(request,user)
+                    return redirect("adminEdit")
+                else: 
+                    user = authenticate(username=request.POST.get('phone'), password=request.POST.get('password'))
+                    auth_login(request,user)
+                    return redirect('operator')
+            else:
+                return render(request,'signUp/login.html')
         else:
             return render(request, 'signUp/login.html')
     else:

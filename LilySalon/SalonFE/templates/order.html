@@ -451,19 +451,18 @@
                                                 </div>
                                             </div>
                                             <div>
-                                                <!-- <form method="POST">
-                                                    {% csrf_token %}
+                                               
+                                 
                                                     <input name="selectedTime" id="selectedTime1" type='hidden' value="{{selectedTime}}" />
-                                                    <input name="selectedDate" id="selectedDate1" type='hidden' value="{{selectedDate}}" /> -->
-                                                    <!-- type="submit"  -->
-                                                    <button 
-                                                            
+                                                    <input name="selectedDate" id="selectedDate1" type='hidden' value="{{selectedDate}}" />
+
+                                                    <button
                                                             data-modal-target="popup-modal" data-modal-toggle="popup-modal" 
                                                             class=" text-white text-md font-semibold bg-[#E17F93] py-2 px-4 rounded-full shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 ">
                                                         Захиалга өгөх
                                                     </button>
                                                    
-                                                <!-- </form> -->
+                            
 
                                                 <div id="popup-modal" tabindex="-1" class="hidden  fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                                                     <div class="relative p-4 w-full max-w-2xl max-h-full">
@@ -477,37 +476,25 @@
                                                                 </div>
                                                                 <div class="mx-10">
                                                                     <ol class="list-decimal grid grid-cols-1 md:grid-cols-2 gap-5 truncate  text-black">
-                                                                        <div>
-                                                                            <li>Now this is a story all about how, </li>
+                                                                        {% for data in selectedServices %}
+                                                                        <div class="mx-10">
+                                                                            <li>{{data.service.0.name}}</li>
                                                                         </div>
-                                                                        <div>
-                                                                            <li>Now this is a story all about how, </li>
-                                                                        </div>
-                                                                        <div>
-                                                                            <li>Now this is a story all about how, </li>
-                                                                        </div>
-                                                                        <div>
-                                                                            <li>Now this is a story all about how, </li>
-                                                                        </div>
-                                                                        <div>
-                                                                            <li>Now this is a story all about how, </li>
-                                                                        </div>
-                                                                        <div>
-                                                                            <li>Now this is a story all about how, </li>
-                                                                        </div>
+                                                                        {% endfor %}
                                                                     </ol>
                                                                 </div>
                                                                 <div class="w-full flex justify-center bg-[#F4C2C2] text-white   my-3  rounded-full  font-semibold  focus:outline-none focus:shadow-outline  shadow-lg  ">
                                                                     <p>Захиалга баталгаажуулах</p>
                                                                 </div>
-
+                                                                <form method="POST">
+                                                                    {% csrf_token %}
                                                                 <div class="m-5">
                                                                     <label class="text-lg font-bold text-gray-700 mr-5 ">Нэр</label>
-                                                                    <input class="w-[50%] text-xs text-gray-900 border rounded-lg border-gray-300  cursor-pointer bg-gray-50 focus:outline-none p-2  ">
+                                                                    <input type='text' class="w-[50%] text-xs text-gray-900 border rounded-lg border-gray-300  cursor-pointer bg-gray-50 focus:outline-none p-2  ">
                                                                 </div>
                                                                 <div class="m-5">
                                                                     <label class="text-lg font-bold text-gray-700 mr-5">Утас</label>
-                                                                    <input class="w-[50%] p-2 text-xs text-gray-900 border rounded-lg border-gray-300  cursor-pointer bg-gray-50 focus:outline-none ">
+                                                                    <input type='number' class="w-[50%] p-2 text-xs text-gray-900 border rounded-lg border-gray-300  cursor-pointer bg-gray-50 focus:outline-none ">
                                                                 </div>
 
                                                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -519,13 +506,14 @@
                                                                         </a>
                                                                     </div>
                                                                     <div>
-                                                                        <a data-modal-hide="popup-modal" type="button" 
+                                                                        <input type='submit' data-modal-hide="popup-modal" type="button" 
                                                                             href="{% url 'index' %}" 
                                                                             class="w-full flex justify-center bg-[#F4C2C2] text-white p-4  rounded-full tracking-wide font-semibold  focus:outline-none focus:shadow-outline hover:bg-[#E17F93] shadow-lg cursor-pointer transition ease-in duration-300">
                                                                             Баталгаажуулах
-                                                                        </a>
+                                                                        </input>
                                                                     </div>
                                                                 </div>
+                                                            </form>
                                                                 
                                                             </div>
                                                         </div>
@@ -680,13 +668,12 @@ dayElements.forEach(dayElement => {
         {% for i in allorder %}
         
                         if ("{{i.order_date}}" == formattedDate1 ){
-                            console.log(timelist)
-                            console.log('HEllo')
+                           
                             for (var m = 0; m < timelist.length; m++){
                                 if (timelist[m] == "{{i.order_time}}"){
                          
                                     document.getElementById(timelist[m]).style.display='none';
-                                    console.log(document.getElementById(timelist[m]))
+                               
                                 }
                                 else {
                                     if(document.getElementById(timelist[m]) != null)
@@ -709,10 +696,14 @@ dayElements.forEach(dayElement => {
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         const formattedDate = selectedDate.toLocaleDateString(undefined, options);
         dayElements.forEach(aDate => {
+            
             if(aDate == dayElement)
             {
+                console.log(document.getElementById(id="selectedDate").value);
+                console.log(document.getElementById(id="selectedDate1").value);
                 document.getElementById(id="selectedDate").value = day;
                 document.getElementById(id="selectedDate1").value = day;
+                console.log("Blue");
                 aDate.classList.add('bg-blue-500', 'text-white');
             }
             else

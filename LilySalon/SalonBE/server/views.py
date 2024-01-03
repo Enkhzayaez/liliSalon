@@ -636,14 +636,16 @@ def login(request):
     con = connect()
     cur = con.cursor()
     try:
-        message = 'operator'
         cur.execute('''SELECT * FROM t_operator WHERE phone = %s AND password = %s;''',[phone,password])
-        if cur.fetchall() == []:
+        message = 'operator'
+        data = cur.fetchall()
+        if data == []:
             cur.execute('''SELECT * FROM t_admin WHERE phone = %s AND password = %s;''',[phone,password])
             message = 'admin'
+            data = cur.fetchall()
         columns = cur.description
         respRow = [{columns[index][0]:column for index,
-                    column in enumerate(value)} for value in cur.fetchall()]
+                    column in enumerate(value)} for value in data]
         resp = sendResponse(200, message, respRow ,  action)
     except Exception as e:
         resp = sendResponse(401, 'error', "" ,action)
