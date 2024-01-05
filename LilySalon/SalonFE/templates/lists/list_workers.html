@@ -43,14 +43,14 @@
             <table class="min-w-full leading-normal bg-white">
               <thead>
                 <tr>
-                  <form method="POST">
+                  <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <td class="px-5 py-5 border-b border-[#FDE2ED] " >
                       <div class="flex-shrink-0  ">
                         <input class="p-1 rounded-lg block w-full text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none"
-                           id="image"
-                           name="image"
-                           type="file">
+                            id="image"
+                            name="image"
+                            type="file">
                       </div>
                     </td>
                     <td class="px-5 py-5 border-b border-[#FDE2ED] ">
@@ -153,7 +153,7 @@
                 <tr>
                   <td class="px-5 py-5 border-b border-[#FDE2ED] min-w-48  flex justify-center" >
                     <div class="flex-shrink-0 w-10 h-10 ">
-                      <img class="w-full h-full border border-black rounded-full" src="data:image/png;base64,{{sale.image}}" alt="" />
+                      <img class="w-full h-full border border-black rounded-full" src="data:image/png;base64,{{worker.image}}" alt="" />
                     </div>
                   </td>
                   <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">

@@ -275,7 +275,13 @@ def list_operator(request):
             "email" : "",
             "branch_id" : "",
             "admin_id" : "1",
+            "image": "",
         }
+        img = request.FILES.get('image')
+        if not isinstance(img, InMemoryUploadedFile):
+            raise ValueError("Input must be an InMemoryUploadedFile")
+        base64_encoded = base64.b64encode(img.read()).decode('utf-8')
+        jsons['image'] = base64_encoded
         jsons['lastname'] = request.POST.get('lastname')
         jsons['firstname'] = request.POST.get('firstname')
         jsons['phone'] = request.POST.get('phone')
@@ -437,7 +443,13 @@ def list_location(request):
             "name" : "",
             "address" : "",
             "phone" : "",
+            "image" : "",
         }
+        img = request.FILES.get('image')
+        if not isinstance(img, InMemoryUploadedFile):
+            raise ValueError("Input must be an InMemoryUploadedFile")
+        base64_encoded = base64.b64encode(img.read()).decode('utf-8')
+        jsons['image'] = base64_encoded
         jsons['address'] = request.POST.get('address')
         jsons['name'] = request.POST.get('name')
         jsons['phone'] = request.POST.get('phone')
@@ -589,7 +601,13 @@ def list_workers(request):
             "email" : "",
             "branch_id" : "",
             "occupation_id" : "",
+            "image" : "",
         }
+        img = request.FILES.get('image')
+        if not isinstance(img, InMemoryUploadedFile):
+            raise ValueError("Input must be an InMemoryUploadedFile")
+        base64_encoded = base64.b64encode(img.read()).decode('utf-8')
+        jsons['image'] = base64_encoded
         jsons['lastname'] = request.POST.get('lastname')
         jsons['firstname'] = request.POST.get('firstname')
         jsons['phone'] = request.POST.get('phone')
