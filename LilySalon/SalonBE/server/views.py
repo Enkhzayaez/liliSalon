@@ -72,14 +72,15 @@ def edit_operator(request):
     branch_id = jsond.get("branch_id")
     password = jsond.get("password")
     id = jsond.get("id")
+    image = jsond.get("image")
     action = jsond.get("action")
     con = connect()
     cur = con.cursor()
     try:
 
         cur.execute(''' UPDATE t_operator
-                        SET lastname=%s, firstname=%s, phone=%s, email=%s, password=%s, branch_id=%s
-                        WHERE id = %s;''',[lastname,firstname,phone,email,password,branch_id,id])
+                        SET lastname=%s, firstname=%s, phone=%s, email=%s, password=%s, branch_id=%s, image=%s
+                        WHERE id = %s;''',[lastname,firstname,phone,email,password,branch_id,image,id])
         con.commit()
         resp = sendResponse(200, 'success', "" ,action)
     except Exception as e:
@@ -159,13 +160,14 @@ def edit_branch(request):
     phone = jsond.get("phone")
     new_id = jsond.get("new_id")
     id = jsond.get('id')
+    image = jsond.get("image")
     action = jsond.get("action")
     con = connect()
     cur = con.cursor()
     try:
         cur.execute(''' UPDATE t_branch
-                        SET id=%s, name=%s, address=%s, phone=%s
-                        WHERE id=%s;''',[new_id,name,address,phone,id])
+                        SET id=%s, name=%s, address=%s, phone=%s, image=%s
+                        WHERE id=%s;''',[new_id,name,address,phone,image,id])
         con.commit()
         resp = sendResponse(200, 'success', "" ,action)
     except Exception as e:
@@ -249,13 +251,14 @@ def edit_worker(request):
     occupation_id = jsond.get('occupation_id')
     branch_id = jsond.get('branch_id')
     id = jsond.get('id')
+    image = jsond.get('image')
     action = jsond.get("action")
     con = connect()
     cur = con.cursor()
     try:
         cur.execute(''' UPDATE t_worker
-                        SET lastname=%s, firstname=%s, phone=%s, email=%s, branch_id=%s, ocupation_id=%s
-                        WHERE id = %s;''',[lastname,firstname,phone,email,branch_id,occupation_id,id])
+                        SET lastname=%s, firstname=%s, phone=%s, email=%s, branch_id=%s, ocupation_id=%s, image=%s
+                        WHERE id = %s;''',[lastname,firstname,phone,email,branch_id,occupation_id,image,id])
         con.commit()
         resp = sendResponse(200, 'success', "" ,action)
     except Exception as e:
