@@ -9,6 +9,8 @@ from django.contrib.auth import authenticate, login as auth_login, logout
 import dateutil.parser as dt
 import requests
 import json
+from PIL import Image
+from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 import base64
 
@@ -413,6 +415,7 @@ def list_sales(request):
             "end_date" : "",
         }
         img = request.FILES.get('image')
+        img = resize_image(img)
         if not isinstance(img, InMemoryUploadedFile):
             raise ValueError("Input must be an InMemoryUploadedFile")
         base64_encoded = base64.b64encode(img.read()).decode('utf-8')
@@ -866,6 +869,7 @@ def edit_sales(request,sale_id = None):
         if img == None:
             jsons["image"] = request.POST.get("oldImage")
         else:
+            img - resize_image(img)
             if not isinstance(img, InMemoryUploadedFile):
                 raise ValueError("Input must be an InMemoryUploadedFile")
             base64_encoded = base64.b64encode(img.read()).decode('utf-8')
@@ -1008,6 +1012,7 @@ def login(request):
         jsons['phone'] = request.POST.get('phone')
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
+        print(result)
         if result['resultCode'] == 200:
             if result['data']:
                 if result['resultMessege'] == 'admin':
@@ -1023,6 +1028,11 @@ def login(request):
                     return redirect("adminEdit")
                 else: 
                     user = authenticate(username=request.POST.get('phone'), password=request.POST.get('password'))
+                    if user is None:
+                        user = User.objects.create_user(request.POST.get('phone'), result['data'][0]['email'], request.POST.get('password'))
+                        user.first_name = result['data'][0]['firstname']
+                        user.last_name = result['data'][0]['lastname']
+                        user.save()
                     auth_login(request,user)
                     return redirect('operator')
             else:
@@ -1035,3 +1045,23 @@ def login(request):
 def hairStyle(request):
     return render(request, 'hairStyle.html')
 
+def resize_image(uploaded_file, max_size=(300, 300)):
+    image = Image.open(uploaded_file)
+    if image.mode == "RGBA":
+        image = image.convert("RGB")
+    image.thumbnail(max_size)
+    
+    
+    buffer = BytesIO()
+    image.save(buffer, format='JPEG')  
+
+    
+    buffer.seek(0)
+
+    
+    resized_file = InMemoryUploadedFile(
+        buffer, None, uploaded_file.name, 'image/jpeg',
+        buffer.tell(), None
+    )
+
+    return resized_file
