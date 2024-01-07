@@ -146,7 +146,7 @@
                                         {% for data in services %}
                                             <div class="grid grid-cols-5 bg-[#FDE2ED]  rounded-lg shadow-md pr-4 my-5 items-center  ">
                                                 <div class="">
-                                                    <img class="object-cover h-24 w-48 rounded-l-lg" src="{% static 'images/ggg.jpg' %}">
+                                                    <img class="object-cover h-24 w-48 rounded-l-lg" src="{% static '../static/images/operatorPageList/workers.jpeg' %}">
                                                 </div>
                                                 <div class="font-serif text-black text-lg mx-4">{{ data.name }}</div>
                                                 <div></div>
@@ -154,7 +154,7 @@
                                                 <div>
                                                     <form method="GET">
                                                         {% csrf_token %}
-                                                        <input type="hidden" id="selectedService" name="selectedService" value={{ data.id }}>
+                                                        <input type="hidden" id="selectedService" name="selectedService" value="{{ data.id }}">
                                                         <button type="submit"
                                                                 class="text-black text-md font-semibold bg-white py-2 px-4 rounded-lg shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 float-right">
                                                             Сонгох
@@ -386,8 +386,8 @@
                                             <h2 class="text-black text-lg font-semibold pb-4">Сонгосон үйлчилгээ:</h2>
                                             <div class="grid gird-cols-1 md:grid-cols-2">
                                                 <div><p class="text-gray-500">Сонгосон Салбар: {{ selectedBranchName }}</p></div>
-                                                <!-- <div><p>Сонгосон Өдөр: {{ selectedDate }}</p></div>
-                                                <div><p>Сонгосон Цаг: {{ selectedTime }}</p></div> -->
+                                                <div><p>Сонгосон Өдөр: {{ selectedDate }}</p></div>
+                                                <div><p>Сонгосон Цаг: {{ selectedTime }}</p></div>
                                                 <!-- <div>
                                                     <p>
                                                         Сонгосон Ажилтан:

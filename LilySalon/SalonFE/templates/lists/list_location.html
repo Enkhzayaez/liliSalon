@@ -138,9 +138,15 @@
                       <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
                         <a href="{% url 'edit_location' branch.id %}">Засах</a>
                       </td>
-                      <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
+                      <!-- <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
                         <button  data-modal-target="popup-modal" data-modal-toggle="popup-modal-{{branch.id}}" type="button">Устгах</button>
-                      </td>  
+                      </td> -->
+
+                      <td class="px-5 py-5">
+                        <a href="{% url 'delete_location' branch.id %}">Устгах</a>
+                      </td>
+<!--                       
+                      
                         <div id="popup-modal-{{branch.id}}" aria-hidden="true" class="hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                           <div class="relative p-4 w-full max-w-md max-h-full">
                               <div class="relative bg-white rounded-lg  ">
@@ -164,7 +170,7 @@
                               </div>
                           </div>
                         </div>
-                        <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script>
+                        <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script> -->
                     </tr>
                   {% endfor %}
                 </tbody>

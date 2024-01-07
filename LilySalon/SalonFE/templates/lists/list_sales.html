@@ -98,9 +98,11 @@
                       <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
                         <a href="{% url 'edit_sales' sale.id %}">Засах</a>
                       </td>
+                     
                       <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
                         <a href="{% url 'delete_sales' sale.id %}">Устгах</a>
-                      </td>
+                      </td>                   
+                      
                     </tr>
                     {% endfor %}
                   </tbody>
