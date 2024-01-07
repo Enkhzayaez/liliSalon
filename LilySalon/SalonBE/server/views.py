@@ -7,10 +7,15 @@ from server.utils import *
 def list_operator(request):
     jsond = json.loads(request.body)
     action = jsond.get("action")
+    keyword = jsond.get("keyword")
+    search = ""
+    if keyword != None:
+        search = f" WHERE LOWER(lastname) LIKE LOWER('%{keyword}%') OR LOWER(firstname) LIKE LOWER('%{keyword}%') OR LOWER(email) LIKE LOWER('%{keyword}%') OR CAST(phone AS TEXT) LIKE '%{keyword}%'"
+    
     con = connect()
     cur = con.cursor()
     try:
-        cur.execute(f'''SELECT * FROM t_operator;''')
+        cur.execute(f'''SELECT * FROM t_operator{search};''')
         columns = cur.description
         respRow = [{columns[index][0]:column for index,
                     column in enumerate(value)} for value in cur.fetchall()]
@@ -105,10 +110,15 @@ def delete_operator(request):
 def list_branch(request):
     jsond = json.loads(request.body)
     action = jsond.get("action")
+    keyword = jsond.get("keyword")
+    search = ""
+    if keyword != None:
+        search = f" WHERE LOWER(name) LIKE LOWER('%{keyword}%') OR LOWER(address) LIKE LOWER('%{keyword}%') OR CAST(phone AS TEXT) LIKE '%{keyword}%'"
+    
     con = connect()
     cur = con.cursor()
     try:
-        cur.execute(f'''SELECT * FROM t_branch;''')
+        cur.execute(f'''SELECT * FROM t_branch{search};''')
         columns = cur.description
         respRow = [{columns[index][0]:column for index,
                     column in enumerate(value)} for value in cur.fetchall()]
@@ -192,10 +202,15 @@ def delete_branch(request):
 def list_worker(request):
     jsond = json.loads(request.body)
     action = jsond.get("action")
+    keyword = jsond.get("keyword")
+    search = ""
+    if keyword != None:
+        search = f" WHERE LOWER(lastname) LIKE LOWER('%{keyword}%') OR LOWER(firstname) LIKE LOWER('%{keyword}%') OR CAST(phone AS TEXT) LIKE '%{keyword}%'"
     con = connect()
     cur = con.cursor()
+
     try:
-        cur.execute(f'''SELECT * FROM t_worker;''')
+        cur.execute(f'''SELECT * FROM t_worker{search};''')
         columns = cur.description
         respRow = [{columns[index][0]:column for index,
                     column in enumerate(value)} for value in cur.fetchall()]
@@ -283,10 +298,14 @@ def delete_worker(request):
 def list_occupation(request):
     jsond = json.loads(request.body)
     action = jsond.get("action")
+    keyword = jsond.get("keyword")
+    search = ""
+    if keyword != None:
+        search = f" WHERE LOWER(name) LIKE '%{keyword}%'"
     con = connect()
     cur = con.cursor()
     try:
-        cur.execute(f'''SELECT * FROM t_ocupation;''')
+        cur.execute(f'''SELECT * FROM t_ocupation{search};''')
         columns = cur.description
         respRow = [{columns[index][0]:column for index,
                     column in enumerate(value)} for value in cur.fetchall()]
@@ -364,10 +383,14 @@ def delete_occupation(request):
 def list_service(request):
     jsond = json.loads(request.body)
     action = jsond.get("action")
+    keyword = jsond.get("keyword")
+    search = ""
+    if keyword != None:
+        search = f" INNER JOIN t_ocupation ON t_service.category_id = t_ocupation.id WHERE LOWER(t_service.name) LIKE '%{keyword}%' OR LOWER(t_ocupation.name) LIKE '%{keyword}%'"
     con = connect()
     cur = con.cursor()
     try:
-        cur.execute(f'''SELECT * FROM t_service;''')
+        cur.execute(f'''SELECT t_service.* FROM t_service{search};''')
         columns = cur.description
         respRow = [{columns[index][0]:column for index,
                     column in enumerate(value)} for value in cur.fetchall()]
@@ -447,10 +470,14 @@ def delete_service(request):
 def list_order(request):
     jsond = json.loads(request.body)
     action = jsond.get("action")
+    keyword = jsond.get("keyword")
+    search = ""
+    if keyword != None:
+        search = f" WHERE CAST(t_user.phone AS TEXT) LIKE '%{keyword}%' OR LOWER(t_user.name) LIKE LOWER('%{keyword}%')"
     con = connect()
     cur = con.cursor()
     try:
-        cur.execute(f'''SELECT * FROM t_user INNER JOIN t_order ON t_user.id = t_order.user_id''')
+        cur.execute(f'''SELECT * FROM t_user INNER JOIN t_order ON t_user.id = t_order.user_id{search}''')
         columns = cur.description
         respRow = [{columns[index][0]:column for index,
                     column in enumerate(value)} for value in cur.fetchall()]
@@ -462,10 +489,14 @@ def list_order(request):
 def list_sales(request):
     jsond = json.loads(request.body)
     action = jsond.get("action")
+    keyword = jsond.get("keyword")
+    search = ""
+    if keyword != None:
+        search = f" WHERE description LIKE '%{keyword}%' OR CAST(end_date AS TEXT) LIKE '%{keyword}%'"
     con = connect()
     cur = con.cursor()
     try:
-        cur.execute(f'''SELECT * FROM t_sale;''')
+        cur.execute(f'''SELECT * FROM t_sale{search};''')
         columns = cur.description
         respRow = [{columns[index][0]:column for index,
                     column in enumerate(value)} for value in cur.fetchall()]
@@ -554,7 +585,6 @@ def add_order(request):
         services.append(data['id'])
     con = connect()
     cur = con.cursor()
-    print([services,worker_id,order_date,order_time[0:2],branch_id,total_price])
     try:
         cur.execute(''' INSERT INTO t_order(
                         id, service_id, worker_id, order_date, order_time, branch_id, total_price)
@@ -563,7 +593,6 @@ def add_order(request):
         con.commit()
         resp = sendResponse(200, 'success', "" ,action)
     except Exception as e:
-        print(e)
         resp = sendResponse(401, str(e), str(e) ,action)
     return resp
     
@@ -612,7 +641,6 @@ def add_user(request):
         con.commit()
         resp = sendResponse(200, 'success', "" ,action)
     except Exception as e:
-        print(e)
         resp = sendResponse(401, str(e), "" ,action)
     return resp
     
@@ -661,7 +689,6 @@ def get_occ_service(request):
     jsond = json.loads(request.body)
     action = jsond.get("action")
     occ_id = jsond.get('occ_id')
-    print(occ_id)
     con = connect()
     cur = con.cursor()
     try:
@@ -671,10 +698,10 @@ def get_occ_service(request):
                     column in enumerate(value)} for value in cur.fetchall()]
         
         resp = sendResponse(200, 'success', respRow ,  action)
-        print(resp)
     except Exception as e:
         resp = sendResponse(401, str(e), str(e) ,action)
     return resp
+
 
 
 @csrf_exempt

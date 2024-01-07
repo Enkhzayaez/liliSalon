@@ -299,8 +299,10 @@ def list_operator(request):
         context['errorMessage'] = result['data']
         return redirect('list_operator')
     else:
+        keyword = request.GET.get('searchInput')
         jsons = {
             "action" : "list_operator",
+            "keyword" : keyword,
         }
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
@@ -343,8 +345,10 @@ def list_services(request):
         context['errorMessage'] = result['data']
         return redirect('list_services')
     else:
+        keyword = request.GET.get('searchInput')
         jsons = {
             "action" : "list_service",
+            "keyword" : keyword,
         }
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
@@ -428,8 +432,10 @@ def list_sales(request):
         
         return redirect('list_sales')
     else:
+        keyword = request.GET.get('searchInput')
         jsons = {
             "action" : "list_sales",
+            "keyword" : keyword,
         }
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
@@ -460,8 +466,10 @@ def list_location(request):
         context['errorMessage'] = result['data']
         return redirect('list_location')
     else:
+        keyword = request.GET.get("searchInput")
         jsons = {
             "action" : "list_branch",
+            "keyword" : keyword,
         }
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
@@ -514,8 +522,10 @@ def list_orderlist(request):
     if request.method == "POST":
         return redirect('list_workers')
     else:
+        keyword = request.GET.get('searchInput')
         jsons = {
             "action" : "list_order",
+            'keyword' : keyword,
         }
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
@@ -621,12 +631,15 @@ def list_workers(request):
         context['errorMessage'] = result['data']
         return redirect('list_workers')
     else:
+        keyword = request.GET.get('searchInput')
         jsons = {
             "action" : "list_worker",
+            "keyword" : keyword,
         }
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
         context['workers'] = result['data']
+        context['json_workers'] = json.dumps(result['data'])
         jsons = {
             "action" : "list_branch",
         }
@@ -639,6 +652,7 @@ def list_workers(request):
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
         context['occupations'] = result['data']
+        
     return render(request, 'lists/list_workers.html',context)
 
 @login_required(login_url="login")
@@ -663,8 +677,10 @@ def list_occupation(request):
         context['errorMessage'] = result['data']
         return redirect('list_occupation')
     else:
+        keyword = request.GET.get('searchInput')
         jsons = {
             "action" : "list_occupation",
+            "keyword" : keyword,
         }
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
@@ -1066,3 +1082,4 @@ def resize_image(uploaded_file, max_size=(300, 300)):
     )
 
     return resized_file
+

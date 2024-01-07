@@ -1,33 +1,7 @@
 {% extends "../base/operatorBase.html" %}
 {% block content %}
 {% load static %}
-<script>
-  const data = "{{workers}}"
 
-  function search() {
-    const searchQuery = document.getElementById("searchInput").value.toLowerCase();
-    console.log(typeof JSON.parse("[" + data + "]"));
-
-    const filteredData = data;
-
-    displayResults(filteredData);
-  }
-
-  function displayResults(results) {
-    const resultList = document.getElementById("resultList");
-
-    // Clear previous results
-    resultList.innerHTML = '';
-
-    // Display the filtered results
-    // results.forEach(result => {
-      const listItem = document.createElement("li");
-      listItem.className = "resultItem";
-      listItem.textContent = results;
-      resultList.appendChild(listItem);
-    // });
-  }
-</script>
 <div class="bg-[#FDE2ED]">
   <div class="max-w-7xl mx-auto mt-12 mx-5 pb-5">
     <div class=" p-8 rounded-md w-full">
@@ -36,7 +10,7 @@
           <h2 class="text-black text-lg font-semibold">Ажилтан</h2>
         </div>
         <div class="">
-          <form>
+          <form method="GET">
             <label for="default-search"
                     class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-[#F4C2C2]">Хайх</label>
             <div class="relative">
@@ -51,13 +25,11 @@
                 </svg>
               </div>
               <input  type="search"
-                      id="searchInput" 
-                      oninput="search()"
+                      name="searchInput" 
                       class="rounded-lg block  p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50  border border-[#FDE2ED]  dark:bg-white dark:text-dark  focus:border-white  focus:ring-white  "
                       placeholder="Ажилтан хайх ..."
                       required>
               <button type="submit"
-              onclick="search()"
                       class="rounded-lg text-white absolute right-2.5 bottom-2.5 bg-[#F4C2C2] hover:bg-[#E17F93]  focus:outline-none focus:ring-blue-300 font-medium  text-sm px-4 py-2   ">
                 Хайх
               </button>
