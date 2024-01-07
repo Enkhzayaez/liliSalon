@@ -37,7 +37,7 @@
                                     name="branch_id"
                                     id="branch_id">
                                 {% for branch in branches %}
-                                    <option {% if branch.id == worker.branch_id  %} selected {% endif %} value={{branch.id}}>Салбар-{{ branch.id }}
+                                    <option {% if branch.id == worker.branch_id  %} selected {% endif %} value="{{branch.id}}">Салбар-{{ branch.id }}
                                     </option>
                                 {% endfor %}
                             </select>

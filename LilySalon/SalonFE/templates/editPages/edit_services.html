@@ -17,7 +17,7 @@
                 <input type="hidden" name="remember" value="true">
                 <div class="relative">
                     <label class="text-sm  font-bold text-gray-700 tracking-wide">Нэр</label>
-                    <input name="name" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="name" value={{ service.name }}>
+                    <input name="name" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="name" value="{{ service.name }}">
                 </div>
                 <div class="relative">
                     <label class="text-sm  font-bold text-gray-700 tracking-wide">Төрөл</label>
@@ -25,7 +25,7 @@
                             name="occupation_id"
                             id="branch">
                         {% for occupation in occupations %}
-                            <option {% if occupation.id == service.ocupation_id %}selected{% endif %} value={{ occupation.id }}>{{ occupation.name }}
+                            <option {% if occupation.id == service.ocupation_id %}selected{% endif %} value="{{ occupation.id }}">{{ occupation.name }}
                             </option>
                         {% endfor %}
                     </select>
