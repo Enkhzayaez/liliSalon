@@ -28,7 +28,7 @@
                       name="searchInput" 
                       class="rounded-lg block  p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50  border border-[#FDE2ED]  dark:bg-white dark:text-dark  focus:border-white  focus:ring-white  "
                       placeholder="Ажилтан хайх ..."
-                      required>
+                      >
               <button type="submit"
                       class="rounded-lg text-white absolute right-2.5 bottom-2.5 bg-[#F4C2C2] hover:bg-[#E17F93]  focus:outline-none focus:ring-blue-300 font-medium  text-sm px-4 py-2   ">
                 Хайх
@@ -52,7 +52,8 @@
                         <input class="p-1 rounded-lg block w-full text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none"
                             id="image"
                             name="image"
-                            type="file">
+                            type="file"
+                            required>
                       </div>
                     </td>
                     <td class="px-5 py-5 border-b border-[#FDE2ED] ">
@@ -62,7 +63,8 @@
                                 placeholder="Овог"
                                 id="text"
                                 type="text"
-                                name="lastname">
+                                name="lastname"
+                                required>
                       </div>
                     </td>
                     <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
@@ -71,7 +73,8 @@
                                 placeholder="Нэр"
                                 id="text"
                                 type="text"
-                                name="firstname">
+                                name="firstname"
+                                required>
                       </div>
                     </td>
                     <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
@@ -80,7 +83,8 @@
                                 placeholder="Утас"
                                 id="text"
                                 type="number"
-                                name="phone">
+                                name="phone"
+                                required>
                       </div>
                     </td>
                     <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
@@ -88,14 +92,16 @@
                               placeholder="Цахим хаяг"
                               id="price"
                               type="text"
-                              name="email">
+                              name="email"
+                              required>
                     </td>
                     <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
                       <select class="rounded-lg w-full p-2 block text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none"
                               name="branch_id"
-                              id="branch">
+                              id="branch"
+                              required>
                         {% for branch in branches %}
-                          <option selected value={{ branch.id }}>Салбар-{{ branch.id }}
+                          <option selected value="{{ branch.id }}">Салбар-{{ branch.id }}
                           </option>
                         {% endfor %}
                       </select>
@@ -103,9 +109,10 @@
                     <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
                       <select class="rounded-lg w-full p-2 block text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none"
                               name="occupation_id"
-                              id="occupation">
+                              id="occupation"
+                              required>
                         {% for occupation in occupations %}
-                          <option value={{ occupation.id }}>{{ occupation.name }}
+                          <option value="{{ occupation.id }}">{{ occupation.name }}
                           </option>
                         {% endfor %}
                       </select>
@@ -114,7 +121,8 @@
                       <input class=" rounded-lg bg-[#F4C2C2] hover:bg-[#E17F93] px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer"
                               value="Нэмэх"
                               type="submit"
-                              name="branch1">
+                              name="branch1"
+                              >
                     </input>
                   </td>
                 </form>

@@ -990,22 +990,22 @@ def operator(request):
         'data' :
         [
             {
-                'name' : 'Үйлчилгээ' ,'image' : '../../static/images/full.jpg', 'path': 'list_services'
+                'name' : 'Үйлчилгээ' ,'image' : '../../static/images/operatorPageList/workers.jpeg', 'path': 'list_services'
             },
               {
-                'name' : 'Салбар' ,'image' : '../../static/images/full.jpg','path': 'list_location'
+                'name' : 'Салбар' ,'image' : '../../static/images/operatorPageList/location.jpg','path': 'list_location'
             },
               {
-                'name' : 'Хөнгөлөлт' ,'image' : '../../static/images/full.jpg','path': 'list_sales'
+                'name' : 'Хөнгөлөлт' ,'image' : '../../static/images/operatorPageList/sales.jpg','path': 'list_sales'
             },
               {
-                'name' : 'Захиалгууд' ,'image' : '../../static/images/full.jpg','path': 'list_orderlist'
+                'name' : 'Захиалгууд' ,'image' : '../../static/images/operatorPageList/orderlist.jpg','path': 'list_orderlist'
             },
               {
-                'name' : 'Мэргэжил' ,'image' : '../../static/images/full.jpg','path': 'list_occupation'
+                'name' : 'Мэргэжил' ,'image' : '../../static/images/operatorPageList/servicesType.jpg','path': 'list_occupation'
             },
               {
-                'name' : 'Ажилтан' ,'image' : '../../static/images/full.jpg','path': 'list_workers'
+                'name' : 'Ажилтан' ,'image' : '../../static/images/operatorPageList/www.jpg','path': 'list_workers'
             },
             
         ]
