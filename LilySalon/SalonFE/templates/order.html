@@ -605,11 +605,35 @@ function generateCalendar(year, month) {
         const dayElement = document.createElement('div');
         dayElement.className = 'text-center py-2 border cursor-pointer';
         dayElement.innerText = day;
-
-        // Check if this date is the current date
         const currentDate = new Date();
+        if (year < currentDate.getFullYear())
+        {
+            dayElement.classList.add('bg-gray-100', 'text-gray-200');
+        }
+        if (month < currentDate.getMonth())
+        {
+            dayElement.classList.add('bg-gray-100', 'text-gray-200');
+        } else {
+            if (year < currentDate.getFullYear())
+                {
+                    dayElement.classList.add('bg-gray-100', 'text-gray-200');
+                }
+            else
+            {
+                dayElement.classList.remove('bg-gray-100', 'text-gray-200');
+            }
+        }
+        if (day < currentDate.getDate() && month <= currentDate.getMonth())
+            {
+                dayElement.classList.add('bg-gray-100', 'text-gray-200');
+                if (year > currentDate.getFullYear())
+                {
+                    dayElement.classList.remove('bg-gray-100', 'text-gray-200');
+                }
+            }
+        
         if (year === currentDate.getFullYear() && month === currentDate.getMonth() && day === currentDate.getDate()) {
-            dayElement.classList.add('bg-blue-500', 'text-white'); // Add classes for the indicator
+            dayElement.classList.add('bg-blue-500', 'text-white');
         }
 
         calendarElement.appendChild(dayElement);
@@ -622,7 +646,7 @@ let currentYear = currentDate.getFullYear();
 let currentMonth = currentDate.getMonth();
 generateCalendar(currentYear, currentMonth);
 
-// Event listeners for previous and next month buttons
+// Event listener for previous and next month buttons
 document.getElementById('prevMonth').addEventListener('click', () => {
     currentMonth--;
     if (currentMonth < 0) {
@@ -655,67 +679,41 @@ function hideModal() {
     modal.classList.add('hidden');
 }
 
-// Event listener for date click events
-const dayElements = document.querySelectorAll('.cursor-pointer');
-dayElements.forEach(dayElement => {
-    dayElement.addEventListener('click', () => {
-        
-        const day = parseInt(dayElement.innerText);
-        const selectedDate = new Date(currentYear, currentMonth, day);
-        const selectedDate1 = new Date(currentYear, currentMonth, day);
-        selectedDate1.setDate(selectedDate1.getDate() + 1);
-        const formattedDate1 = selectedDate1.toISOString().split('T')[0];
-        var timelist = ["8", "9", "11", "14", "15", "17", "18"]
-        {% for i in allorder %}
-        
-                        if ("{{i.order_date}}" == formattedDate1 ){
-                           
-                            for (var m = 0; m < timelist.length; m++){
-                                if (timelist[m] == "{{i.order_time}}"){
-                         
-                                    document.getElementById(timelist[m]).style.display='none';
-                               
-                                }
-                                else {
-                                    if(document.getElementById(timelist[m]) != null)
-                                    {
-                                    document.getElementById(timelist[m]).style.display='block';
-                                    }
-                                }
-                            }
-                        }
-                        else{
-                            var timelist = ["8", "9", "11", "14", "15", "17", "18"]
-                            for (var m = 0; m < timelist.length; m++){ 
-                                if(document.getElementById(timelist[m]) != null)
-                                    {
-                                    document.getElementById(timelist[m]).style.display='block';
-                                    }
-                            }
-                        }
-        {% endfor %}
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        const formattedDate = selectedDate.toLocaleDateString(undefined, options);
-        dayElements.forEach(aDate => {
-            
-            if(aDate == dayElement)
-            {
-                console.log(document.getElementById(id="selectedDate").value);
-                console.log(document.getElementById(id="selectedDate1").value);
-                document.getElementById(id="selectedDate").value = day;
-                document.getElementById(id="selectedDate1").value = day;
-                console.log("Blue");
-                aDate.classList.add('bg-blue-500', 'text-white');
-            }
-            else
-            {
-                aDate.classList.remove('bg-blue-500', 'text-white');
-            }
-        })
-        
-        showModal(formattedDate);
+// Function to handle date click events
+function handleDateClick(event) {
+    const dayElement = event.target;
+    if (!dayElement.classList.contains('cursor-pointer')) {
+        return;
+    }
+    const day = parseInt(dayElement.innerText);
+    const tempDay = new Date(currentYear, currentMonth, day);
+    const tempToday = new Date();
+    if (tempDay < tempToday)
+    {
+        return;
+    }
+    const selectedDate = new Date(currentYear, currentMonth, day);
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = selectedDate.toLocaleDateString(undefined, options);
+
+    // Select date elements after generating the calendar
+    const dayElements = document.querySelectorAll('.cursor-pointer');
+    dayElements.forEach(aDate => {
+        if (aDate === dayElement) {
+            document.getElementById("selectedDate").value = day;
+            document.getElementById("selectedDate1").value = day;
+            aDate.classList.add('bg-blue-500', 'text-white');
+        } else {
+            aDate.classList.remove('bg-blue-500', 'text-white');
+        }
     });
-});
+
+    showModal(formattedDate);
+}
+
+// Event listener for date click events
+const calendarElement = document.getElementById('calendar');
+calendarElement.addEventListener('click', handleDateClick);
 
 // Event listener for closing the modal
 document.getElementById('closeModal').addEventListener('click', () => {

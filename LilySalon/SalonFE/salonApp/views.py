@@ -1016,7 +1016,7 @@ def operator(request):
 def logout(request):
     if request.method =="GET":
         auth.logout(request=request)    
-    return redirect('login')
+    return redirect('index')
 
 def login(request):
     if request.method == "POST":
