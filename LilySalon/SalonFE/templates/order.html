@@ -457,14 +457,22 @@
                                                     <input name="selectedTime" id="selectedTime1" type='hidden' value="{{selectedTime}}" />
                                                     <input name="selectedDate" id="selectedDate1" type='hidden' value="{{selectedDate}}" />
 
-                                                    <button
-                                                            data-modal-target="popup-modal" data-modal-toggle="popup-modal" 
-                                                            class=" text-white text-md font-semibold bg-[#E17F93] py-2 px-4 rounded-full shadow-md hover:shadow-lg duration-500 transition transform-gpu hover:scale-110 ">
-                                                        Захиалга өгөх
-                                                    </button>
-                                                    <a href="{% url 'refresh_order' %}">
-                                                        Hello there refresh
-                                                    </a>
+                                                    <div class="grid grid-cols-2 gap-4">
+                                                        <div class="pt-5">
+                                                            <a href="{% url 'refresh_order' %}" 
+                                                                data-modal-target="popup-modal" data-modal-toggle="popup-modal" 
+                                                                class=" w-full flex justify-center bg-[#F4C2C2] text-white p-4  rounded-full tracking-wide font-semibold  focus:outline-none focus:shadow-outline hover:bg-[#E17F93] shadow-lg cursor-pointer transition ease-in duration-300 ">
+                                                                Цуцлах
+                                                            </a>
+                                                        </div>
+                                                        <div class="pt-5">
+                                                        <button
+                                                                data-modal-target="popup-modal" data-modal-toggle="popup-modal" 
+                                                                class="w-full flex justify-center bg-[#F4C2C2] text-white p-4  rounded-full tracking-wide font-semibold  focus:outline-none focus:shadow-outline hover:bg-[#E17F93] shadow-lg cursor-pointer transition ease-in duration-300 ">
+                                                            Захиалга өгөх
+                                                        </button>
+                                                        </div>
+                                                    </div>
                                                    
                             
 
