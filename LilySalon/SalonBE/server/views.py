@@ -579,19 +579,31 @@ def add_order(request):
     worker_id = jsond.get("worker_id")
     order_date = jsond.get("order_date")
     order_time = jsond.get("order_time")
+    order_dates = jsond.get("order_dates")
+    order_times = jsond.get("order_times")
     branch_id = jsond.get("branch_id")
     total_price = jsond.get("total_price")
     action = jsond.get("action")
     services = []
-    for data in service_id[0]['service']:
-        services.append(data['id'])
+    for data in service_id:
+        print(data)
+        services.append(data['service'][0]['id'])
+    workers = []
+    for data in worker_id:
+        workers.append(data)
+    dates = []
+    for data in order_dates:
+        dates.append(data)
+    times = []
+    for data in order_times:
+        times.append(data)
     con = connect()
     cur = con.cursor()
     try:
         cur.execute(''' INSERT INTO t_order(
-                        id, service_id, worker_id, order_date, order_time, branch_id, total_price)
-                        VALUES (DEFAULT, %s, %s, %s, %s, %s, %s);''',
-                        [services,worker_id,order_date,order_time[0:2],branch_id,total_price])
+                        id, service_id, worker_id, order_date, order_time, branch_id, total_price,dates,times)
+                        VALUES (DEFAULT, %s, %s, %s, %s, %s, %s, %s, %s);''',
+                        [services,workers,order_date,order_time[0:2],branch_id,total_price,dates,times])
         con.commit()
         resp = sendResponse(200, 'success', "" ,action)
     except Exception as e:

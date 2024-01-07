@@ -75,10 +75,12 @@ orders = {
     "selectedService" : "",
     "selectedWorker" : "",
     "selectedWorkers" : [],
-    
+    "selectedWorkersId" : [],
     "selectedBranchId" : "",
     "selectedTime" : "",
     "selectedDate" : "",
+    "selectedDates" : [],
+    "selectedTimes" : [],
     "total" : 0
 }
 
@@ -100,17 +102,23 @@ def order(request):
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
         selWorker = result['data'][0]['id']
+        for i in range(len(orders['selectedDates'])):
+            orders['selectedDates'][i] = str(dt.parse(orders['selectedDates'][i]))
+        print(selectedServices)
         jsons = {
             "action" : "add_order",
             "service_id" : selectedServices,
-            "worker_id" : selWorker,
+            "worker_id" : orders['selectedWorkersId'],
             "order_date" : str(dt.parse(orders['selectedDate'])),
             "order_time" : str(orders['selectedTime']),
             "branch_id" : selBranch,
             "total_price" : orders["total"],
+            "order_dates": orders['selectedDates'],
+            "order_times": orders['selectedTimes'],
         }
-      
+        
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+        print(json.loads(con.text))
         jsons = {
             "action" : "get_last_order",
         }
@@ -121,9 +129,12 @@ def order(request):
         orders["selectedBranchName"] = ""
         orders["selectedWorker"] = ""
         orders["selectedWorkers"] = []
+        orders["selectedWorkersId"] = []
         orders["selectedBranchId"] = ""
         orders["selectedTime"] = ""
         orders["selectedDate"] = ""
+        orders["selectedTimes"] = []
+        orders["selectedDates"] = []
         selectedServices.clear()
         orders["total"] = 0
         if result['data'][0]['id'] == 0:
@@ -185,6 +196,7 @@ def order(request):
             result = json.loads(con.text)
             context['selectedWorker'] = result['data']
             orders['selectedWorkers'].append(context["selectedWorker"][0]['firstname'])
+            orders['selectedWorkersId'].append(context["selectedWorker"][0]['id'])
             if selectedServices != []:
                 selectedServices[-1]['worker'] = context['selectedWorker'][0]['firstname']
         if request.GET.get('selectedDate') and request.GET.get('selectedTime'):
@@ -192,6 +204,8 @@ def order(request):
             context['selectedTime'] = request.GET.get('selectedTime')
             orders['selectedDate'] = request.GET.get('selectedDate')
             orders['selectedTime'] = request.GET.get('selectedTime')
+            orders['selectedDates'].append(request.GET.get('selectedDate'))
+            orders['selectedTimes'].append(request.GET.get('selectedTime'))
 
         jsons = {
             "action" : "list_service",
@@ -226,6 +240,20 @@ def order(request):
             orders['total'] = 0
     context['orders'] = orders
     return render(request, 'order.html',context)
+
+def refresh_order(request):
+    orders['selectedService'] = ""
+    orders["selectedBranchName"] = ""
+    orders["selectedWorker"] = ""
+    orders["selectedWorkers"] = []
+    orders["selectedWorkersId"] = []
+    orders["selectedBranchId"] = ""
+    orders["selectedTime"] = ""
+    orders["selectedDate"] = ""
+    orders["selectedTimes"] = []
+    orders["selectedDates"] = []
+    selectedServices.clear()
+    return redirect('order')
 
 def remove_order_item(request,item_id = None):
     for service in selectedServices:
@@ -520,7 +548,7 @@ def delete_occupation(request,occupation_id = None):
 def list_orderlist(request):
     context = {}
     if request.method == "POST":
-        return redirect('list_workers')
+        return redirect('operator')
     else:
         keyword = request.GET.get('searchInput')
         jsons = {

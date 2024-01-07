@@ -51,6 +51,10 @@
                               </th>
                               <th
                                 class="px-5 py-3 border-b-2 border-[#FDE2ED] bg-[#FDE2ED] text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Захиалсан цаг
+                              </th>
+                              <th
+                                class="px-5 py-3 border-b-2 border-[#FDE2ED] bg-[#FDE2ED] text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                 Ажилтан
                               </th>
                               <th
@@ -80,14 +84,28 @@
                                 <p class="text-gray-900 whitespace-no-wrap">{{order.phone}}</p>
                               </td>
                               <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
-                                <p class="text-gray-900 whitespace-no-wrap">{{order.order_date}} {{ order.order_time }}</p>
+                                <p class="text-gray-900 whitespace-no-wrap">
+                                  {% for date in order.dates %}
+                                    {{date}}<br>
+                                  {% endfor %}
+                                </p>
+                              </td>
+                              <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
+                                <p class="text-gray-900 whitespace-no-wrap">
+                                  {% for time in order.times %}
+                                    {{time}}<br>
+                                  {% endfor %}
+                                  
+                                </p>
                               </td>
                               <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
                                 <p class="text-gray-900 whitespace-no-wrap">
                                   {% for worker in workers %}
-                                    {% if worker.id == order.worker_id %}
-                                      {{worker.lastname}} {{worker.firstname}}
-                                    {% endif %}
+                                    {% for cworker in order.worker_id %}
+                                      {% if worker.id == cworker %}
+                                        {{worker.lastname}} {{worker.firstname}}<br>
+                                      {% endif %}
+                                    {% endfor %}
                                   {% endfor %}
                                 </p>
                               </td>
@@ -101,7 +119,7 @@
                                     
                                       {% if service.id == service_id %}
                                       
-                                        {{service.name}},
+                                        {{service.name}}<br>
                                       {% endif %}
                                     {% endfor %}
                                   {% endfor %}

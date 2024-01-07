@@ -54,6 +54,8 @@ urlpatterns = [
     # operator page url
     path('operator/', views.operator, name = 'operator'),
 
+    path('refresh_order/', views.refresh_order, name = 'refresh_order'),
+
 
     # sign up
     path('login/', views.login, name = 'login'),
