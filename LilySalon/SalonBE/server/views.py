@@ -113,7 +113,7 @@ def list_branch(request):
     keyword = jsond.get("keyword")
     search = ""
     if keyword != None:
-        search = f" WHERE LOWER(name) LIKE LOWER('%{keyword}%') OR LOWER(address) LIKE LOWER('%{keyword}%') OR CAST(phone AS TEXT) LIKE '%{keyword}%'"
+        search = f" WHERE CAST(id AS TEXT) LIKE LOWER('%{keyword}%') OR LOWER(name) LIKE LOWER('%{keyword}%') OR LOWER(address) LIKE LOWER('%{keyword}%') OR CAST(phone AS TEXT) LIKE '%{keyword}%'"
     
     con = connect()
     cur = con.cursor()
@@ -174,6 +174,7 @@ def edit_branch(request):
     action = jsond.get("action")
     con = connect()
     cur = con.cursor()
+    print(new_id)
     try:
         cur.execute(''' UPDATE t_branch
                         SET id=%s, name=%s, address=%s, phone=%s, image=%s
@@ -386,10 +387,11 @@ def list_service(request):
     keyword = jsond.get("keyword")
     search = ""
     if keyword != None:
-        search = f" INNER JOIN t_ocupation ON t_service.category_id = t_ocupation.id WHERE LOWER(t_service.name) LIKE '%{keyword}%' OR LOWER(t_ocupation.name) LIKE '%{keyword}%'"
+        search = f" INNER JOIN t_ocupation ON t_service.category_id = t_ocupation.id WHERE LOWER(t_service.name) LIKE LOWER('%{keyword}%') OR LOWER(t_ocupation.name) LIKE LOWER('%{keyword}%')"
     con = connect()
     cur = con.cursor()
     try:
+        print(f'''SELECT t_service.* FROM t_service{search};''')
         cur.execute(f'''SELECT t_service.* FROM t_service{search};''')
         columns = cur.description
         respRow = [{columns[index][0]:column for index,

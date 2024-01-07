@@ -26,8 +26,8 @@
                        id="default-search"
                        name="searchInput"
                        class="rounded-lg block  p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50  border border-[#F4C2C2]  dark:bg-white dark:text-dark  focus:border-white  focus:ring-white  "
-                       placeholder="Үйлчилгээ хайх..."
-                       required>
+                       placeholder="Үйлчилгээг нэр эсвэл төрлөөр нь хайх..."
+                       >
                 <button type="submit"
                         class="rounded-lg text-white absolute right-2.5 bottom-2.5 bg-[#F4C2C2] hover:bg-[#E17F93]  focus:outline-none focus:ring-blue-300 font-medium  text-sm px-4 py-2   ">
                   Хайх
@@ -52,7 +52,8 @@
                                    id="text"
                                    type="text"
                                    name="name"
-                                   placeholder="Үйлчилгээний нэр">
+                                   placeholder="Үйлчилгээний нэр" 
+                                   required>
                           </div>
                         </td>
                         <td class="px-5 py-5">
@@ -60,7 +61,7 @@
                                   name="occupation_id"
                                   id="branch">
                             {% for occupation in occupations %}
-                              <option value={{ occupation.id }}>
+                              <option value="{{ occupation.id }}" >
                                 {{ occupation.name }}
                               </option>
                             {% endfor %}
@@ -72,14 +73,16 @@
                                  id="price"
                                  name="price"
                                  placeholder="Үйлчилгээний үнэ"
-                                 type="number">
+                                 type="number"
+                                 required>
                         </td>
                         
                         <td class="px-5 py-5">
                           <input class="rounded-lg bg-[#F4C2C2] hover:bg-[#E17F93] px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer"
                                  value="Нэмэх"
                                  type="submit"
-                                 name="hair">
+                                 name="hair"
+                                 required>
                         </input>
                       </td>
                     </form>

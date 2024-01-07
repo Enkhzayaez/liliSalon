@@ -788,10 +788,9 @@ def edit_location(request,branch_id = None):
             jsons["image"] = request.POST.get("oldImage")
         else:
             if not isinstance(img, InMemoryUploadedFile):
-                raise ValueError("Input must be an InMemoryUploadedFile")
+                img = resize_image(img)
             base64_encoded = base64.b64encode(img.read()).decode('utf-8')
             jsons['image'] = base64_encoded
-        print(jsons['image'])
         jsons['address'] = request.POST.get('address')
         jsons['phone'] = request.POST.get('phone')
         jsons['name'] = request.POST.get('name')
@@ -799,6 +798,7 @@ def edit_location(request,branch_id = None):
 
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
+        print(result)
         context['errorMessage'] = result['data']
         return redirect('list_location')
     else:
