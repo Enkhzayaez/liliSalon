@@ -550,8 +550,7 @@ def add_order(request):
     total_price = jsond.get("total_price")
     action = jsond.get("action")
     services = []
-    print(order_time[0:2])
-    for data in service_id[0]:
+    for data in service_id[0]['service']:
         services.append(data['id'])
     con = connect()
     cur = con.cursor()
@@ -565,7 +564,7 @@ def add_order(request):
         resp = sendResponse(200, 'success', "" ,action)
     except Exception as e:
         print(e)
-        resp = sendResponse(401, str(e), "" ,action)
+        resp = sendResponse(401, str(e), str(e) ,action)
     return resp
     
 def get_last_order(request):
@@ -774,4 +773,5 @@ def main(request):
 
     if action == "login":
         resp = login(request) 
+
     return HttpResponse(resp)

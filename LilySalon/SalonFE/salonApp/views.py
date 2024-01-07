@@ -128,20 +128,19 @@ def order(request):
             context["order_id"] = 'Order_Done'
             return render(request,'order_confirm.html',context)
         context['order_id'] = result['data'][0]['id']
-        if request.method == "POST":
-            jsons = {
-                "action" : "add_user",
-                "phone" : "",
-                "name" : "",
-                "order_id" : "",
-            }
-            jsons['phone'] = request.POST.get("phone")
-            jsons['name'] = request.POST.get("name")
-            jsons['order_id'] = result['data'][0]['id']
-            con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
-            result = json.loads(con.text)
-            return redirect('index')
-        return redirect('order')
+        jsons = {
+            "action" : "add_user",
+            "phone" : "",
+            "name" : "",
+            "order_id" : "",
+        }
+        jsons['phone'] = request.POST.get("phone")
+        jsons['name'] = request.POST.get("name")
+        jsons['order_id'] = result['data'][0]['id']
+        con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
+        print(json.loads(con.text))
+        result = json.loads(con.text)
+        return redirect('index')
     else:
         if request.GET.get('selectedBranchName') == None and request.GET.get('selectedService') and request.GET.get('selectedWorker') and request.GET.get('selectedDate') and request.GET.get('selectedTime'):
             orders["total"] = 0

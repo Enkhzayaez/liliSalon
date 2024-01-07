@@ -73,7 +73,7 @@
                             {% for order in orders %}
                             <tr>
                               <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
-                                {{order.id}}
+                          
                                 <p class="text-gray-900 whitespace-no-wrap">{{order.name}}</p>
                               </td>
                               <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
@@ -104,7 +104,7 @@
                               </td>
                               <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
                                 
-                                <p class="text-gray-900 whitespace-no-wrap">{{order.total_price}}</p>
+                                <p class="text-gray-900 whitespace-no-wrap">{{order.total_price}}₮</p>
                               </td>
                               <td class="px-5 py-5 border-b border-[#FDE2ED] bg-white text-sm">
                                 <button  data-modal-target="popup-modal" data-modal-toggle="popup-modal{{order.id}}" type="button">Устгах</button>
