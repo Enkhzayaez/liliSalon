@@ -2,7 +2,7 @@
 {% block content %}
   {% load static %}
   <!-- ========================= HOME ========================= -->
-    <div  class="p-5">
+    <div  class="">
       
         <div id="default-carousel"
             class=" relative z-[0] w-auto h-screen justify-center "
@@ -11,8 +11,8 @@
   
           <!-- ========================= Carousel wrapper ========================= -->
           
-            <div class="overflow-hidden relative h-5/6 rounded-lg sm:h-5/6 xl:h-5/6 2xl:h-5/6 mx-28  m-6 drop-shadow-2xl">
-              <div class=" border border-2 p-5">
+            <div class="overflow-hidden relative h-5/6  ">
+              <div class="">
                
               {% for sale in sales %}
               <div class=" duration-700 ease-in-out p-5 " data-carousel-item>
@@ -60,7 +60,7 @@
   <!-- ========================= HOME END ========================= -->
   <!-- ========================= ABOUT US ========================= -->
 
-  <div id="aboutElement" class=" bg-[#FDE2ED] shadow-lg">
+  <div id="aboutElement" class=" bg-[#FDE2ED] shadow-lg p-10">
     <div class="grid grid-cols-2">
       <div>
         <div class="p-10">
@@ -76,7 +76,7 @@
       </div>
       <div class="">
         <img src="{% static 'images/about24.png' %}"
-             class="w-[80%] float-right border border-l-2 border-0 border-slate-800"
+             class="w-[80%] float-right "
              alt="about24">
       </div>
     </div>
