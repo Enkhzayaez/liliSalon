@@ -1030,7 +1030,7 @@ def operator(request):
                 'name' : 'Захиалгууд' ,'image' : '../../static/images/operatorPageList/orderlist.jpg','path': 'list_orderlist'
             },
               {
-                'name' : 'Мэргэжил' ,'image' : '../../static/images/operatorPageList/servicesType.jpg','path': 'list_occupation'
+                'name' : 'Үйлчилгээний төрөл' ,'image' : '../../static/images/operatorPageList/servicesType.jpg','path': 'list_occupation'
             },
               {
                 'name' : 'Ажилтан' ,'image' : '../../static/images/operatorPageList/www.jpg','path': 'list_workers'
