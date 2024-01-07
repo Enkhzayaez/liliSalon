@@ -275,7 +275,13 @@ def list_operator(request):
             "email" : "",
             "branch_id" : "",
             "admin_id" : "1",
+            "image": "",
         }
+        img = request.FILES.get('image')
+        if not isinstance(img, InMemoryUploadedFile):
+            raise ValueError("Input must be an InMemoryUploadedFile")
+        base64_encoded = base64.b64encode(img.read()).decode('utf-8')
+        jsons['image'] = base64_encoded
         jsons['lastname'] = request.POST.get('lastname')
         jsons['firstname'] = request.POST.get('firstname')
         jsons['phone'] = request.POST.get('phone')
@@ -437,7 +443,13 @@ def list_location(request):
             "name" : "",
             "address" : "",
             "phone" : "",
+            "image" : "",
         }
+        img = request.FILES.get('image')
+        if not isinstance(img, InMemoryUploadedFile):
+            raise ValueError("Input must be an InMemoryUploadedFile")
+        base64_encoded = base64.b64encode(img.read()).decode('utf-8')
+        jsons['image'] = base64_encoded
         jsons['address'] = request.POST.get('address')
         jsons['name'] = request.POST.get('name')
         jsons['phone'] = request.POST.get('phone')
@@ -589,7 +601,13 @@ def list_workers(request):
             "email" : "",
             "branch_id" : "",
             "occupation_id" : "",
+            "image" : "",
         }
+        img = request.FILES.get('image')
+        if not isinstance(img, InMemoryUploadedFile):
+            raise ValueError("Input must be an InMemoryUploadedFile")
+        base64_encoded = base64.b64encode(img.read()).decode('utf-8')
+        jsons['image'] = base64_encoded
         jsons['lastname'] = request.POST.get('lastname')
         jsons['firstname'] = request.POST.get('firstname')
         jsons['phone'] = request.POST.get('phone')
@@ -665,7 +683,16 @@ def edit_operator(request,operator_id = None):
             "email" : "",
             "branch_id" : "",
             "id" : operator_id,
+            "image" : "",
         }
+        img = request.FILES.get('image')
+        if img == None:
+            jsons["image"] = request.POST.get("oldImage")
+        else:
+            if not isinstance(img, InMemoryUploadedFile):
+                raise ValueError("Input must be an InMemoryUploadedFile")
+            base64_encoded = base64.b64encode(img.read()).decode('utf-8')
+            jsons['image'] = base64_encoded
         jsons['lastname'] = request.POST.get('lastname')
         jsons['firstname'] = request.POST.get('firstname')
         jsons['phone'] = request.POST.get('phone')
@@ -723,9 +750,6 @@ def edit_occupation(request,occupation_id = None):
 def edit_services(request):
     return render(request, 'editPages/edit_services.html')
 
-@login_required(login_url="login")
-def edit_sales(request,sale_id = None):
-    return render(request, 'editPages/edit_sales.html')
 
 @login_required(login_url="login")
 def edit_location(request,branch_id = None):
@@ -737,8 +761,19 @@ def edit_location(request,branch_id = None):
             "phone" : "",
             "name" : "",
             "id" : branch_id,
-            "new_id" : ""
+            "new_id" : "",
+            "image" : "",
         }
+        img = request.FILES.get('image')
+        print(img)
+        if img == None:
+            jsons["image"] = request.POST.get("oldImage")
+        else:
+            if not isinstance(img, InMemoryUploadedFile):
+                raise ValueError("Input must be an InMemoryUploadedFile")
+            base64_encoded = base64.b64encode(img.read()).decode('utf-8')
+            jsons['image'] = base64_encoded
+        print(jsons['image'])
         jsons['address'] = request.POST.get('address')
         jsons['phone'] = request.POST.get('phone')
         jsons['name'] = request.POST.get('name')
@@ -823,11 +858,11 @@ def edit_sales(request,sale_id = None):
             "description" : "",
             "end_date" : "",
             "id" : sale_id,
+            
         }
         jsons['description'] = request.POST.get('description')
         
         jsons['end_date'] = request.POST.get('end_date')
-        print(jsons['end_date'])
         img = request.FILES.get('image')
         if img == None:
             jsons["image"] = request.POST.get("oldImage")
@@ -863,7 +898,16 @@ def edit_workers(request,worker_id = None):
             "branch_id" : "",
             "occupation_id" : "",
             "id" : worker_id,
+            "image" : "",
         }
+        img = request.FILES.get('image')
+        if img == None:
+            jsons["image"] = request.POST.get("oldImage")
+        else:
+            if not isinstance(img, InMemoryUploadedFile):
+                raise ValueError("Input must be an InMemoryUploadedFile")
+            base64_encoded = base64.b64encode(img.read()).decode('utf-8')
+            jsons['image'] = base64_encoded
         jsons['lastname'] = request.POST.get('lastname')
         jsons['firstname'] = request.POST.get('firstname')
         jsons['phone'] = request.POST.get('phone')

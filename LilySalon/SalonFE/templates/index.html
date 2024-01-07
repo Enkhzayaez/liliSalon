@@ -2,17 +2,17 @@
 {% block content %}
   {% load static %}
   <!-- ========================= HOME ========================= -->
-    <div  class=" ">
+    <div  class="p-5">
       
-        <div id="default-carousel "
+        <div id="default-carousel"
             class=" relative z-[0] w-auto h-screen justify-center "
             data-carousel="static">
          
   
           <!-- ========================= Carousel wrapper ========================= -->
           
-            <div class="overflow-hidden relative h-5/6  sm:h-5/6 xl:h-5/6 2xl:h- ">
-              <div class="p-5">
+            <div class="overflow-hidden relative h-5/6 rounded-lg sm:h-5/6 xl:h-5/6 2xl:h-5/6 mx-28  m-6 drop-shadow-2xl">
+              <div class=" border border-2 p-5">
                
               {% for sale in sales %}
               <div class=" duration-700 ease-in-out p-5 " data-carousel-item>
@@ -22,7 +22,6 @@
               {% endfor %}
             </div>
             </div>
-
               <button type="button"
                       class="flex absolute top-0 left-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none mx-10"
                       data-carousel-prev>
@@ -61,24 +60,23 @@
   <!-- ========================= HOME END ========================= -->
   <!-- ========================= ABOUT US ========================= -->
 
-  <div id="aboutElement" class=" bg-[#FDE2ED] p-10 ">
-    <div class="grid grid-cols-2 gap-4">
+  <div id="aboutElement" class=" bg-[#FDE2ED] shadow-lg">
+    <div class="grid grid-cols-2">
       <div>
-        <div class="m-6 ">
-          <p class="text-gray-800 font-serif uppercase font-bold text-center text-2xl mb-5 ">Бидний тухай</p>
-          <p class="text-lg text-gray-800 mb-5 text-justify">
+        <div class="p-10">
+          <p class="text-slate-800 font-serif uppercase font-bold text-center text-3xl mb-5 ">Бидний тухай</p>
+          <p class="text-lg text-slate-800 mb-5 text-justify text-center">
             “Lily Salon” нь үсчин, маникур, нүүр будалтын чиглэлээр үйл ажиллагаа явуулдаг ба Монголын нэр хүндтэй салонуудын нэг юм. 2005 онд Японы дэлхийд алдартай сүлжээний албан ёсны төлөөлөгч болж, гоо сайхны цогц үйлчилгээг Монголын зах зээлд анхлан нэвтрүүлснээр “Lily Salon” нь үүсгэн байгуулагдаж байсан бол өнөөдөр 4 салбар, 30 ажилтантайгаар үйл ажиллагаагаа явуулсаар байна.  
           </p>
-          
-          <p class="text-xl text-gray-800 font-bold">Эрхэм зорилго</p>
-          <p class="text-lg text-gray-800">
+          <p class="text-slate-800 font-serif uppercase font-bold text-center text-xl ">Эрхэм зорилго</p>
+          <p class="text-lg text-slate-800 text-center">
             Үйлчлүүлэгчиддээ сэтгэл ханамж гоо зүйн мэдрэмжийг бэлэглэнэ.  
           </p>
         </div>
       </div>
-      <div class=" ">
+      <div class="">
         <img src="{% static 'images/about24.png' %}"
-             class="w-[80%] float-right"
+             class="w-[80%] float-right border border-l-2 border-0 border-slate-800"
              alt="about24">
       </div>
     </div>
@@ -87,23 +85,31 @@
   <!-- ========================= SERVICES ========================= -->
   <div class="m-10"  id="serviceElement">
     <div class="m-6">
-      <p class="text-gray-800 font-serif font-serif font-bold text-center text-2xl uppercase">Манай үйлчилгээнүүд</p>
+      <p class="text-gray-800 font-serif font-sans font-bold text-center text-2xl uppercase">Манай үйлчилгээнүүд</p>
     </div>
     <div class=" mx-[10%]">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
         {% for occupation in occupations %}
-          <div class="relative group overflow-hidden shadow-md border border-2 p-2">
+          <div class="relative group overflow-hidden shadow-md">
             <a href="{% url 'services' occupation.id %}">
               <img src="data:image/png;base64,{{occupation.image}}"
                    alt="Your Image"
                    class="object-cover w-screen h-full transform transition-opacity duration-300 hover:opacity-0 group-hover:opacity-100">
-              <div class="absolute inset-0 bg-gradient-to-l from-rose-400 from-10% to-black to-90% opacity-60 transition-opacity duration-300 group-hover:opacity-0">
+              <div class="absolute inset-0 bg-gradient-to-l from-rose-400 from-20% to-fuchsia-300 to-70% opacity-50 transition-opacity duration-300 group-hover:opacity-0">
               </div>
-              <div class="bg-[#F4C2C2]  border-slate-500 border-2   top-3/4 flex items-center ml-10  absolute  ">
-                <p class="p-2 flex items-center text-2xl font-serif text-slate-500">
+              <div class="top-3/4 flex items-center pl-10 absolute bg-[#FFFFFF8B] w-full group-hover:opacity-0">
+                <p class="p-2 flex items-center text-3xl font-sans text-slate-800 font-semibold">
                   {{ occupation.name }}
                 </p>
-              </div>
+            </div>
+       
+              
+              <div class="top-3/4 flex items-center pl-10 absolute">
+                <p class="p-2 flex items-center text-3xl font-sans text-slate-800 font-semibold">
+                  {{ occupation.name }}
+                </p>
+        
+            </div>
             </a>
           </div>
         {% endfor %}

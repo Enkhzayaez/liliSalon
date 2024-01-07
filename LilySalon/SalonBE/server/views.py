@@ -44,6 +44,7 @@ def add_operator(request):
     branch_id = jsond.get("branch_id")
     admin_id = jsond.get("admin_id")
     password = jsond.get("password")
+    image = jsond.get("image")
     action = jsond.get("action")
     con = connect()
     cur = con.cursor()
@@ -54,8 +55,8 @@ def add_operator(request):
             resp = sendResponse(402, 'already operator with same email or phone', "" ,action)
         else:
             cur.execute('''INSERT INTO t_operator(
-                            id, lastname, firstname, phone, email, password, regdate, admin_id, branch_id)
-                            VALUES (DEFAULT, %s, %s, %s, %s, %s, NOW(), %s, %s);''',[lastname,firstname,phone,email,password,admin_id,branch_id])
+                            id, lastname, firstname, phone, email, password, regdate, admin_id, branch_id, image)
+                            VALUES (DEFAULT, %s, %s, %s, %s, %s, NOW(), %s, %s, %s);''',[lastname,firstname,phone,email,password,admin_id,branch_id,image])
             con.commit()
             resp = sendResponse(200, 'success', "" ,action)
     except Exception as e:
@@ -71,14 +72,15 @@ def edit_operator(request):
     branch_id = jsond.get("branch_id")
     password = jsond.get("password")
     id = jsond.get("id")
+    image = jsond.get("image")
     action = jsond.get("action")
     con = connect()
     cur = con.cursor()
     try:
 
         cur.execute(''' UPDATE t_operator
-                        SET lastname=%s, firstname=%s, phone=%s, email=%s, password=%s, branch_id=%s
-                        WHERE id = %s;''',[lastname,firstname,phone,email,password,branch_id,id])
+                        SET lastname=%s, firstname=%s, phone=%s, email=%s, password=%s, branch_id=%s, image=%s
+                        WHERE id = %s;''',[lastname,firstname,phone,email,password,branch_id,image,id])
         con.commit()
         resp = sendResponse(200, 'success', "" ,action)
     except Exception as e:
@@ -136,13 +138,15 @@ def add_branch(request):
     name = jsond.get("name")
     address = jsond.get("address")
     phone = jsond.get("phone")
+    image = jsond.get("image")
     action = jsond.get("action")
+    
     con = connect()
     cur = con.cursor()
     try:
         cur.execute(''' INSERT INTO t_branch(
-                        id, name, address, phone)
-                        VALUES (DEFAULT, %s, %s, %s);''',[name,address,phone])
+                        id, name, address, phone,image)
+                        VALUES (DEFAULT, %s, %s, %s, %s);''',[name,address,phone,image])
         con.commit()
         resp = sendResponse(200, 'success', "" ,action)
     except Exception as e:
@@ -156,13 +160,14 @@ def edit_branch(request):
     phone = jsond.get("phone")
     new_id = jsond.get("new_id")
     id = jsond.get('id')
+    image = jsond.get("image")
     action = jsond.get("action")
     con = connect()
     cur = con.cursor()
     try:
         cur.execute(''' UPDATE t_branch
-                        SET id=%s, name=%s, address=%s, phone=%s
-                        WHERE id=%s;''',[new_id,name,address,phone,id])
+                        SET id=%s, name=%s, address=%s, phone=%s, image=%s
+                        WHERE id=%s;''',[new_id,name,address,phone,image,id])
         con.commit()
         resp = sendResponse(200, 'success', "" ,action)
     except Exception as e:
@@ -223,13 +228,14 @@ def add_worker(request):
     email = jsond.get("email")
     branch_id = jsond.get("branch_id")
     occupation_id = jsond.get("occupation_id")
+    image = jsond.get("image")
     action = jsond.get("action")
     con = connect()
     cur = con.cursor()
     try:
         cur.execute(''' INSERT INTO t_worker(
-                        id, lastname, firstname, phone, email, regdate, branch_id, ocupation_id)
-                        VALUES (DEFAULT, %s, %s, %s, %s, NOW(), %s, %s);''',[lastname,firstname,phone,email,branch_id,occupation_id])
+                        id, lastname, firstname, phone, email, regdate, branch_id, ocupation_id, image)
+                        VALUES (DEFAULT, %s, %s, %s, %s, NOW(), %s, %s, %s);''',[lastname,firstname,phone,email,branch_id,occupation_id,image])
         con.commit()
         resp = sendResponse(200, 'success', "" ,action)
     except Exception as e:
@@ -245,13 +251,14 @@ def edit_worker(request):
     occupation_id = jsond.get('occupation_id')
     branch_id = jsond.get('branch_id')
     id = jsond.get('id')
+    image = jsond.get('image')
     action = jsond.get("action")
     con = connect()
     cur = con.cursor()
     try:
         cur.execute(''' UPDATE t_worker
-                        SET lastname=%s, firstname=%s, phone=%s, email=%s, branch_id=%s, ocupation_id=%s
-                        WHERE id = %s;''',[lastname,firstname,phone,email,branch_id,occupation_id,id])
+                        SET lastname=%s, firstname=%s, phone=%s, email=%s, branch_id=%s, ocupation_id=%s, image=%s
+                        WHERE id = %s;''',[lastname,firstname,phone,email,branch_id,occupation_id,image,id])
         con.commit()
         resp = sendResponse(200, 'success', "" ,action)
     except Exception as e:

@@ -61,7 +61,8 @@
                                         <div class=" shadow-md pr-4 my-5  bg-[#FDE2ED] rounded-lg">
                                             <div class="grid grid-cols-5 items-center">
                                                 <div>
-                                                    <img class="object-cover h-24 w-48 rounded-l-lg" src="{% static 'images/ggg.jpg' %}">
+                                                 
+                                                    <img class="object-cover h-24 w-48 rounded-l-lg" src="data:image/png;base64,{{data.image}}">
                                                 </div>
                                                 <div class="col-span-3">
                                                     <div class="font-serif text-black text-lg mx-4">{{ data.name }}</div>
@@ -232,7 +233,7 @@
                                             <div class=" bg-[#FDE2ED]  rounded-lg shadow-md pr-4 my-5 ">
                                                 <div class="grid grid-cols-5 items-center"> 
                                                     <div>
-                                                        <img class="object-cover h-24 w-48 rounded-l-lg" src="{% static 'images/ggg.jpg' %}">
+                                                        <img class="object-cover h-24 w-48 rounded-l-lg" src="data:image/png;base64,{{worker.image}}">
                                                     </div>
                                                     <div class="font-serif text-black text-lg mx-4 col-span-3">{{ worker.firstname }} {{ worker.lastname }}</div>
                                                     <div>

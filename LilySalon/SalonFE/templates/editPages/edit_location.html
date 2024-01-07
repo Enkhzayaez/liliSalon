@@ -12,11 +12,10 @@
                     <p class="mt-2 text-sm text-gray-600">Алдаатай мэдээллийг засна уу!!</p>
                 {% endif %}
             </div>
-            <form class="mt-8 space-y-6" method="POST">
+            <form class="mt-8 space-y-6" method="POST"  enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-black">
                     <input type="hidden" name="remember" value="true">
-                    
                     <div class="relative">
                         <label class="text-sm  font-bold text-gray-700 tracking-wide">Салбарын дугаар</label>
                         <input name="new_id" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="name" value={{ branch.id }}>
@@ -35,7 +34,7 @@
                     </div>
                     <div class="relative">
                         <label class="text-sm  font-bold text-gray-700 tracking-wide mb-2">Зураг</label>
-                        <input type="hidden" value = {{sales.image}} name="oldImage" />
+                        <input type="hidden" value = {{branch.image}} name="oldImage" />
                         <input class="p-1 rounded-lg block w-full text-xs text-gray-900 border border-gray-300  cursor-pointer bg-gray-50 focus:outline-none"
                                 id="image"
                                 name="image"
