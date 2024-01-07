@@ -26,7 +26,7 @@
                         </div>
                         <div class="relative">
                             <label class="text-sm  font-bold text-gray-700 tracking-wide">Дэлгэрэнгүй</label>
-                            <input value={{sales.description}} name="description" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="Description" >
+                            <input value="{{sales.description|safe}}" name="description" class=" w-full bg-white text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="Description" >
                         </div>
                         <div class="relative">
                             <label class="text-sm  font-bold text-gray-700 tracking-wide">Дуусах өдөр</label>
@@ -43,7 +43,7 @@
                             <div class="pt-5">
                                 <button type="submit" class="w-full flex justify-center bg-[#F4C2C2] text-white p-4  rounded-full tracking-wide
                                                 font-semibold  focus:outline-none focus:shadow-outline hover:bg-[#E17F93] shadow-lg cursor-pointer transition ease-in duration-300">
-                                    Нэмэх
+                                    Хадгалах
                                 </button>
                             </div>
                         </div>

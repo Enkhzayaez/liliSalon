@@ -869,9 +869,9 @@ def edit_sales(request,sale_id = None):
         if img == None:
             jsons["image"] = request.POST.get("oldImage")
         else:
-            img - resize_image(img)
+            
             if not isinstance(img, InMemoryUploadedFile):
-                raise ValueError("Input must be an InMemoryUploadedFile")
+                img = resize_image(img)
             base64_encoded = base64.b64encode(img.read()).decode('utf-8')
             jsons['image'] = base64_encoded
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
@@ -886,6 +886,7 @@ def edit_sales(request,sale_id = None):
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
         context['sales'] = result['data'][0]
+
     return render(request, 'editPages/edit_sales.html',context)
 
 @login_required(login_url="login")
