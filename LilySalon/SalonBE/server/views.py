@@ -204,13 +204,18 @@ def list_worker(request):
     jsond = json.loads(request.body)
     action = jsond.get("action")
     keyword = jsond.get("keyword")
+    branch_id = jsond.get("branch_id")
+    occupation_id = jsond.get("occupation_id")
     search = ""
+    if branch_id != "" and occupation_id != "":
+        search = f" WHERE branch_id = {branch_id} AND ocupation_id = {occupation_id}"
     if keyword != None:
         search = f" WHERE LOWER(lastname) LIKE LOWER('%{keyword}%') OR LOWER(firstname) LIKE LOWER('%{keyword}%') OR CAST(phone AS TEXT) LIKE '%{keyword}%'"
     con = connect()
     cur = con.cursor()
 
     try:
+        print((f'''SELECT * FROM t_worker{search};'''))
         cur.execute(f'''SELECT * FROM t_worker{search};''')
         columns = cur.description
         respRow = [{columns[index][0]:column for index,

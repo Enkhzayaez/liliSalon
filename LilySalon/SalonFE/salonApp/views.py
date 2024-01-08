@@ -77,11 +77,13 @@ orders = {
     "selectedWorkers" : [],
     "selectedWorkersId" : [],
     "selectedBranchId" : "",
+    "selectedServiceId" : "",
     "selectedTime" : "",
     "selectedDate" : "",
     "selectedDates" : [],
     "selectedTimes" : [],
-    "total" : 0
+    "total" : 0,
+    
 }
 
 
@@ -131,6 +133,7 @@ def order(request):
         orders["selectedWorkers"] = []
         orders["selectedWorkersId"] = []
         orders["selectedBranchId"] = ""
+        orders["selectedServiceId"] = ""
         orders["selectedTime"] = ""
         orders["selectedDate"] = ""
         orders["selectedTimes"] = []
@@ -172,12 +175,14 @@ def order(request):
         if request.GET.get('selectedService'):
             context['selectedService'] = request.GET.get('selectedService')
             orders['selectedService'] = request.GET.get('selectedService')
+            
             jsons = {
             "action" : "get_service",
             "id" : request.GET.get('selectedService'),
             }
             con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
             result = json.loads(con.text)
+            orders['selectedServiceId'] = result['data'][0]['ocupation_id']
             selectedServices.append(
                 {
                     'service': result['data'],
@@ -221,6 +226,8 @@ def order(request):
         context['branches'] = result['data']
         jsons = {
             "action" : "list_worker",
+            "branch_id" : orders['selectedBranchId'],
+            "occupation_id" : orders['selectedServiceId'],
         }
         con = requests.post(f"{BE_URL}", data= json.dumps(jsons))
         result = json.loads(con.text)
@@ -252,6 +259,7 @@ def refresh_order(request):
     orders["selectedDate"] = ""
     orders["selectedTimes"] = []
     orders["selectedDates"] = []
+    orders["selectedServiceId"] = ""
     selectedServices.clear()
     return redirect('order')
 
